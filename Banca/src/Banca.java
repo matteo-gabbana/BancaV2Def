@@ -174,7 +174,96 @@ public class Banca {
                     System.out.println("Il tempo è avanzato di un mese. Gli investimenti sono stati aggiornati.");
                     break;
 
-// DA CONTINUARE
+case 5:
+                    // Visualizza saldo corrente
+                    System.out.println("\nSaldo corrente:");
+                    System.out.println("Saldo conto corrente: " + String.format("%.2f", saldoConto) + "€");
+                    System.out.println("Investimenti:");
+                    System.out.println("Tesla (TSLA): " + String.format("%.2f", saldoTSLA) + "€");
+                    System.out.println("Nvidia (NVDA): " + String.format("%.2f", saldoNVDA) + "€");
+                    System.out.println("Amazon (AMZN): " + String.format("%.2f", saldoAMZN) + "€");
+                    System.out.println("Apple (AAPL): " + String.format("%.2f", saldoAAPL) + "€");
+                    break;
+
+                case 6:
+                    // Visualizza investimenti correnti
+                    System.out.println("\nInvestimenti in corso:");
+                    if (saldoTSLA > 0) {
+                        double guadagnoTSLA = saldoTSLA - investimentoInizialeTSLA;
+                        System.out.println("Tesla (TSLA): " + String.format("%.2f", saldoTSLA) + "€ (Guadagno/Perdita: " + String.format("%.2f", guadagnoTSLA) + "€)");
+                    }
+                    if (saldoNVDA > 0) {
+                        double guadagnoNVDA = saldoNVDA - investimentoInizialeNVDA;
+                        System.out.println("Nvidia (NVDA): " + String.format("%.2f", saldoNVDA) + "€ (Guadagno/Perdita: " + String.format("%.2f", guadagnoNVDA) + "€)");
+                    }
+                    if (saldoAMZN > 0) {
+                        double guadagnoAMZN = saldoAMZN - investimentoInizialeAMZN;
+                        System.out.println("Amazon (AMZN): " + String.format("%.2f", saldoAMZN) + "€ (Guadagno/Perdita: " + String.format("%.2f", guadagnoAMZN) + "€)");
+                    }
+                    if (saldoAAPL > 0) {
+                        double guadagnoAAPL = saldoAAPL - investimentoInizialeAAPL;
+                        System.out.println("Apple (AAPL): " + String.format("%.2f", saldoAAPL) + "€ (Guadagno/Perdita: " + String.format("%.2f", guadagnoAAPL) + "€)");
+                    }
+                    if (saldoTSLA == 0 && saldoNVDA == 0 && saldoAMZN == 0 && saldoAAPL == 0) {
+                        System.out.println("Nessun investimento in corso.");
+                    }
+                    break;
+
+                case 7:
+                    // Chiudi investimento
+                    System.out.println("\nInvestimenti aperti:");
+                    if (saldoTSLA > 0) {
+                        System.out.println("1) Tesla (TSLA): " + String.format("%.2f", saldoTSLA) + "€");
+                    }
+                    if (saldoNVDA > 0) {
+                        System.out.println("2) Nvidia (NVDA): " + String.format("%.2f", saldoNVDA) + "€");
+                    }
+                    if (saldoAMZN > 0) {
+                        System.out.println("3) Amazon (AMZN): " + String.format("%.2f", saldoAMZN) + "€");
+                    }
+                    if (saldoAAPL > 0) {
+                        System.out.println("4) Apple (AAPL): " + String.format("%.2f", saldoAAPL) + "€");
+                    }
+                    System.out.print("Quale investimento desideri chiudere? (inserisci il numero corrispondente o 0 per annullare): ");
+                    int sceltaChiusura = scanner.nextInt();
+
+                    if (sceltaChiusura == 1 && saldoTSLA > 0) {
+                        double guadagnoTSLA = saldoTSLA - investimentoInizialeTSLA;
+                        saldoConto += saldoTSLA;  // Rimborso dell'importo investito
+                        saldoTSLA = 0;  // Chiude l'investimento
+                        System.out.println("Hai chiuso l'investimento in Tesla. Guadagno/Perdita: " + String.format("%.2f", guadagnoTSLA) + "€.");
+
+                    } else if (sceltaChiusura == 2 && saldoNVDA > 0) {
+                        double guadagnoNVDA = saldoNVDA - investimentoInizialeNVDA;
+                        saldoConto += saldoNVDA;  // Rimborso dell'importo investito
+                        saldoNVDA = 0;  // Chiude l'investimento
+                        System.out.println("Hai chiuso l'investimento in Nvidia. Guadagno/Perdita: " + String.format("%.2f", guadagnoNVDA) + "€.");
+
+                    } else if (sceltaChiusura == 3 && saldoAMZN > 0) {
+                        double guadagnoAMZN = saldoAMZN - investimentoInizialeAMZN;
+                        saldoConto += saldoAMZN;  // Rimborso dell'importo investito
+                        saldoAMZN = 0;  // Chiude l'investimento
+                        System.out.println("Hai chiuso l'investimento in Amazon. Guadagno/Perdita: " + String.format("%.2f", guadagnoAMZN) + "€.");
+                        
+                    } else if (sceltaChiusura == 4 && saldoAAPL > 0) {
+                        double guadagnoAAPL = saldoAAPL - investimentoInizialeAAPL;
+                        saldoConto += saldoAAPL;  // Rimborso dell'importo investito
+                        saldoAAPL = 0;  // Chiude l'investimento
+                        System.out.println("Hai chiuso l'investimento in Apple. Guadagno/Perdita: " + String.format("%.2f", guadagnoAAPL) + "€.");
+
+                    } else {
+                        System.out.println("Opzione non valida o nessun investimento da chiudere.");
+                    }
+                    break;
+
+                case 8:
+                    System.out.println("Grazie per aver usato il nostro servizio!");
+                    break;
+
+                default:
+                    System.out.println("Scelta non valida. Riprova.");
+                    break;
+            }
                     
 
         } while (scelta != 8);

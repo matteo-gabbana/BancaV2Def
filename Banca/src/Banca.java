@@ -3,6 +3,9 @@ import java.util.Scanner;
 
 
   //Classe principale per il programma della Banca BinGian.
+
+    // prova modifica per primo commit
+    // questi commenti servono solo per provare il commit
  
 public class Banca {
 

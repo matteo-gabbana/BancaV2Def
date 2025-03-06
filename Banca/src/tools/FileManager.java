@@ -8,6 +8,11 @@ public class FileManager {
 
     public static void salvaUtente(String username, String password, double saldoConto, double bilancioPortafoglio, String data, double saldoTSLA, double saldoNVDA, double saldoAMZN, double saldoAAPL) {
 
+        File cartella = new File(PATH_CARTELLA);
+        if (!cartella.exists()) {
+            cartella.mkdir();
+        }
+
         try {
             File fileUtente = new File(PATH_CARTELLA + username + ".txt");
             FileWriter writer = new FileWriter(fileUtente);

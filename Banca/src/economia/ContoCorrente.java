@@ -4,8 +4,8 @@ public class ContoCorrente {
 
     private double saldo;
 
-    public ContoCorrente() {
-        this.saldo = 0.0;
+    public ContoCorrente(double saldo) {
+        this.saldo = saldo;
     }
 
     public double getSaldo() {

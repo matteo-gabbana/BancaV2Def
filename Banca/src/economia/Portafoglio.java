@@ -5,9 +5,9 @@ public class Portafoglio {
     private double bilancio;
     private ContoCorrente conto;
 
-    public Portafoglio(ContoCorrente conto) {
-        this.bilancio = 0.0;
+    public Portafoglio(ContoCorrente conto, double bilancio) {
         this.conto = conto;
+        this.bilancio = bilancio;
     }
 
     public void setBilancio(double bilancio) {
@@ -34,6 +34,6 @@ public class Portafoglio {
     }
 
     public void mostraBilancioPortafoglio() {
-        System.out.println("Saldo conto corrente: " + String.format("%.2f", bilancio) + "$.");
+        System.out.println("Bilancio portafoglio: " + String.format("%.2f", bilancio) + "$.");
     }
 }

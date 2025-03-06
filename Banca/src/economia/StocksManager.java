@@ -1,10 +1,8 @@
 package economia;
 
 import tools.DateManager;
-import tools.InputTools;
 
 import java.util.Random;
-import java.util.Scanner;
 
 public class StocksManager {
 
@@ -15,15 +13,37 @@ public class StocksManager {
     private static double saldoAMZN = 0.0;
     private static double saldoAAPL = 0.0;
 
-    public static double getSaldoTSLA() {return saldoTSLA;}
-    public static double getSaldoAAPL() {return saldoAAPL;}
-    public static double getSaldoAMZN() {return saldoAMZN;}
-    public static double getSaldoNVDA() {return saldoNVDA;}
+    public static double getSaldoTSLA() {
+        return saldoTSLA;
+    }
 
-    public static void setSaldoTSLA(double saldoTSLA) {StocksManager.saldoTSLA = saldoTSLA;}
-    public static void setSaldoNVDA(double saldoNVDA) {StocksManager.saldoNVDA = saldoNVDA;}
-    public static void setSaldoAMZN(double saldoAMZN) {StocksManager.saldoAMZN = saldoAMZN;}
-    public static void setSaldoAAPL(double saldoAAPL) {StocksManager.saldoAAPL = saldoAAPL;}
+    public static double getSaldoAAPL() {
+        return saldoAAPL;
+    }
+
+    public static double getSaldoAMZN() {
+        return saldoAMZN;
+    }
+
+    public static double getSaldoNVDA() {
+        return saldoNVDA;
+    }
+
+    public static void setSaldoTSLA(double saldoTSLA) {
+        StocksManager.saldoTSLA = saldoTSLA;
+    }
+
+    public static void setSaldoNVDA(double saldoNVDA) {
+        StocksManager.saldoNVDA = saldoNVDA;
+    }
+
+    public static void setSaldoAMZN(double saldoAMZN) {
+        StocksManager.saldoAMZN = saldoAMZN;
+    }
+
+    public static void setSaldoAAPL(double saldoAAPL) {
+        StocksManager.saldoAAPL = saldoAAPL;
+    }
 
     public static void mostraInvestimenti() {
 
@@ -42,13 +62,17 @@ public class StocksManager {
             conto.setSaldo(conto.getSaldo() - investimento);
             switch (sceltaInvestimento) {
                 case 1:
-                    StocksManager.setSaldoTSLA(StocksManager.getSaldoTSLA() + investimento); break;
+                    StocksManager.setSaldoTSLA(StocksManager.getSaldoTSLA() + investimento);
+                    break;
                 case 2:
-                    StocksManager.setSaldoNVDA(StocksManager.getSaldoNVDA() + investimento); break;
+                    StocksManager.setSaldoNVDA(StocksManager.getSaldoNVDA() + investimento);
+                    break;
                 case 3:
-                    StocksManager.setSaldoAMZN(StocksManager.getSaldoAMZN() + investimento); break;
+                    StocksManager.setSaldoAMZN(StocksManager.getSaldoAMZN() + investimento);
+                    break;
                 case 4:
-                    StocksManager.setSaldoAAPL(StocksManager.getSaldoAAPL() + investimento); break;
+                    StocksManager.setSaldoAAPL(StocksManager.getSaldoAAPL() + investimento);
+                    break;
             }
         }
     }
@@ -116,7 +140,7 @@ public class StocksManager {
     public static void avanzaTempo(DateManager dateManager, Portafoglio portafoglio) {
 
         dateManager.avanzaDiUnMese();
-        portafoglio.setBilancio(portafoglio.getBilancio()+100);
+        portafoglio.setBilancio(portafoglio.getBilancio() + 100);
 
         saldoTSLA = StocksManager.aggiornaValoreInvestimento(saldoTSLA, "TSLA");
         saldoNVDA = StocksManager.aggiornaValoreInvestimento(saldoNVDA, "NVDA");
@@ -155,4 +179,3 @@ public class StocksManager {
         System.out.println("Hai chiuso l'investimento e recuperato: " + String.format("%.2f", saldoRecuperato) + "$.");
     }
 }
-

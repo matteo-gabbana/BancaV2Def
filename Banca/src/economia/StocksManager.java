@@ -45,6 +45,13 @@ public class StocksManager {
         StocksManager.saldoAAPL = saldoAAPL;
     }
 
+//    public static void caricaInvestimenti(double tsla, double nvda, double amzn, double aapl) {
+//        saldoTSLA = tsla;
+//        saldoNVDA = nvda;
+//        saldoAMZN = amzn;
+//        saldoAAPL = aapl;
+//    }
+
     public static void mostraInvestimenti() {
 
         System.out.println("Investimenti attuali:");

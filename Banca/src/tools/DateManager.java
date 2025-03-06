@@ -6,11 +6,11 @@ import java.util.Locale;
 
 public class DateManager {
 
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ITALIAN);
     private LocalDate dataCorrente;
-    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("MMMM yyyy", Locale.ITALIAN);
 
-    public DateManager() {
-        this.dataCorrente = LocalDate.now();
+    public DateManager(String dataSalvata) {
+        this.dataCorrente = LocalDate.parse(dataSalvata, DATE_FORMATTER);
     }
 
     public void avanzaDiUnMese() {

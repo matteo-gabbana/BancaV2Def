@@ -61,14 +61,14 @@ public class Main {
 
                     System.out.print("Inserisci l'importo da depositare nel conto corrente: ");
                     double importo = InputTools.inserireDouble();
-                    portafoglio.depositaNelConto(importo);
+                    portafoglio.depositaNelConto(importo, dateManager.getDataCorrente(), username);
                     break;
                 }
                 case 2: {
 
                     System.out.print("Inserisci l'importo da prelevare dal conto corrente: ");
                     double importo = InputTools.inserireDouble();
-                    portafoglio.prelevaDalConto(importo);
+                    portafoglio.prelevaDalConto(importo, dateManager.getDataCorrente(), username);
                     break;
                 }
                 case 3: {
@@ -88,7 +88,7 @@ public class Main {
                     System.out.print("Quanto vuoi investire? (minimo 5$): ");
                     double importoInvestimento = InputTools.inserireDouble();
 
-                    StocksManager.effettuaInvestimento(conto, sceltaInvestimento, importoInvestimento);
+                    StocksManager.effettuaInvestimento(conto, sceltaInvestimento, importoInvestimento, dateManager.getDataCorrente(), username);
                     break;
                 }
                 case 4: {
@@ -116,7 +116,7 @@ public class Main {
                     System.out.print("Scegli un'opzione: ");
                     int sceltaChiusura = InputTools.inserireIntero();
 
-                    StocksManager.chiudiInvestimento(sceltaChiusura, conto);
+                    StocksManager.chiudiInvestimento(sceltaChiusura, conto, dateManager.getDataCorrente(), username);
                     break;
                 }
                 case 8: {

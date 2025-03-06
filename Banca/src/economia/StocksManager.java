@@ -1,6 +1,7 @@
 package economia;
 
 import tools.DateManager;
+import tools.FileManager;
 
 import java.util.Random;
 
@@ -45,13 +46,6 @@ public class StocksManager {
         StocksManager.saldoAAPL = saldoAAPL;
     }
 
-//    public static void caricaInvestimenti(double tsla, double nvda, double amzn, double aapl) {
-//        saldoTSLA = tsla;
-//        saldoNVDA = nvda;
-//        saldoAMZN = amzn;
-//        saldoAAPL = aapl;
-//    }
-
     public static void mostraInvestimenti() {
 
         System.out.println("Investimenti attuali:");
@@ -61,30 +55,37 @@ public class StocksManager {
         System.out.println("Apple (AAPL): " + String.format("%.2f", StocksManager.getSaldoAAPL()) + "$.");
     }
 
-    public static void effettuaInvestimento(ContoCorrente conto, int sceltaInvestimento, double importoInvestimento) {
+    public static void effettuaInvestimento(ContoCorrente conto, int sceltaInvestimento, double importoInvestimento, String data, String username) {
 
         double investimento = StocksManager.investiInAzioni(sceltaInvestimento, importoInvestimento, conto.getSaldo());
+        String nomeAzione = "";
 
         if (investimento > 0) {
             conto.setSaldo(conto.getSaldo() - investimento);
             switch (sceltaInvestimento) {
                 case 1:
                     StocksManager.setSaldoTSLA(StocksManager.getSaldoTSLA() + investimento);
+                    nomeAzione = "Tesla (TSLA)";
                     break;
                 case 2:
                     StocksManager.setSaldoNVDA(StocksManager.getSaldoNVDA() + investimento);
+                    nomeAzione = "Nvidia (NVDA)";
                     break;
                 case 3:
                     StocksManager.setSaldoAMZN(StocksManager.getSaldoAMZN() + investimento);
+                    nomeAzione = "Amazon (AMZN)";
                     break;
                 case 4:
                     StocksManager.setSaldoAAPL(StocksManager.getSaldoAAPL() + investimento);
+                    nomeAzione = "Apple (AAPL)";
                     break;
             }
+
+            FileManager.salvaTransazione(username, data, "Investimento in " + nomeAzione + ": " + String.format("%.2f", investimento) + "$.");
         }
     }
 
-    public static double investiInAzioni(int sceltaInvestimento, double importoInvestimento, double saldoConto) {
+    private static double investiInAzioni(int sceltaInvestimento, double importoInvestimento, double saldoConto) {
 
         if (importoInvestimento < 5) {
             System.out.println("L'importo minimo per l'investimento è di 5$.");
@@ -122,7 +123,7 @@ public class StocksManager {
         }
     }
 
-    public static double aggiornaValoreInvestimento(double saldo, String tipoAzione) {
+    private static double aggiornaValoreInvestimento(double saldo, String tipoAzione) {
 
         double variazione;
         switch (tipoAzione) {
@@ -157,25 +158,31 @@ public class StocksManager {
         System.out.println("Tempo avanzato. Data attuale: " + dateManager.getDataCorrente());
     }
 
-    public static void chiudiInvestimento(int scelta, ContoCorrente conto) {
+    public static void chiudiInvestimento(int scelta, ContoCorrente conto, String data, String username) {
 
         double saldoRecuperato = 0.0;
+        String nomeAzione = "";
+
         switch (scelta) {
             case 1:
                 saldoRecuperato = StocksManager.getSaldoTSLA();
                 StocksManager.setSaldoTSLA(0.0);
+                nomeAzione = "Tesla (TSLA)";
                 break;
             case 2:
                 saldoRecuperato = StocksManager.getSaldoNVDA();
                 StocksManager.setSaldoNVDA(0.0);
+                nomeAzione = "Nvidia (NVDA)";
                 break;
             case 3:
                 saldoRecuperato = StocksManager.getSaldoAMZN();
                 StocksManager.setSaldoAMZN(0.0);
+                nomeAzione = "Amazon (AMZN)";
                 break;
             case 4:
                 saldoRecuperato = StocksManager.getSaldoAAPL();
                 StocksManager.setSaldoAAPL(0.0);
+                nomeAzione = "Apple (AAPL)";
                 break;
             default:
                 System.out.println("Opzione non valida.");
@@ -183,6 +190,9 @@ public class StocksManager {
         }
 
         conto.setSaldo(conto.getSaldo() + saldoRecuperato);
+
+        FileManager.salvaTransazione(username, data, "Chiusura investimento in " + nomeAzione + ": " + String.format("%.2f", saldoRecuperato) + "$ recuperati.");
+
         System.out.println("Hai chiuso l'investimento e recuperato: " + String.format("%.2f", saldoRecuperato) + "$.");
     }
 }

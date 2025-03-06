@@ -1,5 +1,8 @@
 package tools;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class LoginManager {
@@ -51,8 +54,10 @@ public class LoginManager {
             return null;
         }
 
-        FileManager.salvaUtente(username, password, 0.0, 0.0);
+        String dataIniziale = LocalDate.now().format(DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ITALIAN));
+
+        FileManager.salvaUtente(username, password, 0.0, 0.0, dataIniziale, 0.0, 0.0, 0.0, 0.0);
         System.out.println("Registrazione completata con successo!");
-        return new String[]{username, password, "0.0", "0.0"};
+        return new String[]{username, password, "0.0", "0.0", dataIniziale, "0.0", "0.0", "0.0", "0.0"};
     }
 }

@@ -18,19 +18,29 @@ public class Main {
         }
 
         String username = datiUtente[0];
+
         double saldoConto = Double.parseDouble(datiUtente[2]);
         double saldoPortafoglio = Double.parseDouble(datiUtente[3]);
-
-        DateManager dateManager = new DateManager();
         ContoCorrente conto = new ContoCorrente(saldoConto);
         Portafoglio portafoglio = new Portafoglio(conto, saldoPortafoglio);
 
+        String dataSalvata = datiUtente[4];
+        DateManager dateManager = new DateManager(dataSalvata);
+
+        StocksManager.setSaldoTSLA(Double.parseDouble(datiUtente[5]));
+        StocksManager.setSaldoNVDA(Double.parseDouble(datiUtente[6]));
+        StocksManager.setSaldoAMZN(Double.parseDouble(datiUtente[7]));
+        StocksManager.setSaldoAAPL(Double.parseDouble(datiUtente[8]));
+
         int scelta;
+
+        System.out.println("Benvenuto, " + username + "!");
 
         do {
 
             // Menu principale
             System.out.println("\n--- Menu Banca Morsli&Gabbana ---");
+            System.out.println("Account in uso --> " + username);
             System.out.println("Data attuale: " + dateManager.getDataCorrente());
             System.out.println("1) Deposita denaro sul conto corrente");
             System.out.println("2) Preleva denaro dal conto corrente");
@@ -51,14 +61,14 @@ public class Main {
 
                     System.out.print("Inserisci l'importo da depositare nel conto corrente: ");
                     double importo = InputTools.inserireDouble();
-                    portafoglio.depositaNelConto(importo);
+                    portafoglio.depositaNelConto(importo, dateManager.getDataCorrente(), username);
                     break;
                 }
                 case 2: {
 
                     System.out.print("Inserisci l'importo da prelevare dal conto corrente: ");
                     double importo = InputTools.inserireDouble();
-                    portafoglio.prelevaDalConto(importo);
+                    portafoglio.prelevaDalConto(importo, dateManager.getDataCorrente(), username);
                     break;
                 }
                 case 3: {
@@ -78,7 +88,7 @@ public class Main {
                     System.out.print("Quanto vuoi investire? (minimo 5$): ");
                     double importoInvestimento = InputTools.inserireDouble();
 
-                    StocksManager.effettuaInvestimento(conto, sceltaInvestimento, importoInvestimento);
+                    StocksManager.effettuaInvestimento(conto, sceltaInvestimento, importoInvestimento, dateManager.getDataCorrente(), username);
                     break;
                 }
                 case 4: {
@@ -106,7 +116,7 @@ public class Main {
                     System.out.print("Scegli un'opzione: ");
                     int sceltaChiusura = InputTools.inserireIntero();
 
-                    StocksManager.chiudiInvestimento(sceltaChiusura, conto);
+                    StocksManager.chiudiInvestimento(sceltaChiusura, conto, dateManager.getDataCorrente(), username);
                     break;
                 }
                 case 8: {
@@ -117,7 +127,7 @@ public class Main {
                 case 9: {
 
                     System.out.println("Salvataggio dati utente...");
-                    FileManager.salvaUtente(username, datiUtente[1], conto.getSaldo(), portafoglio.getBilancio());
+                    FileManager.salvaUtente(username, datiUtente[1], conto.getSaldo(), portafoglio.getBilancio(), dateManager.getDataCorrente(), StocksManager.getSaldoTSLA(), StocksManager.getSaldoNVDA(), StocksManager.getSaldoAMZN(), StocksManager.getSaldoAAPL());
                     System.out.println("Grazie per aver usato la Banca Morsli&Gabbana! Alla prossima.");
                     break;
                 }

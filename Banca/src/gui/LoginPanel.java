@@ -102,7 +102,6 @@ public class LoginPanel extends JFrame {
         if (datiUtente == null) {
             JOptionPane.showMessageDialog(this, "Registrazione fallita!\n Questo username è già in uso.", "Errore", JOptionPane.ERROR_MESSAGE);
         } else {
-            // Registrazione riuscita, chiudiamo la finestra di login e proseguiamo con l'app
             JOptionPane.showMessageDialog(this, "Registrazione completata con successo!", "Successo", JOptionPane.INFORMATION_MESSAGE);
             dispose();
         }

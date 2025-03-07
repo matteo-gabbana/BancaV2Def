@@ -10,7 +10,14 @@ public class DateManager {
     private LocalDate dataCorrente;
 
     public DateManager(String dataSalvata) {
-        this.dataCorrente = LocalDate.parse(dataSalvata, DATE_FORMATTER);
+        LocalDate dataSalvataUtente = LocalDate.parse(dataSalvata, DATE_FORMATTER);
+        LocalDate dataAttuale = LocalDate.now();
+
+        if (dataSalvataUtente.isBefore(dataAttuale)) {
+            this.dataCorrente = dataAttuale;
+        } else {
+            this.dataCorrente = dataSalvataUtente;
+        }
     }
 
     public void avanzaDiUnMese() {

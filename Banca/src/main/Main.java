@@ -22,18 +22,24 @@ public class Main {
         }
 
         LoginPanel loginPanel = new LoginPanel();
-        String[] datiUtente = loginPanel.getDatiUtente();
 
-//        if (datiUtente == null) {
-//            JOptionPane.showMessageDialog(null, "Login o registrazione fallita", "Errore", JOptionPane.ERROR_MESSAGE);
-//            return;
-//        }
+        String[] datiUtente;
+        do {
+            while (loginPanel.isVisible()) {
+                try {
+                    Thread.sleep(500); // Piccola pausa per evitare un loop continuo
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
 
-//        String[] datiUtente = null;
-//        while (datiUtente == null) {
-//            datiUtente = LoginManager.loginORegistrazione();
-//        }
+            datiUtente = loginPanel.getDatiUtente();
 
+            if (datiUtente == null) {
+                JOptionPane.showMessageDialog(null, "Login o registrazione fallita", "Errore", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        } while (datiUtente == null);
 
         String username = datiUtente[0];
 

@@ -47,6 +47,7 @@ public class StocksManager {
     StocksManager.saldoNVDA = saldoNVDA;
   }
 
+  // ULTIMA COSA DA FARE RIMASTA
   public static void mostraInvestimenti() {
 
     System.out.println("Investimenti attuali:");

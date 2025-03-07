@@ -2,6 +2,7 @@ package tools;
 
 import java.util.Scanner;
 
+// NON SERVE PIU'
 public class InputTools {
 
   public static int inserireIntero() {

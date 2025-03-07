@@ -91,7 +91,7 @@ public class LoginPanel extends JFrame {
     if (username.isEmpty() || password.isEmpty()) {
       JOptionPane.showMessageDialog(
           this,
-          "Username e Password non possono essere vuoti.",
+          "Login fallito!\nUsername e Password non possono essere vuoti.",
           "Errore",
           JOptionPane.ERROR_MESSAGE);
       return;
@@ -101,7 +101,10 @@ public class LoginPanel extends JFrame {
 
     if (datiUtente == null) {
       JOptionPane.showMessageDialog(
-          this, "Username o Password errati!", "Errore", JOptionPane.ERROR_MESSAGE);
+          this,
+          "Login fallito!\nUsername o Password errati!",
+          "Errore",
+          JOptionPane.ERROR_MESSAGE);
     } else {
       JOptionPane.showMessageDialog(
           this, "Login effettuato con successo!", "Successo", JOptionPane.INFORMATION_MESSAGE);
@@ -117,7 +120,7 @@ public class LoginPanel extends JFrame {
     if (username.isEmpty() || password.isEmpty()) {
       JOptionPane.showMessageDialog(
           this,
-          "Username e Password non possono essere vuoti.",
+          "Registrazione fallita!\nUsername e Password non possono essere vuoti.",
           "Errore",
           JOptionPane.ERROR_MESSAGE);
       return;
@@ -128,7 +131,7 @@ public class LoginPanel extends JFrame {
     if (datiUtente == null) {
       JOptionPane.showMessageDialog(
           this,
-          "Registrazione fallita!\n Questo username è già in uso.",
+          "Registrazione fallita!\nQuesto username è già in uso.",
           "Errore",
           JOptionPane.ERROR_MESSAGE);
     } else {

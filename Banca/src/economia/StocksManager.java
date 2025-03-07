@@ -70,7 +70,6 @@ public class StocksManager {
     double investimento = StocksManager.investiInAzioni(importoInvestimento, conto.getSaldo());
 
     if (investimento > 0) {
-      conto.setSaldo(conto.getSaldo() - importoInvestimento);
       switch (sceltaInvestimento) {
         case "Tesla (TSLA)":
           StocksManager.setSaldoTSLA(StocksManager.getSaldoTSLA() + investimento);
@@ -85,6 +84,8 @@ public class StocksManager {
           StocksManager.setSaldoAAPL(StocksManager.getSaldoAAPL() + investimento);
           break;
       }
+
+      conto.setSaldo(conto.getSaldo() - importoInvestimento);
 
       FileManager.salvaTransazione(
           username,
@@ -201,5 +202,32 @@ public class StocksManager {
             + "$ recuperati.");
 
     JOptionPane.showMessageDialog(null, "Hai chiuso l'investimento in " + scelta + " e recuperato: " + String.format("%.2f", saldoRecuperato) + "$.", "Chiusura Investimento", JOptionPane.INFORMATION_MESSAGE);
+  }
+
+  public static boolean isInvestimentoAttivo(String sceltaInvestimento) {
+
+    switch (sceltaInvestimento) {
+      case "Tesla (TSLA)":
+        if (StocksManager.getSaldoTSLA() != 0) {
+          return true;
+        }
+        break;
+      case "Nvidia (NVDA)":
+        if (StocksManager.getSaldoNVDA() != 0) {
+          return true;
+        }
+        break;
+      case "Amazon (AMZN)":
+        if (StocksManager.getSaldoAMZN() != 0) {
+          return true;
+        }
+        break;
+      case "Apple (AAPL)":
+        if (StocksManager.getSaldoAAPL() != 0) {
+          return true;
+        }
+        break;
+    }
+    return false;
   }
 }

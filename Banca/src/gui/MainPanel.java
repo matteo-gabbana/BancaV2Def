@@ -202,17 +202,21 @@ public class MainPanel extends JFrame {
             sceltaInvestimento = scelta;
             JOptionPane.showMessageDialog(null, "Hai scelto di investire in " + scelta, "Scelta Investimento", JOptionPane.INFORMATION_MESSAGE);
 
-            String input = JOptionPane.showInputDialog(null, "Inserisci la somma da investire (minimo 5$): ", "Cifra Investimento", JOptionPane.QUESTION_MESSAGE);
-            if (input != null && !input.trim().isEmpty()) {
-                try {
-                    double importoInvestimento = Double.parseDouble(input);
-                    StocksManager.effettuaInvestimento(conto, sceltaInvestimento, importoInvestimento, dateManager.getDataCorrente(), username);
-                    aggiornaInfoPanel();
-                } catch (NumberFormatException e) {
-                    JOptionPane.showMessageDialog(null, "Per favore, inserisci un numero valido.", "Errore", JOptionPane.ERROR_MESSAGE);
+            if (StocksManager.isInvestimentoAttivo(sceltaInvestimento)) {
+                JOptionPane.showMessageDialog(null, "Hai gia' un investimento attivo su questi stocks!", "Attenzione", JOptionPane.WARNING_MESSAGE);
+            } else {
+                String input = JOptionPane.showInputDialog(null, "Inserisci la somma da investire (minimo 5$): ", "Cifra Investimento", JOptionPane.QUESTION_MESSAGE);
+                if (input != null && !input.trim().isEmpty()) {
+                    try {
+                        double importoInvestimento = Double.parseDouble(input);
+                        StocksManager.effettuaInvestimento(conto, sceltaInvestimento, importoInvestimento, dateManager.getDataCorrente(), username);
+                        aggiornaInfoPanel();
+                    } catch (NumberFormatException e) {
+                        JOptionPane.showMessageDialog(null, "Per favore, inserisci un numero valido.", "Errore", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else if (input != null) {
+                    JOptionPane.showMessageDialog(null, "Input non valido.", "Errore", JOptionPane.WARNING_MESSAGE);
                 }
-            } else if (input != null) {
-                JOptionPane.showMessageDialog(null, "Input non valido.", "Errore", JOptionPane.WARNING_MESSAGE);
             }
         }, "Su che azioni vuoi investire?");
 

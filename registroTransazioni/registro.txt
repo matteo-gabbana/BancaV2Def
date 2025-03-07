@@ -49,3 +49,9 @@ Prelievo effettuato: -650,00$. Saldo precedente: 700,00$, Saldo attuale: 50,00$.
 Mario | 7 marzo 2026
 Deposito effettuato: +1000,00$. Saldo precedente: 1000,00$, Saldo attuale: 2000,00$.
 
+Mario | 7 maggio 2025
+Deposito effettuato: +600,00$. Saldo precedente: 1000,00$, Saldo attuale: 1600,00$.
+
+Mario | 7 agosto 2025
+Deposito effettuato: +1100,00$. Saldo precedente: 1000,00$, Saldo attuale: 2100,00$.
+

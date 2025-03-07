@@ -7,6 +7,7 @@ import javax.swing.*;
 
 import economia.StocksManager;
 import tools.DateManager;
+import tools.FileManager;
 
 public class MainPanel extends JFrame {
 
@@ -36,13 +37,15 @@ public class MainPanel extends JFrame {
     private JButton salvaEdEsciButton;
 
     private String username;
+    private String password;
     private DateManager dateManager;
     private ContoCorrente conto;
     private Portafoglio portafoglio;
 
-    public MainPanel(String username, DateManager dateManager, ContoCorrente conto, Portafoglio portafoglio) {
+    public MainPanel(String username, String password, DateManager dateManager, ContoCorrente conto, Portafoglio portafoglio) {
 
         this.username = username;
+        this.password = password;
         this.dateManager = dateManager;
         this.conto = conto;
         this.portafoglio = portafoglio;
@@ -124,6 +127,7 @@ public class MainPanel extends JFrame {
         investiButton.addActionListener(e -> gestisciInvestimento());
         situazioneInvestimentiButton.addActionListener(e -> mostraQuadroInvestimenti());
         chiudiInvestimentoButton.addActionListener(e -> gestisciChiusuraInvestimento());
+        salvaEdEsciButton.addActionListener(e -> gestisciSalvaEdEsci());
 
         JPanel bottomPanel = new JPanel(new BorderLayout(10, 10));
         bottomPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
@@ -145,7 +149,7 @@ public class MainPanel extends JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        MainPanel mainPanel = new MainPanel("Mario", new DateManager("7 marzo 2025"), new ContoCorrente(1000), new Portafoglio(new ContoCorrente(2000), 1000));
+        MainPanel mainPanel = new MainPanel("Mario", "ciao123", new DateManager("7 marzo 2025"), new ContoCorrente(1000), new Portafoglio(new ContoCorrente(2000), 1000));
     }
 
     private void gestisciDeposito() {
@@ -196,6 +200,12 @@ public class MainPanel extends JFrame {
     }
 
     private void gestisciChiusuraInvestimento() {
+    }
+
+    private void gestisciSalvaEdEsci() {
+        FileManager.salvaUtente(username, password, conto.getSaldo(), portafoglio.getBilancio(), dateManager.getDataCorrente(), StocksManager.getSaldoTSLA(), StocksManager.getSaldoNVDA(), StocksManager.getSaldoAMZN(), StocksManager.getSaldoAAPL());
+        JOptionPane.showMessageDialog(null, "Dati personali salvati con successo!", "Successo", JOptionPane.INFORMATION_MESSAGE);
+        dispose();
     }
 
     private void aggiornaInfoPanel() {

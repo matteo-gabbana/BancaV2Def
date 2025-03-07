@@ -1,5 +1,6 @@
 package tools;
 
+import javax.swing.*;
 import java.io.*;
 
 public class FileManager {
@@ -66,7 +67,8 @@ public class FileManager {
       writer.write(saldoAAPL + "\n");
       writer.close();
     } catch (IOException e) {
-      System.out.println("Errore nel salvataggio dei dati dell'utente.");
+//      System.out.println("Errore nel salvataggio dei dati dell'utente.");
+      JOptionPane.showMessageDialog(null, "Errore nel salvataggio dei dati dell'utente.", "Errore", JOptionPane.WARNING_MESSAGE);
     }
   }
 

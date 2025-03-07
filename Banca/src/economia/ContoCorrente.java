@@ -74,7 +74,7 @@ public class ContoCorrente {
         return importo;
     }
 
-    public void mostraSaldo() {
-        System.out.println("Saldo conto corrente: " + String.format("%.2f", saldo) + "$.");
+    public String mostraSaldo() {
+        return ("Saldo conto corrente: $" + String.format("%.2f", saldo));
     }
 }

@@ -23,18 +23,25 @@ public class LoginPanel extends JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
 
+        JPanel mainPanel = new JPanel(new BorderLayout(10, 10));
+        mainPanel.setBackground(new Color(102, 204, 255)); // Azzurro come il MainPanel
+        mainPanel.setOpaque(true);
+        JPanel titlePanel = new JPanel();
+        titlePanel.setBackground(new Color(102, 204, 255)); // Sfondo azzurro per il titolo
+        titlePanel.setBorder(BorderFactory.createLineBorder(new Color(0, 102, 204), 4));
+
         setLayout(new BorderLayout(10, 10));
         JPanel centerPanel = new JPanel(new GridLayout(5, 2, 10, 10));
         centerPanel.setBorder(new EmptyBorder(0, 0, -50, 0));
 
         JLabel messageLabel = new JLabel("Benvenuto alla banca \"Morsli & Gabbana\"", SwingConstants.CENTER);
-        messageLabel.setFont(new Font("Arial", Font.BOLD, 21));
+        messageLabel.setFont(new Font("Arial", Font.BOLD, 22));
         messageLabel.setBorder(new EmptyBorder(50, 0, 30, 0));
         messageLabel.setForeground(new Color(59, 59, 59));
 
-        JLabel usernameLabel = new JLabel("               Username: ");
+        JLabel usernameLabel = new JLabel("          Username: ");
         usernameField = new JTextField();
-        JLabel passwordLabel = new JLabel("               Password: ");
+        JLabel passwordLabel = new JLabel("          Password: ");
         passwordField = new JPasswordField();
         loginButton = new JButton("Accedi");
         registerButton = new JButton("Registrati");
@@ -47,6 +54,7 @@ public class LoginPanel extends JFrame {
 
         loginButton.setFont(new Font("Arial", Font.ITALIC, 16));
         registerButton.setFont(new Font("Arial", Font.ITALIC, 16));
+
         loginButton.addActionListener(e -> gestisciLogin());
         registerButton.addActionListener(e -> gestisciRegistrazione());
 
@@ -58,6 +66,7 @@ public class LoginPanel extends JFrame {
         centerPanel.add(new JLabel(" "));
         centerPanel.add(loginButton);
         centerPanel.add(registerButton);
+        centerPanel.setBorder(new EmptyBorder(0, 25, 0, 25));
 
         add(messageLabel, BorderLayout.NORTH);
         add(centerPanel, BorderLayout.CENTER);
@@ -110,6 +119,11 @@ public class LoginPanel extends JFrame {
     }
 
     public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         LoginPanel loginPanel = new LoginPanel();
     }
 

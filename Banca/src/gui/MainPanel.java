@@ -1,5 +1,9 @@
 package gui;
 
+import economia.ContoCorrente;
+import economia.Portafoglio;
+import tools.DateManager;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -24,10 +28,20 @@ public class MainPanel extends JFrame {
     private JButton situazioneInvestimentiButton;
     private JButton chiudiInvestimentoButton;
 
-    public MainPanel() {
+    private String username;
+    private DateManager dateManager;
+    private ContoCorrente conto;
+    private Portafoglio portafoglio;
+
+    public MainPanel(String username, DateManager dateManager, ContoCorrente conto, Portafoglio portafoglio) {
+
+        this.username = username;
+        this.dateManager = dateManager;
+        this.conto = conto;
+        this.portafoglio = portafoglio;
 
         setTitle("Banca \"Morsli & Gabbana\"");
-        setSize(900, 630);
+        setSize(900, 650);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -45,10 +59,10 @@ public class MainPanel extends JFrame {
         ));
         infoPanel.setBackground(new Color(230, 247, 255));
 
-        JLabel usernameLabel = new JLabel("Username: Mario Rossi", SwingConstants.LEFT);
-        JLabel dataLabel = new JLabel("Data: 07/03/2025", SwingConstants.LEFT);
-        JLabel saldoLabel = new JLabel("Saldo Conto: $5000.00", SwingConstants.LEFT);
-        JLabel bilancioLabel = new JLabel("Bilancio Portafoglio: $1200.00", SwingConstants.LEFT);
+        JLabel usernameLabel = new JLabel("Username: " + username, SwingConstants.LEFT);
+        JLabel dataLabel = new JLabel("Data: " + dateManager.getDataCorrente(), SwingConstants.LEFT);
+        JLabel saldoLabel = new JLabel(conto.mostraSaldo(), SwingConstants.LEFT);
+        JLabel bilancioLabel = new JLabel(portafoglio.mostraBilancioPortafoglio(), SwingConstants.LEFT);
 
         JLabel[] labels = {usernameLabel, dataLabel, saldoLabel, bilancioLabel};
         for (JLabel label : labels) {
@@ -62,7 +76,7 @@ public class MainPanel extends JFrame {
         commandField = new JTextField();
         commandField.setFont(new Font("Arial", Font.PLAIN, 16));
         commandField.setBorder(BorderFactory.createTitledBorder("Inserisci comando"));
-        commandField.setPreferredSize(new Dimension(850, 50));
+        commandField.setPreferredSize(new Dimension(850, 70));
 
 
 
@@ -84,7 +98,12 @@ public class MainPanel extends JFrame {
             buttonPanel.add(button);
         }
 
-
+        depositaButton.addActionListener(e -> gestisciDeposito());
+        prelevaButton.addActionListener(e -> gestisciPrelievo());
+        avanzaButton.addActionListener(e -> gestisciAvanza());
+        investiButton.addActionListener(e -> gestisciInvestimento());
+        situazioneInvestimentiButton.addActionListener(e -> mostraQuadroInvestimenti());
+        chiudiInvestimentoButton.addActionListener(e -> gestisciChiusuraInvestimento());
 
         JPanel bottomPanel = new JPanel(new BorderLayout(10, 10));
         bottomPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
@@ -100,8 +119,31 @@ public class MainPanel extends JFrame {
         setVisible(true);
     }
 
+    private void gestisciDeposito() {
+    }
+
+    private void gestisciPrelievo() {
+    }
+
+    private void gestisciAvanza() {
+    }
+
+    private void gestisciInvestimento() {
+    }
+
+    private void mostraQuadroInvestimenti() {
+    }
+
+    private void gestisciChiusuraInvestimento() {
+    }
+
     public static void main(String[] args) {
-        MainPanel mainPanel = new MainPanel();
+        try {
+            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        MainPanel mainPanel = new MainPanel("Mario", new DateManager("7 marzo 2025"), new ContoCorrente(1000), new Portafoglio(new ContoCorrente(2000), 1000));
     }
 
 }

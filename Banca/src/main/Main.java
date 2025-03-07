@@ -57,7 +57,7 @@ public class Main {
         StocksManager.setSaldoAMZN(Double.parseDouble(datiUtente[7]));
         StocksManager.setSaldoAAPL(Double.parseDouble(datiUtente[8]));
 
-        MainPanel mainPanel = new MainPanel();
+        MainPanel mainPanel = new MainPanel(username, dateManager, conto, portafoglio);
 
         int scelta;
 

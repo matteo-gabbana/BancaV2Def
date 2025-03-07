@@ -61,7 +61,7 @@ public class Portafoglio {
         //FileManager.salvaTransazione(username, data, "Prelievo dal conto: +" + String.format("%.2f", importoPrelevato) + "$. Bilancio precedente: " + String.format("%.2f", bilancioPrecedente) + "$, Bilancio attuale: " + String.format("%.2f", bilancio) + "$.");
     }
 
-    public void mostraBilancioPortafoglio() {
-        System.out.println("Bilancio portafoglio: " + String.format("%.2f", bilancio) + "$.");
+    public String mostraBilancioPortafoglio() {
+        return ("Bilancio portafoglio: $" + String.format("%.2f", bilancio));
     }
 }

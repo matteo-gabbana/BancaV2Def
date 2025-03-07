@@ -4,6 +4,7 @@ import economia.ContoCorrente;
 import economia.Portafoglio;
 import economia.StocksManager;
 import gui.LoginPanel;
+import gui.MainPanel;
 import tools.DateManager;
 import tools.FileManager;
 import tools.InputTools;
@@ -27,7 +28,7 @@ public class Main {
         do {
             while (loginPanel.isVisible()) {
                 try {
-                    Thread.sleep(500); // Piccola pausa per evitare un loop continuo
+                    Thread.sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -44,9 +45,9 @@ public class Main {
         String username = datiUtente[0];
 
         double saldoConto = Double.parseDouble(datiUtente[2]);
-        double saldoPortafoglio = Double.parseDouble(datiUtente[3]);
+        double bilancioPortafoglio = Double.parseDouble(datiUtente[3]);
         ContoCorrente conto = new ContoCorrente(saldoConto);
-        Portafoglio portafoglio = new Portafoglio(conto, saldoPortafoglio);
+        Portafoglio portafoglio = new Portafoglio(conto, bilancioPortafoglio);
 
         String dataSalvata = datiUtente[4];
         DateManager dateManager = new DateManager(dataSalvata);
@@ -55,6 +56,8 @@ public class Main {
         StocksManager.setSaldoNVDA(Double.parseDouble(datiUtente[6]));
         StocksManager.setSaldoAMZN(Double.parseDouble(datiUtente[7]));
         StocksManager.setSaldoAAPL(Double.parseDouble(datiUtente[8]));
+
+        MainPanel mainPanel = new MainPanel();
 
         int scelta;
 

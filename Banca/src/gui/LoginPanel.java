@@ -63,8 +63,6 @@ public class LoginPanel extends JFrame {
         add(centerPanel, BorderLayout.CENTER);
 
         setVisible(true);
-
-        setVisible(true);
     }
 
     private void gestisciLogin() {
@@ -109,6 +107,10 @@ public class LoginPanel extends JFrame {
 
     public String[] getDatiUtente() {
         return datiUtente;
+    }
+
+    public static void main(String[] args) {
+        LoginPanel loginPanel = new LoginPanel();
     }
 
 }

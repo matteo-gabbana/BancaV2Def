@@ -55,3 +55,42 @@ Deposito effettuato: +600,00$. Saldo precedente: 1000,00$, Saldo attuale: 1600,0
 Mario | 7 agosto 2025
 Deposito effettuato: +1100,00$. Saldo precedente: 1000,00$, Saldo attuale: 2100,00$.
 
+Mario | 7 maggio 2025
+Deposito effettuato: +400,00$. Saldo precedente: 1000,00$, Saldo attuale: 1400,00$.
+
+Mario | 7 marzo 2025
+Prelievo effettuato: -500,00$. Saldo precedente: 1000,00$, Saldo attuale: 500,00$.
+
+Mario | 7 marzo 2025
+Investimento in Amazon (AMZN): 198,00$.
+
+Mario | 7 marzo 2025
+Investimento in Apple (AAPL): 198,00$.
+
+Mario | 7 marzo 2025
+Investimento in Amazon (AMZN): 99,00$.
+
+Mario | 7 marzo 2025
+Investimento in Amazon (AMZN): 99,00$.
+
+Mario | 7 marzo 2025
+Investimento in Tesla (TSLA): 9,90$.
+
+Mario | 7 marzo 2025
+Investimento in Amazon (AMZN): 9,90$.
+
+Mario | 7 marzo 2025
+Chiusura investimento in Amazon (AMZN): 0,00$ recuperati.
+
+Mario | 7 marzo 2025
+Investimento in Amazon (AMZN): 495,00$.
+
+Mario | 7 marzo 2025
+Chiusura investimento in Amazon (AMZN): 495,00$ recuperati.
+
+Mario | 7 marzo 2025
+Investimento in Amazon (AMZN): 9,90$.
+
+Mario | 7 maggio 2025
+Chiusura investimento in Amazon (AMZN): 9,71$ recuperati.
+

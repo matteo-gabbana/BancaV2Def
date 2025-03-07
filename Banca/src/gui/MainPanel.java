@@ -42,6 +42,8 @@ public class MainPanel extends JFrame {
     private ContoCorrente conto;
     private Portafoglio portafoglio;
 
+    private String sceltaInvestimento;
+
     public MainPanel(String username, String password, DateManager dateManager, ContoCorrente conto, Portafoglio portafoglio) {
 
         this.username = username;
@@ -194,12 +196,41 @@ public class MainPanel extends JFrame {
     }
 
     private void gestisciInvestimento() {
+
+        new SceltaInvestimentoPanel(scelta -> {
+
+            sceltaInvestimento = scelta;
+            JOptionPane.showMessageDialog(null, "Hai scelto di investire in " + scelta, "Scelta Investimento", JOptionPane.INFORMATION_MESSAGE);
+
+            String input = JOptionPane.showInputDialog(null, "Inserisci la somma da investire (minimo 5$): ", "Cifra Investimento", JOptionPane.QUESTION_MESSAGE);
+            if (input != null && !input.trim().isEmpty()) {
+                try {
+                    double importoInvestimento = Double.parseDouble(input);
+                    StocksManager.effettuaInvestimento(conto, sceltaInvestimento, importoInvestimento, dateManager.getDataCorrente(), username);
+                    aggiornaInfoPanel();
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Per favore, inserisci un numero valido.", "Errore", JOptionPane.ERROR_MESSAGE);
+                }
+            } else if (input != null) {
+                JOptionPane.showMessageDialog(null, "Input non valido.", "Errore", JOptionPane.WARNING_MESSAGE);
+            }
+        }, "Su che azioni vuoi investire?");
+
     }
 
     private void mostraQuadroInvestimenti() {
     }
 
     private void gestisciChiusuraInvestimento() {
+
+        new SceltaInvestimentoPanel(scelta -> {
+
+            sceltaInvestimento = scelta;
+            JOptionPane.showMessageDialog(null, "Hai scelto di chiudere l'investimento in " + scelta, "Chiusura Investimento", JOptionPane.INFORMATION_MESSAGE);
+
+            StocksManager.chiudiInvestimento(sceltaInvestimento, conto, dateManager.getDataCorrente(), username);
+            aggiornaInfoPanel();
+        }, "Che investimento vuoi chiudere?");
     }
 
     private void gestisciSalvaEdEsci() {

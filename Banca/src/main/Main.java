@@ -113,7 +113,7 @@ public class Main {
                     System.out.print("Quanto vuoi investire? (minimo 5$): ");
                     double importoInvestimento = InputTools.inserireDouble();
 
-                    StocksManager.effettuaInvestimento(conto, sceltaInvestimento, importoInvestimento, dateManager.getDataCorrente(), username);
+                    //StocksManager.effettuaInvestimento(conto, sceltaInvestimento, importoInvestimento, dateManager.getDataCorrente(), username);
                     break;
                 }
                 case 4: {
@@ -141,7 +141,7 @@ public class Main {
                     System.out.print("Scegli un'opzione: ");
                     int sceltaChiusura = InputTools.inserireIntero();
 
-                    StocksManager.chiudiInvestimento(sceltaChiusura, conto, dateManager.getDataCorrente(), username);
+                    //StocksManager.chiudiInvestimento(sceltaChiusura, conto, dateManager.getDataCorrente(), username);
                     break;
                 }
                 case 8: {

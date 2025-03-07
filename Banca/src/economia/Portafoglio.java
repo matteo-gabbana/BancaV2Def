@@ -10,12 +10,12 @@ public class Portafoglio {
         this.bilancio = bilancio;
     }
 
-    public void setBilancio(double bilancio) {
-        this.bilancio = bilancio;
-    }
-
     public double getBilancio() {
         return bilancio;
+    }
+
+    public void setBilancio(double bilancio) {
+        this.bilancio = bilancio;
     }
 
 //    public void depositaNelConto(double importo) {

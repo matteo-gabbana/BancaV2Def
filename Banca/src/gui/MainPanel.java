@@ -2,10 +2,9 @@ package gui;
 
 import economia.ContoCorrente;
 import economia.Portafoglio;
-import tools.DateManager;
-
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
+import tools.DateManager;
 
 public class MainPanel extends JFrame {
 
@@ -119,7 +118,29 @@ public class MainPanel extends JFrame {
         setVisible(true);
     }
 
+    public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        MainPanel mainPanel = new MainPanel("Mario", new DateManager("7 marzo 2025"), new ContoCorrente(1000), new Portafoglio(new ContoCorrente(2000), 1000));
+    }
+
     private void gestisciDeposito() {
+
+        String input = JOptionPane.showInputDialog(null, "Inserisci l'importo da depositare nel conto corrente: ", "Deposito", JOptionPane.QUESTION_MESSAGE);
+
+        if (input != null && !input.trim().isEmpty()) {
+            try {
+                double importo = Double.parseDouble(input);
+                // Aggiungi la logica per gestire il deposito
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Per favore, inserisci un numero valido.", "Errore", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Input non valido o vuoto.", "Errore", JOptionPane.WARNING_MESSAGE);
+        }
     }
 
     private void gestisciPrelievo() {
@@ -135,15 +156,6 @@ public class MainPanel extends JFrame {
     }
 
     private void gestisciChiusuraInvestimento() {
-    }
-
-    public static void main(String[] args) {
-        try {
-            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        MainPanel mainPanel = new MainPanel("Mario", new DateManager("7 marzo 2025"), new ContoCorrente(1000), new Portafoglio(new ContoCorrente(2000), 1000));
     }
 
 }

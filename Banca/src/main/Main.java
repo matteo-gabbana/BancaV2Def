@@ -5,12 +5,10 @@ import economia.Portafoglio;
 import economia.StocksManager;
 import gui.LoginPanel;
 import gui.MainPanel;
+import javax.swing.*;
 import tools.DateManager;
 import tools.FileManager;
 import tools.InputTools;
-import tools.LoginManager;
-
-import javax.swing.*;
 
 public class Main {
 
@@ -85,8 +83,7 @@ public class Main {
 
             switch (scelta) {
                 case 1: {
-
-                    System.out.print("Inserisci l'importo da depositare nel conto corrente: ");
+            System.out.print("Inserisci l'importo da depositare nel conto corrente: ");
                     double importo = InputTools.inserireDouble();
                     portafoglio.depositaNelConto(importo, dateManager.getDataCorrente(), username);
                     break;

@@ -83,16 +83,17 @@ public class Main {
 
             switch (scelta) {
                 case 1: {
-            System.out.print("Inserisci l'importo da depositare nel conto corrente: ");
+
+                    System.out.print("Inserisci l'importo da depositare nel conto corrente: ");
                     double importo = InputTools.inserireDouble();
-                    portafoglio.depositaNelConto(importo, dateManager.getDataCorrente(), username);
+                    //portafoglio.depositaNelConto(importo, dateManager.getDataCorrente(), username);
                     break;
                 }
                 case 2: {
 
                     System.out.print("Inserisci l'importo da prelevare dal conto corrente: ");
                     double importo = InputTools.inserireDouble();
-                    portafoglio.prelevaDalConto(importo, dateManager.getDataCorrente(), username);
+                    //portafoglio.prelevaDalConto(importo, dateManager.getDataCorrente(), username);
                     break;
                 }
                 case 3: {

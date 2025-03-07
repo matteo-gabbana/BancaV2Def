@@ -1,5 +1,7 @@
 package economia;
 
+import javax.swing.*;
+
 public class Portafoglio {
 
     private double bilancio;
@@ -29,19 +31,18 @@ public class Portafoglio {
 //        }
 //    }
 
-    public void depositaNelConto(double importo, String data, String username) {
+    public void depositaNelConto(double importo, String data, String username, ContoCorrente conto) {
 
         if (importo <= 0) {
-            System.out.println("Importo non valido. Riprova.");
+            JOptionPane.showMessageDialog(null, "Importo non valido. Riprova.", "Errore", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         if (importo > bilancio) {
-            System.out.println("Bilancio insufficiente per il deposito.");
+            JOptionPane.showMessageDialog(null, "Bilancio insufficiente per il deposito.", "Bilancio Insufficiente", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        double bilancioPrecedente = bilancio;
         double importoDepositato = conto.deposita(importo, data, username);
         bilancio -= importoDepositato;
 
@@ -52,9 +53,18 @@ public class Portafoglio {
 //        bilancio += conto.preleva(importo);
 //    }
 
-    public void prelevaDalConto(double importo, String data, String username) {
+    public void prelevaDalConto(double importo, String data, String username, ContoCorrente conto) {
 
-        double bilancioPrecedente = bilancio;
+        if (importo <= 0) {
+            JOptionPane.showMessageDialog(null, "Importo non valido. Riprova.", "Errore", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (importo > conto.getSaldo()) {
+            JOptionPane.showMessageDialog(null, "Saldo insufficiente per il prelievo.", "Saldo Insufficiente", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         double importoPrelevato = conto.preleva(importo, data, username);
         bilancio += importoPrelevato;
 

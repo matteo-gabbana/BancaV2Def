@@ -4,6 +4,8 @@ import economia.ContoCorrente;
 import economia.Portafoglio;
 import java.awt.*;
 import javax.swing.*;
+
+import economia.StocksManager;
 import tools.DateManager;
 
 public class MainPanel extends JFrame {
@@ -11,14 +13,19 @@ public class MainPanel extends JFrame {
     // riga di testo per inserire un comando
     private JTextField commandField;
 
+    private JLabel dataLabel;
+    private JLabel saldoLabel;
+    private JLabel bilancioLabel;
+
     /*
-     * 6 bottoni
+     * 7 bottoni
      * 1: Deposita denaro sul conto corrente
      * 2: Preleva denaro dal conto corrente
      * 3: Investi in azioni
      * 4: Visualizza investimenti in corso
      * 5: Chiudi investimento
      * 6: Avanza il tempo di 1 mese (+100$ nel portafoglio)
+     * 7: salva ed esce
      * */
     private JButton depositaButton;
     private JButton prelevaButton;
@@ -26,6 +33,7 @@ public class MainPanel extends JFrame {
     private JButton investiButton;
     private JButton situazioneInvestimentiButton;
     private JButton chiudiInvestimentoButton;
+    private JButton salvaEdEsciButton;
 
     private String username;
     private DateManager dateManager;
@@ -40,7 +48,7 @@ public class MainPanel extends JFrame {
         this.portafoglio = portafoglio;
 
         setTitle("Banca \"Morsli & Gabbana\"");
-        setSize(900, 650);
+        setSize(900, 750); // height 650
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -59,9 +67,9 @@ public class MainPanel extends JFrame {
         infoPanel.setBackground(new Color(230, 247, 255));
 
         JLabel usernameLabel = new JLabel("Username: " + username, SwingConstants.LEFT);
-        JLabel dataLabel = new JLabel("Data: " + dateManager.getDataCorrente(), SwingConstants.LEFT);
-        JLabel saldoLabel = new JLabel(conto.mostraSaldo(), SwingConstants.LEFT);
-        JLabel bilancioLabel = new JLabel(portafoglio.mostraBilancioPortafoglio(), SwingConstants.LEFT);
+        dataLabel = new JLabel("Data: " + dateManager.getDataCorrente(), SwingConstants.LEFT);
+        saldoLabel = new JLabel(conto.mostraSaldo(), SwingConstants.LEFT);
+        bilancioLabel = new JLabel(portafoglio.mostraBilancioPortafoglio(), SwingConstants.LEFT);
 
         JLabel[] labels = {usernameLabel, dataLabel, saldoLabel, bilancioLabel};
         for (JLabel label : labels) {
@@ -79,15 +87,16 @@ public class MainPanel extends JFrame {
 
 
 
-        JPanel buttonPanel = new JPanel(new GridLayout(2, 3, 20, 20));
+        JPanel buttonPanel = new JPanel(new GridLayout(3, 3, 20, 20));
         buttonPanel.setBackground(Color.WHITE);
 
         depositaButton = new JButton("Deposita");
         prelevaButton = new JButton("Preleva");
-        investiButton = new JButton("Investi");
+        investiButton = new JButton("Investi in Azioni");
         situazioneInvestimentiButton = new JButton("Quadro Investimenti");
         chiudiInvestimentoButton = new JButton("Chiudi Investimento");
         avanzaButton = new JButton("Avanza Tempo");
+        salvaEdEsciButton = new JButton("Salva ed Esci");
 
         JButton[] buttons = {depositaButton, prelevaButton, avanzaButton, investiButton, situazioneInvestimentiButton, chiudiInvestimentoButton};
         for (JButton button : buttons) {
@@ -96,6 +105,18 @@ public class MainPanel extends JFrame {
             button.setFocusPainted(false);
             buttonPanel.add(button);
         }
+
+        JPanel emptyPanel = new JPanel();
+        emptyPanel.setBackground(Color.WHITE);
+        buttonPanel.add(emptyPanel);
+
+        salvaEdEsciButton.setFont(new Font("Arial", Font.BOLD, 16));
+        salvaEdEsciButton.setBackground(new Color(0, 102, 204)); //51, 102, 255
+        salvaEdEsciButton.setPreferredSize(new Dimension(280, 90));
+        salvaEdEsciButton.setFocusPainted(false);
+        buttonPanel.add(salvaEdEsciButton, BorderLayout.CENTER);
+
+
 
         depositaButton.addActionListener(e -> gestisciDeposito());
         prelevaButton.addActionListener(e -> gestisciPrelievo());
@@ -134,19 +155,38 @@ public class MainPanel extends JFrame {
         if (input != null && !input.trim().isEmpty()) {
             try {
                 double importo = Double.parseDouble(input);
-                // Aggiungi la logica per gestire il deposito
+                portafoglio.depositaNelConto(importo, dateManager.getDataCorrente(), username, conto);
+                aggiornaInfoPanel();
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Per favore, inserisci un numero valido.", "Errore", JOptionPane.ERROR_MESSAGE);
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Input non valido o vuoto.", "Errore", JOptionPane.WARNING_MESSAGE);
+        } else if (input != null) {
+            JOptionPane.showMessageDialog(null, "Input non valido.", "Errore", JOptionPane.WARNING_MESSAGE);
         }
     }
 
     private void gestisciPrelievo() {
+
+        String input = JOptionPane.showInputDialog(null, "Inserisci l'importo da prelevare conto corrente: ", "Prelievo", JOptionPane.QUESTION_MESSAGE);
+
+        if (input != null && !input.trim().isEmpty()) {
+            try {
+                double importo = Double.parseDouble(input);
+                portafoglio.prelevaDalConto(importo, dateManager.getDataCorrente(), username, conto);
+                aggiornaInfoPanel();
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Per favore, inserisci un numero valido.", "Errore", JOptionPane.ERROR_MESSAGE);
+            }
+        } else if (input != null) {
+            JOptionPane.showMessageDialog(null, "Input non valido.", "Errore", JOptionPane.WARNING_MESSAGE);
+        }
     }
 
     private void gestisciAvanza() {
+        StocksManager.avanzaTempo(dateManager, portafoglio);
+        JOptionPane.showMessageDialog(null, "Tempo avanzato. Data attuale: " + dateManager.getDataCorrente(), "Transizione al mese successivo", JOptionPane.INFORMATION_MESSAGE);
+        aggiornaInfoPanel();
+        dataLabel.setText("Data: " + dateManager.getDataCorrente());
     }
 
     private void gestisciInvestimento() {
@@ -156,6 +196,11 @@ public class MainPanel extends JFrame {
     }
 
     private void gestisciChiusuraInvestimento() {
+    }
+
+    private void aggiornaInfoPanel() {
+        saldoLabel.setText(conto.mostraSaldo());
+        bilancioLabel.setText(portafoglio.mostraBilancioPortafoglio());
     }
 
 }

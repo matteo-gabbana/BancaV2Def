@@ -10,3 +10,42 @@ Investimento in Amazon (AMZN): 39,60$.
 ciaociao | 6 luglio 2025
 Chiusura investimento in Tesla (TSLA): 59,23$ recuperati.
 
+Mario | 7 marzo 2025
+Deposito effettuato: +500,00$. Saldo precedente: 2000,00$, Saldo attuale: 2500,00$.
+
+Mario | 7 marzo 2025
+Deposito effettuato: +120,00$. Saldo precedente: 2000,00$, Saldo attuale: 2120,00$.
+
+Mario | 7 marzo 2025
+Deposito effettuato: +500,00$. Saldo precedente: 2000,00$, Saldo attuale: 2500,00$.
+
+Mario | 7 marzo 2025
+Deposito effettuato: +100,00$. Saldo precedente: 2000,00$, Saldo attuale: 2100,00$.
+
+Mario | 7 marzo 2025
+Deposito effettuato: +200,00$. Saldo precedente: 2100,00$, Saldo attuale: 2300,00$.
+
+Mario | 7 marzo 2025
+Deposito effettuato: +200,00$. Saldo precedente: 1000,00$, Saldo attuale: 1200,00$.
+
+Mario | 7 marzo 2025
+Deposito effettuato: +799,00$. Saldo precedente: 1200,00$, Saldo attuale: 1999,00$.
+
+Mario | 7 marzo 2025
+Deposito effettuato: +1,00$. Saldo precedente: 1999,00$, Saldo attuale: 2000,00$.
+
+Mario | 7 marzo 2025
+Deposito effettuato: +500,00$. Saldo precedente: 1000,00$, Saldo attuale: 1500,00$.
+
+Mario | 7 marzo 2025
+Prelievo effettuato: -500,00$. Saldo precedente: 1000,00$, Saldo attuale: 500,00$.
+
+Mario | 7 marzo 2025
+Deposito effettuato: +200,00$. Saldo precedente: 500,00$, Saldo attuale: 700,00$.
+
+Mario | 7 marzo 2025
+Prelievo effettuato: -650,00$. Saldo precedente: 700,00$, Saldo attuale: 50,00$.
+
+Mario | 7 marzo 2026
+Deposito effettuato: +1000,00$. Saldo precedente: 1000,00$, Saldo attuale: 2000,00$.
+

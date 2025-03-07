@@ -2,6 +2,8 @@ package economia;
 
 import tools.FileManager;
 
+import javax.swing.*;
+
 public class ContoCorrente {
 
   private double saldo;
@@ -27,10 +29,6 @@ public class ContoCorrente {
   //    }
 
   public double deposita(double importo, String data, String username) {
-    if (importo <= 0) {
-      System.out.println("Importo non valido. Riprova.");
-      return 0;
-    }
 
     double saldoPrecedente = saldo;
     saldo += importo;
@@ -46,12 +44,7 @@ public class ContoCorrente {
             + String.format("%.2f", saldo)
             + "$.");
 
-    System.out.println(
-        "Hai depositato: "
-            + String.format("%.2f", importo)
-            + "$. Saldo attuale: "
-            + String.format("%.2f", saldo)
-            + "$.");
+    JOptionPane.showMessageDialog(null, "Deposito eseguito con successo.", "Successo", JOptionPane.INFORMATION_MESSAGE);
     return importo;
   }
 
@@ -71,15 +64,6 @@ public class ContoCorrente {
   //    }
 
   public double preleva(double importo, String data, String username) {
-    if (importo <= 0) {
-      System.out.println("Importo non valido. Riprova.");
-      return 0;
-    }
-
-    if (importo > saldo) {
-      System.out.println("Saldo insufficiente per il prelievo.");
-      return 0;
-    }
 
     double saldoPrecedente = saldo;
     saldo -= importo;
@@ -95,12 +79,7 @@ public class ContoCorrente {
             + String.format("%.2f", saldo)
             + "$.");
 
-    System.out.println(
-        "Hai prelevato: "
-            + String.format("%.2f", importo)
-            + "$. Saldo attuale: "
-            + String.format("%.2f", saldo)
-            + "$.");
+    JOptionPane.showMessageDialog(null, "Prelievo eseguito con successo.", "Successo", JOptionPane.INFORMATION_MESSAGE);
     return importo;
   }
 

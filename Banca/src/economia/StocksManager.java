@@ -171,8 +171,6 @@ public class StocksManager {
     saldoNVDA = StocksManager.aggiornaValoreInvestimento(saldoNVDA, "NVDA");
     saldoAMZN = StocksManager.aggiornaValoreInvestimento(saldoAMZN, "AMZN");
     saldoAAPL = StocksManager.aggiornaValoreInvestimento(saldoAAPL, "AAPL");
-
-    System.out.println("Tempo avanzato. Data attuale: " + dateManager.getDataCorrente());
   }
 
   public static void chiudiInvestimento(

@@ -121,3 +121,54 @@ Chiusura investimento in Nvidia (NVDA): 482,63$ recuperati.
 Mario | 7 maggio 2025
 Chiusura investimento in Amazon (AMZN): 98,77$ recuperati.
 
+provagod | 7 giugno 2025
+Deposito effettuato: +200,00$. Saldo precedente: 0,00$, Saldo attuale: 200,00$.
+
+provagod | 7 giugno 2025
+Investimento in Tesla (TSLA): 99,00$.
+
+provagod | 7 giugno 2025
+Investimento in Apple (AAPL): 49,50$.
+
+provagod | 7 agosto 2025
+Chiusura investimento in Apple (AAPL): 47,08$ recuperati.
+
+provagod | 7 agosto 2025
+Chiusura investimento in Tesla (TSLA): 76,07$ recuperati.
+
+provagod | 7 agosto 2025
+Prelievo effettuato: -100,00$. Saldo precedente: 173,15$, Saldo attuale: 73,15$.
+
+provagod | 7 settembre 2025
+Investimento in Amazon (AMZN): 49,50$.
+
+provagod | 7 settembre 2025
+Investimento in Tesla (TSLA): 9,90$.
+
+provagod | 7 ottobre 2025
+Chiusura investimento in Amazon (AMZN): 47,55$ recuperati.
+
+provagod | 7 ottobre 2025
+Chiusura investimento in Nvidia (NVDA): 0,00$ recuperati.
+
+monicalucchetta | 7 maggio 2025
+Deposito effettuato: +100,00$. Saldo precedente: 0,00$, Saldo attuale: 100,00$.
+
+monicalucchetta | 7 maggio 2025
+Prelievo effettuato: -50,00$. Saldo precedente: 100,00$, Saldo attuale: 50,00$.
+
+monicalucchetta | 7 giugno 2025
+Deposito effettuato: +150,00$. Saldo precedente: 50,00$, Saldo attuale: 200,00$.
+
+monicalucchetta | 7 giugno 2025
+Investimento in Apple (AAPL): 49,50$.
+
+monicalucchetta | 7 luglio 2025
+Chiusura investimento in Apple (AAPL): 48,04$ recuperati.
+
+monicalucchetta | 7 luglio 2025
+Investimento in Tesla (TSLA): 118,80$.
+
+monicalucchetta | 7 settembre 2025
+Chiusura investimento in Tesla (TSLA): 113,68$ recuperati.
+

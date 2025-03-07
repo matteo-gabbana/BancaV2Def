@@ -22,7 +22,7 @@ public class FileManager {
       try {
         registroTransazioni.createNewFile();
       } catch (IOException e) {
-        System.out.println("Errore nella creazione del registro!");
+        JOptionPane.showMessageDialog(null, "Errore nella creazione del registro!", "Errore", JOptionPane.WARNING_MESSAGE);
         return;
       }
     }
@@ -34,7 +34,7 @@ public class FileManager {
       writer.write("\n\n");
       writer.close();
     } catch (IOException e) {
-      System.out.println("Errore nel salvataggio della transazione");
+      JOptionPane.showMessageDialog(null, "Errore nel salvataggio della transazione", "Errore", JOptionPane.WARNING_MESSAGE);
     }
   }
 
@@ -105,7 +105,7 @@ public class FileManager {
         saldoAAPL
       };
     } catch (IOException e) {
-      System.out.println("Errore nel caricamento dei dati dell'utente.");
+      JOptionPane.showMessageDialog(null, "Errore nel caricamento dei dati dell'utente.", "Errore", JOptionPane.WARNING_MESSAGE);
       return null;
     }
   }

@@ -1,0 +1,115 @@
+package gui;
+
+import tools.LoginManager;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
+
+public class LoginPanel extends JFrame {
+
+    private JTextField usernameField;
+    private JPasswordField passwordField;
+    private JButton loginButton;
+    private JButton registerButton;
+
+    private String[] datiUtente = null;
+
+    public LoginPanel() {
+
+        setTitle("Login e Registrazione");
+        setSize(500, 400);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setResizable(false);
+
+        setLayout(new BorderLayout(10, 10));
+        JPanel centerPanel = new JPanel(new GridLayout(5, 2, 10, 10));
+        centerPanel.setBorder(new EmptyBorder(0, 0, -50, 0));
+
+        JLabel messageLabel = new JLabel("Benvenuto alla banca \"Morsli & Gabbana\"", SwingConstants.CENTER);
+        messageLabel.setFont(new Font("Arial", Font.BOLD, 21));
+        messageLabel.setBorder(new EmptyBorder(50, 0, 30, 0));
+        messageLabel.setForeground(new Color(59, 59, 59));
+
+        JLabel usernameLabel = new JLabel("               Username: ");
+        usernameField = new JTextField();
+        JLabel passwordLabel = new JLabel("               Password: ");
+        passwordField = new JPasswordField();
+        loginButton = new JButton("Accedi");
+        registerButton = new JButton("Registrati");
+
+        usernameLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        passwordLabel.setFont(new Font("Arial", Font.BOLD, 16));
+
+        usernameField.setFont(new Font("Arial", Font.PLAIN, 14));
+        passwordField.setFont(new Font("Arial", Font.PLAIN, 14));
+
+        loginButton.setFont(new Font("Arial", Font.ITALIC, 16));
+        registerButton.setFont(new Font("Arial", Font.ITALIC, 16));
+        loginButton.addActionListener(e -> gestisciLogin());
+        registerButton.addActionListener(e -> gestisciRegistrazione());
+
+        centerPanel.add(usernameLabel);
+        centerPanel.add(usernameField);
+        centerPanel.add(passwordLabel);
+        centerPanel.add(passwordField);
+        centerPanel.add(new JLabel(" "));
+        centerPanel.add(new JLabel(" "));
+        centerPanel.add(loginButton);
+        centerPanel.add(registerButton);
+
+        add(messageLabel, BorderLayout.NORTH);
+        add(centerPanel, BorderLayout.CENTER);
+
+        setVisible(true);
+
+        setVisible(true);
+    }
+
+    private void gestisciLogin() {
+
+        String username = usernameField.getText();
+        String password = new String(passwordField.getPassword());
+
+        if (username.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Username e Password non possono essere vuoti.", "Errore", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        datiUtente = LoginManager.effettuaLogin(username, password);
+
+        if (datiUtente == null) {
+            JOptionPane.showMessageDialog(this, "Username o Password errati!", "Errore", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Login effettuato con successo!", "Successo", JOptionPane.INFORMATION_MESSAGE);
+            dispose();
+        }
+    }
+
+    private void gestisciRegistrazione() {
+
+        String username = usernameField.getText();
+        String password = new String(passwordField.getPassword());
+
+        if (username.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Username e Password non possono essere vuoti.", "Errore", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        datiUtente = LoginManager.registraUtente(username, password);
+
+        if (datiUtente == null) {
+            JOptionPane.showMessageDialog(this, "Registrazione fallita!\n Questo username è già in uso.", "Errore", JOptionPane.ERROR_MESSAGE);
+        } else {
+            // Registrazione riuscita, chiudiamo la finestra di login e proseguiamo con l'app
+            JOptionPane.showMessageDialog(this, "Registrazione completata con successo!", "Successo", JOptionPane.INFORMATION_MESSAGE);
+            dispose();
+        }
+    }
+
+    public String[] getDatiUtente() {
+        return datiUtente;
+    }
+
+}

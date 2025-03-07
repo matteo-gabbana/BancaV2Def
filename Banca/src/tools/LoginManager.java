@@ -34,7 +34,7 @@ public class LoginManager {
         }
     }
 
-    private static String[] effettuaLogin(String username, String password) {
+    public static String[] effettuaLogin(String username, String password) {
 
         String[] datiUtente = FileManager.caricaUtente(username);
 
@@ -47,7 +47,7 @@ public class LoginManager {
         return datiUtente;
     }
 
-    private static String[] registraUtente(String username, String password) {
+    public static String[] registraUtente(String username, String password) {
 
         if (FileManager.caricaUtente(username) != null) {
             System.out.println("Questo username è già in uso.");

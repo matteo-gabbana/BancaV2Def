@@ -3,19 +3,37 @@ package main;
 import economia.ContoCorrente;
 import economia.Portafoglio;
 import economia.StocksManager;
+import gui.LoginPanel;
 import tools.DateManager;
 import tools.FileManager;
 import tools.InputTools;
 import tools.LoginManager;
 
+import javax.swing.*;
+
 public class Main {
 
     public static void main(String[] args) {
 
-        String[] datiUtente = null;
-        while (datiUtente == null) {
-            datiUtente = LoginManager.loginORegistrazione();
+        try {
+            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
+        LoginPanel loginPanel = new LoginPanel();
+        String[] datiUtente = loginPanel.getDatiUtente();
+
+//        if (datiUtente == null) {
+//            JOptionPane.showMessageDialog(null, "Login o registrazione fallita", "Errore", JOptionPane.ERROR_MESSAGE);
+//            return;
+//        }
+
+//        String[] datiUtente = null;
+//        while (datiUtente == null) {
+//            datiUtente = LoginManager.loginORegistrazione();
+//        }
+
 
         String username = datiUtente[0];
 

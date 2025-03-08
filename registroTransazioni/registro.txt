@@ -229,3 +229,15 @@ Prelievo effettuato: -50,00$. Saldo precedente: 200,00$, Saldo attuale: 150,00$.
 utente | 2025-03-08
 Deposito effettuato: +50,00$. Saldo precedente: 200,00$, Saldo attuale: 250,00$.
 
+utente | 2025-03-08
+Investimento in Tesla (TSLA): 99,00$.
+
+utente | 2025-03-08
+Chiusura investimento in Tesla (TSLA): 150,00$ recuperati.
+
+utente | 2025-03-08
+Investimento in Tesla (TSLA): 99,00$.
+
+utente | 2025-03-08
+Chiusura investimento in Tesla (TSLA): 150,00$ recuperati.
+

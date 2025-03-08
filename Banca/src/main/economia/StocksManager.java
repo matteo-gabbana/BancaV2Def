@@ -61,6 +61,48 @@ public class StocksManager {
         "Apple (AAPL): " + String.format("%.2f", StocksManager.getSaldoAAPL()) + "$.");
   }
 
+  private static double investiInAzioni(double importoInvestimento, double saldoConto) {
+
+    if (importoInvestimento < 5) {
+      JOptionPane.showMessageDialog(null, "L'importo minimo per l'investimento e' di 5$", "Errore", JOptionPane.ERROR_MESSAGE);
+      return 0;
+    }
+
+    if (importoInvestimento > saldoConto) {
+      JOptionPane.showMessageDialog(null, "Saldo insufficiente per l'investimento.", "Errore", JOptionPane.ERROR_MESSAGE);
+      return 0;
+    }
+
+    double tassa = importoInvestimento * 0.01;
+    JOptionPane.showMessageDialog(null, "Importo investito dopo le tasse: " + String.format("%.2f", (importoInvestimento - tassa)), "Valore Importo Investimento post-tasse", JOptionPane.INFORMATION_MESSAGE);
+    return importoInvestimento - tassa;
+
+    //    switch (sceltaInvestimento) {
+    //      case 1:
+    //        System.out.println(
+    //            "Hai investito in Tesla (TSLA): " + String.format("%.2f", importoEffettivo) + "$.");
+    //        return importoEffettivo;
+    //
+    //      case 2:
+    //        System.out.println(
+    //            "Hai investito in Nvidia (NVDA): " + String.format("%.2f", importoEffettivo) + "$.");
+    //        return importoEffettivo;
+    //
+    //      case 3:
+    //        System.out.println(
+    //            "Hai investito in Amazon (AMZN): " + String.format("%.2f", importoEffettivo) + "$.");
+    //        return importoEffettivo;
+    //
+    //      case 4:
+    //        System.out.println(
+    //            "Hai investito in Apple (AAPL): " + String.format("%.2f", importoEffettivo) + "$.");
+    //        return importoEffettivo;
+    //
+    //      default:
+    //        System.out.println("Opzione non valida.");
+    //        return 0;
+  }
+
   public static void effettuaInvestimento(
       ContoCorrente conto,
       String sceltaInvestimento,
@@ -95,47 +137,7 @@ public class StocksManager {
     }
   }
 
-  private static double investiInAzioni(double importoInvestimento, double saldoConto) {
 
-    if (importoInvestimento < 5) {
-      JOptionPane.showMessageDialog(null, "L'importo minimo per l'investimento e' di 5$", "Errore", JOptionPane.ERROR_MESSAGE);
-      return 0;
-    }
-
-    if (importoInvestimento > saldoConto) {
-      JOptionPane.showMessageDialog(null, "Saldo insufficiente per l'investimento.", "Errore", JOptionPane.ERROR_MESSAGE);
-      return 0;
-    }
-
-    double tassa = importoInvestimento * 0.01;
-    JOptionPane.showMessageDialog(null, "Importo investito dopo le tasse: " + String.format("%.2f", (importoInvestimento - tassa)), "Valore Importo Investimento post-tasse", JOptionPane.INFORMATION_MESSAGE);
-    return importoInvestimento - tassa;
-
-//    switch (sceltaInvestimento) {
-//      case 1:
-//        System.out.println(
-//            "Hai investito in Tesla (TSLA): " + String.format("%.2f", importoEffettivo) + "$.");
-//        return importoEffettivo;
-//
-//      case 2:
-//        System.out.println(
-//            "Hai investito in Nvidia (NVDA): " + String.format("%.2f", importoEffettivo) + "$.");
-//        return importoEffettivo;
-//
-//      case 3:
-//        System.out.println(
-//            "Hai investito in Amazon (AMZN): " + String.format("%.2f", importoEffettivo) + "$.");
-//        return importoEffettivo;
-//
-//      case 4:
-//        System.out.println(
-//            "Hai investito in Apple (AAPL): " + String.format("%.2f", importoEffettivo) + "$.");
-//        return importoEffettivo;
-//
-//      default:
-//        System.out.println("Opzione non valida.");
-//        return 0;
-  }
 
   private static double aggiornaValoreInvestimento(double saldo, String tipoAzione) {
 

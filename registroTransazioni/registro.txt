@@ -241,3 +241,21 @@ Investimento in Tesla (TSLA): 99,00$.
 utente | 2025-03-08
 Chiusura investimento in Tesla (TSLA): 150,00$ recuperati.
 
+utente | 2025-03-08
+Prelievo effettuato: -100,00$. Saldo precedente: 500,00$, Saldo attuale: 400,00$.
+
+utente | 2025-03-08
+Deposito effettuato: +200,00$. Saldo precedente: 500,00$, Saldo attuale: 700,00$.
+
+utente | 2025-03-08
+Prelievo effettuato: -100,00$. Saldo precedente: 500,00$, Saldo attuale: 400,00$.
+
+utente | 2025-03-08
+Deposito effettuato: +200,00$. Saldo precedente: 500,00$, Saldo attuale: 700,00$.
+
+utente | 2025-03-08
+Prelievo effettuato: -100,00$. Saldo precedente: 500,00$, Saldo attuale: 400,00$.
+
+utente | 2025-03-08
+Deposito effettuato: +200,00$. Saldo precedente: 500,00$, Saldo attuale: 700,00$.
+

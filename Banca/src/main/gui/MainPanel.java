@@ -13,23 +13,12 @@ public class MainPanel extends JFrame {
 
     private InvestimentiPanel investimentiPanel;
 
-    // riga di testo per inserire un comando
     private JTextField commandField;
 
     private JLabel dataLabel;
     private JLabel saldoLabel;
     private JLabel bilancioLabel;
 
-    /*
-     * 7 bottoni
-     * 1: Deposita denaro sul conto corrente
-     * 2: Preleva denaro dal conto corrente
-     * 3: Investi in azioni
-     * 4: Visualizza investimenti in corso
-     * 5: Chiudi investimento
-     * 6: Avanza il tempo di 1 mese (+100$ nel portafoglio)
-     * 7: salva ed esce
-     * */
     private JButton depositaButton;
     private JButton prelevaButton;
     private JButton avanzaButton;
@@ -61,7 +50,6 @@ public class MainPanel extends JFrame {
         setResizable(false);
 
         JPanel mainPanel = new JPanel(new BorderLayout(10, 10));
-//        mainPanel.setBackground(new Color(102, 204, 255));
         mainPanel.setBackground(Color.WHITE);
         mainPanel.setOpaque(true);
 
@@ -91,6 +79,39 @@ public class MainPanel extends JFrame {
         commandField.setFont(new Font("Arial", Font.PLAIN, 16));
         commandField.setBorder(BorderFactory.createTitledBorder("Inserisci comando"));
         commandField.setPreferredSize(new Dimension(850, 70));
+
+        commandField.addActionListener(e -> {
+            String comando = commandField.getText().trim().toLowerCase();
+
+            switch (comando) {
+                case "/deposita":
+                    gestisciDeposito();
+                    break;
+                case "/preleva":
+                    gestisciPrelievo();
+                    break;
+                case "/investi":
+                    gestisciInvestimento();
+                    break;
+                case "/quadro":
+                    mostraQuadroInvestimenti();
+                    break;
+                case "/chiudi":
+                    gestisciChiusuraInvestimento();
+                    break;
+                case "/avanza":
+                    gestisciAvanza();
+                    break;
+                case "/esci":
+                    gestisciSalvaEdEsci();
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(this, "Comando non riconosciuto!", "Errore", JOptionPane.ERROR_MESSAGE);
+                    break;
+            }
+
+            commandField.setText("");
+        });
 
 
 

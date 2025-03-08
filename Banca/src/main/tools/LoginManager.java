@@ -6,32 +6,6 @@ import java.util.Locale;
 
 public class LoginManager {
 
-//  public static String[] loginORegistrazione() {
-//
-//    Scanner input = new Scanner(System.in);
-//    System.out.println("\nBenvenuto nella Banca Morsli&Gabbana!");
-//    System.out.println("1) Login");
-//    System.out.println("2) Registrati");
-//    System.out.print("Scegli un'opzione: ");
-//    int scelta = InputTools.inserireIntero();
-//
-//    while (scelta != 1 && scelta != 2) {
-//      System.out.println("Scelta non valida.");
-//      System.out.print("Scegli un'opzione: ");
-//      scelta = InputTools.inserireIntero();
-//    }
-//
-//    System.out.print("Inserisci username: ");
-//    String username = input.nextLine();
-//    System.out.print("Inserisci password: ");
-//    String password = input.nextLine();
-//
-//    if (scelta == 1) {
-//      return effettuaLogin(username, password);
-//    } else {
-//      return registraUtente(username, password);
-//    }
-//  }
 
   public static String[] effettuaLogin(String username, String password) {
 

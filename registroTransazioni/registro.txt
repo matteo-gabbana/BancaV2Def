@@ -205,6 +205,27 @@ Chiusura investimento in Tesla (TSLA): 22,32$ recuperati.
 matteonuovo | 8 luglio 2025
 Chiusura investimento in Amazon (AMZN): 48,68$ recuperati.
 
+zoo | 8 giugno 2025
+Deposito effettuato: +100,00$. Saldo precedente: 0,00$, Saldo attuale: 100,00$.
+
+zoo | 8 giugno 2025
+Deposito effettuato: +100,00$. Saldo precedente: 100,00$, Saldo attuale: 200,00$.
+
+zoo | 8 giugno 2025
+Investimento in Tesla (TSLA): 33,66$.
+
 Mario | 8 marzo 2025
 Deposito effettuato: +20,00$. Saldo precedente: 1000,00$, Saldo attuale: 1020,00$.
+
+utente | 2025-03-08
+Prelievo effettuato: -50,00$. Saldo precedente: 200,00$, Saldo attuale: 150,00$.
+
+utente | 2025-03-08
+Deposito effettuato: +50,00$. Saldo precedente: 200,00$, Saldo attuale: 250,00$.
+
+utente | 2025-03-08
+Prelievo effettuato: -50,00$. Saldo precedente: 200,00$, Saldo attuale: 150,00$.
+
+utente | 2025-03-08
+Deposito effettuato: +50,00$. Saldo precedente: 200,00$, Saldo attuale: 250,00$.
 

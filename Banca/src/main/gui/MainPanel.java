@@ -1,13 +1,13 @@
-package gui;
+package main.gui;
 
-import economia.ContoCorrente;
-import economia.Portafoglio;
+import main.economia.ContoCorrente;
+import main.economia.Portafoglio;
 import java.awt.*;
 import javax.swing.*;
 
-import economia.StocksManager;
-import tools.DateManager;
-import tools.FileManager;
+import main.economia.StocksManager;
+import main.tools.DateManager;
+import main.tools.FileManager;
 
 public class MainPanel extends JFrame {
 

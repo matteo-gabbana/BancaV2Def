@@ -1,9 +1,9 @@
-package gui;
+package main.gui;
 
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import tools.LoginManager;
+import main.tools.LoginManager;
 
 public class LoginPanel extends JFrame {
 

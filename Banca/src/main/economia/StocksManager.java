@@ -1,8 +1,8 @@
-package economia;
+package main.economia;
 
 import java.util.Random;
-import tools.DateManager;
-import tools.FileManager;
+import main.tools.DateManager;
+import main.tools.FileManager;
 
 import javax.swing.*;
 

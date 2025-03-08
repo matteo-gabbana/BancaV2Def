@@ -1,4 +1,4 @@
-package economia;
+package main.economia;
 
 import javax.swing.*;
 

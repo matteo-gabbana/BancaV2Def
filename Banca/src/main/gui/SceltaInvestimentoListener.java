@@ -1,4 +1,4 @@
-package gui;
+package main.gui;
 
 public interface SceltaInvestimentoListener {
 

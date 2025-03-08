@@ -3,6 +3,8 @@ package main.gui;
 import main.economia.ContoCorrente;
 import main.economia.Portafoglio;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.*;
 
 import main.economia.StocksManager;
@@ -14,6 +16,8 @@ public class MainPanel extends JFrame {
     private InvestimentiPanel investimentiPanel;
 
     private JTextField commandField;
+//    private final String[] comandiDisponibili = {"/deposita", "/preleva", "/investi", "/quadro", "/chiudi", "/avanza", "/esci"};
+//    private JPopupMenu suggerimentiMenu = new JPopupMenu();
 
     private JLabel dataLabel;
     private JLabel saldoLabel;
@@ -106,12 +110,14 @@ public class MainPanel extends JFrame {
                     gestisciSalvaEdEsci();
                     break;
                 default:
-                    JOptionPane.showMessageDialog(this, "Comando non riconosciuto!", "Errore", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Comando non riconosciuto!", "Errore", JOptionPane.ERROR_MESSAGE);
                     break;
             }
 
             commandField.setText("");
         });
+
+        //setupSuggerimentiCommandField();
 
 
 
@@ -167,6 +173,43 @@ public class MainPanel extends JFrame {
 
         setVisible(true);
     }
+
+//    private void setupSuggerimentiCommandField() {
+//        commandField.addKeyListener(new KeyAdapter() {
+//            @Override
+//            public void keyReleased(KeyEvent e) {
+//                String testo = commandField.getText().trim();
+//
+//                if (testo.startsWith("/")) {
+//                    mostraSuggerimenti(testo);
+//                } else {
+//                    suggerimentiMenu.setVisible(false);
+//                }
+//            }
+//        });
+//    }
+//
+//    private void mostraSuggerimenti(String testo) {
+//        suggerimentiMenu.removeAll();
+//
+//        for (String comando : comandiDisponibili) {
+//            if (comando.startsWith(testo)) {
+//                JMenuItem item = new JMenuItem(comando);
+//                item.addActionListener(e -> {
+//                    commandField.setText(comando);
+//                    suggerimentiMenu.setVisible(false);
+//                });
+//                suggerimentiMenu.add(item);
+//            }
+//        }
+//
+//        if (suggerimentiMenu.getComponentCount() > 0) {
+//            suggerimentiMenu.show(commandField, 0, commandField.getHeight());
+//        } else {
+//            suggerimentiMenu.setVisible(false);
+//        }
+//    }
+
 
     public static void main(String[] args) {
         try {
@@ -224,7 +267,7 @@ public class MainPanel extends JFrame {
 
     private void gestisciInvestimento() {
 
-        new SceltaInvestimentoPanel(scelta -> {
+        new SceltaInvestimentoPanel(this, scelta -> {
 
             sceltaInvestimento = scelta;
             JOptionPane.showMessageDialog(null, "Hai scelto di investire in " + scelta, "Scelta Investimento", JOptionPane.INFORMATION_MESSAGE);
@@ -260,7 +303,7 @@ public class MainPanel extends JFrame {
 
     private void gestisciChiusuraInvestimento() {
 
-        new SceltaInvestimentoPanel(scelta -> {
+        new SceltaInvestimentoPanel(this, scelta -> {
 
             sceltaInvestimento = scelta;
             JOptionPane.showMessageDialog(null, "Hai scelto di chiudere l'investimento in " + scelta, "Chiusura Investimento", JOptionPane.INFORMATION_MESSAGE);

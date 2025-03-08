@@ -3,13 +3,14 @@ package main.gui;
 import javax.swing.*;
 import java.awt.*;
 
-public class SceltaInvestimentoPanel extends JFrame {
+public class SceltaInvestimentoPanel extends JDialog {
 
     private String azioneSelezionata = null;
     private SceltaInvestimentoListener listener;
 
-    public SceltaInvestimentoPanel(SceltaInvestimentoListener listener, String messaggio) {
+    public SceltaInvestimentoPanel(JFrame parent, SceltaInvestimentoListener listener, String messaggio) {
 
+        super(parent, true);
         this.listener = listener;
 
         setTitle("Investi in Azioni");
@@ -55,15 +56,15 @@ public class SceltaInvestimentoPanel extends JFrame {
         return azioneSelezionata;
     }
 
-    public static void main(String[] args) {
-        try {
-            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        new SceltaInvestimentoPanel(scelta -> {
-            JOptionPane.showMessageDialog(null, "Hai scelto di investire in " + scelta, "Scelta Investimento", JOptionPane.INFORMATION_MESSAGE);
-        },"Su che azioni vuoi investire?");
-    }
+//    public static void main(String[] args) {
+//        try {
+//            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        new SceltaInvestimentoPanel( scelta -> {
+//            JOptionPane.showMessageDialog(null, "Hai scelto di investire in " + scelta, "Scelta Investimento", JOptionPane.INFORMATION_MESSAGE);
+//        },"Su che azioni vuoi investire?");
+//    }
 
 }

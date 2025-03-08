@@ -11,6 +11,8 @@ import main.tools.FileManager;
 
 public class MainPanel extends JFrame {
 
+    private InvestimentiPanel investimentiPanel;
+
     // riga di testo per inserire un comando
     private JTextField commandField;
 
@@ -193,6 +195,10 @@ public class MainPanel extends JFrame {
         JOptionPane.showMessageDialog(null, "Tempo avanzato. Data attuale: " + dateManager.getDataCorrente(), "Transizione al mese successivo", JOptionPane.INFORMATION_MESSAGE);
         aggiornaInfoPanel();
         dataLabel.setText("Data: " + dateManager.getDataCorrente());
+
+        if (investimentiPanel != null && investimentiPanel.isDisplayable()) {
+            investimentiPanel.aggiornaDisplayInvestimenti();
+        }
     }
 
     private void gestisciInvestimento() {
@@ -211,6 +217,9 @@ public class MainPanel extends JFrame {
                         double importoInvestimento = Double.parseDouble(input);
                         StocksManager.effettuaInvestimento(conto, sceltaInvestimento, importoInvestimento, dateManager.getDataCorrente(), username);
                         aggiornaInfoPanel();
+                        if (investimentiPanel != null && investimentiPanel.isDisplayable()) {
+                            investimentiPanel.aggiornaDisplayInvestimenti();
+                        }
                     } catch (NumberFormatException e) {
                         JOptionPane.showMessageDialog(null, "Per favore, inserisci un numero valido.", "Errore", JOptionPane.ERROR_MESSAGE);
                     }
@@ -223,6 +232,9 @@ public class MainPanel extends JFrame {
     }
 
     private void mostraQuadroInvestimenti() {
+        if (investimentiPanel == null || !investimentiPanel.isDisplayable()) {
+            investimentiPanel = new InvestimentiPanel(this);
+        }
     }
 
     private void gestisciChiusuraInvestimento() {
@@ -234,6 +246,9 @@ public class MainPanel extends JFrame {
 
             StocksManager.chiudiInvestimento(sceltaInvestimento, conto, dateManager.getDataCorrente(), username);
             aggiornaInfoPanel();
+            if (investimentiPanel != null && investimentiPanel.isDisplayable()) {
+                investimentiPanel.aggiornaDisplayInvestimenti();
+            }
         }, "Che investimento vuoi chiudere?");
     }
 

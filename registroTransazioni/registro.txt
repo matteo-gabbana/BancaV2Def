@@ -259,3 +259,36 @@ Prelievo effettuato: -100,00$. Saldo precedente: 500,00$, Saldo attuale: 400,00$
 utente | 2025-03-08
 Deposito effettuato: +200,00$. Saldo precedente: 500,00$, Saldo attuale: 700,00$.
 
+utente | 2025-03-08
+Prelievo effettuato: -100,00$. Saldo precedente: 500,00$, Saldo attuale: 400,00$.
+
+utente | 2025-03-08
+Deposito effettuato: +200,00$. Saldo precedente: 500,00$, Saldo attuale: 700,00$.
+
+utente | 2025-03-08
+Prelievo effettuato: -100,00$. Saldo precedente: 500,00$, Saldo attuale: 400,00$.
+
+utente | 2025-03-08
+Deposito effettuato: +200,00$. Saldo precedente: 500,00$, Saldo attuale: 700,00$.
+
+matteonuovo | 8 novembre 2025
+Investimento in Nvidia (NVDA): 42,57$.
+
+matteonuovo | 8 novembre 2025
+Investimento in Apple (AAPL): 33,66$.
+
+matteonuovo | 8 gennaio 2026
+Deposito effettuato: +500,00$. Saldo precedente: 24,00$, Saldo attuale: 524,00$.
+
+matteonuovo | 8 gennaio 2026
+Investimento in Tesla (TSLA): 495,00$.
+
+matteonuovo | 8 maggio 2026
+Chiusura investimento in Apple (AAPL): 32,69$ recuperati.
+
+utente | 2025-03-08
+Prelievo effettuato: -50,00$. Saldo precedente: 200,00$, Saldo attuale: 150,00$.
+
+utente | 2025-03-08
+Deposito effettuato: +50,00$. Saldo precedente: 200,00$, Saldo attuale: 250,00$.
+

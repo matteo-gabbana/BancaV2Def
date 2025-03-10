@@ -1,5 +1,6 @@
 package main.gui;
 
+import main.banca.Utente;
 import main.economia.ContoCorrente;
 import main.economia.Portafoglio;
 import java.awt.*;
@@ -31,21 +32,21 @@ public class MainPanel extends JFrame {
     private JButton chiudiInvestimentoButton;
     private JButton salvaEdEsciButton;
 
-    private String username;
-    private String password;
-    private DateManager dateManager;
-    private ContoCorrente conto;
-    private Portafoglio portafoglio;
+    private final String username;
+    private final String password;
+    private final DateManager dateManager;
+    private final ContoCorrente conto;
+    private final Portafoglio portafoglio;
 
     private String sceltaInvestimento;
 
-    public MainPanel(String username, String password, DateManager dateManager, ContoCorrente conto, Portafoglio portafoglio) {
+    public MainPanel(Utente utente) {
 
-        this.username = username;
-        this.password = password;
-        this.dateManager = dateManager;
-        this.conto = conto;
-        this.portafoglio = portafoglio;
+        this.username = utente.getUsername();
+        this.password = utente.getPassword();
+        this.dateManager = utente.getDateManager();
+        this.conto = utente.getConto();
+        this.portafoglio = utente.getPortafoglio();
 
         setTitle("Banca \"Morsli & Gabbana\"");
         setSize(900, 750); // height 650
@@ -211,14 +212,14 @@ public class MainPanel extends JFrame {
 //    }
 
 
-    public static void main(String[] args) {
-        try {
-            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        MainPanel mainPanel = new MainPanel("Mario", "ciao123", new DateManager("7 marzo 2025"), new ContoCorrente(1000), new Portafoglio(new ContoCorrente(2000), 1000));
-    }
+//    public static void main(String[] args) {
+//        try {
+//            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        MainPanel mainPanel = new MainPanel("Mario", "ciao123", new DateManager("7 marzo 2025"), new ContoCorrente(1000), new Portafoglio(new ContoCorrente(2000), 1000));
+//    }
 
     private void gestisciDeposito() {
 

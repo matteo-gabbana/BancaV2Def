@@ -172,6 +172,13 @@ public class MainPanel extends JFrame {
 
         add(mainPanel);
 
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                chiudiInvestimentiPanel();
+            }
+        });
+
         setVisible(true);
     }
 
@@ -320,12 +327,20 @@ public class MainPanel extends JFrame {
     private void gestisciSalvaEdEsci() {
         FileManager.salvaUtente(username, password, conto.getSaldo(), portafoglio.getBilancio(), dateManager.getDataCorrente(), StocksManager.getSaldoTSLA(), StocksManager.getSaldoNVDA(), StocksManager.getSaldoAMZN(), StocksManager.getSaldoAAPL());
         JOptionPane.showMessageDialog(null, "Dati personali salvati con successo!", "Successo", JOptionPane.INFORMATION_MESSAGE);
+        chiudiInvestimentiPanel();
         dispose();
     }
 
     private void aggiornaInfoPanel() {
         saldoLabel.setText(conto.mostraSaldo());
         bilancioLabel.setText(portafoglio.mostraBilancioPortafoglio());
+    }
+
+    private void chiudiInvestimentiPanel() {
+        if (investimentiPanel != null && investimentiPanel.isDisplayable()) {
+            investimentiPanel.dispose();
+            //investimentiPanel = null;
+        }
     }
 
 }

@@ -17,8 +17,8 @@ public class MainPanel extends JFrame {
     private InvestimentiPanel investimentiPanel;
 
     private JTextField commandField;
-//    private final String[] comandiDisponibili = {"/deposita", "/preleva", "/investi", "/quadro", "/chiudi", "/avanza", "/esci"};
-//    private JPopupMenu suggerimentiMenu = new JPopupMenu();
+    private final String[] comandiDisponibili = {"/deposita", "/preleva", "/investi", "/quadro", "/chiudi", "/avanza", "/esci"};
+    private JPopupMenu suggerimentiMenu = new JPopupMenu();
 
     private JLabel dataLabel;
     private JLabel saldoLabel;
@@ -118,7 +118,7 @@ public class MainPanel extends JFrame {
             commandField.setText("");
         });
 
-        //setupSuggerimentiCommandField();
+        setupSuggerimentiCommandField();
 
 
 
@@ -182,41 +182,41 @@ public class MainPanel extends JFrame {
         setVisible(true);
     }
 
-//    private void setupSuggerimentiCommandField() {
-//        commandField.addKeyListener(new KeyAdapter() {
-//            @Override
-//            public void keyReleased(KeyEvent e) {
-//                String testo = commandField.getText().trim();
-//
-//                if (testo.startsWith("/")) {
-//                    mostraSuggerimenti(testo);
-//                } else {
-//                    suggerimentiMenu.setVisible(false);
-//                }
-//            }
-//        });
-//    }
-//
-//    private void mostraSuggerimenti(String testo) {
-//        suggerimentiMenu.removeAll();
-//
-//        for (String comando : comandiDisponibili) {
-//            if (comando.startsWith(testo)) {
-//                JMenuItem item = new JMenuItem(comando);
-//                item.addActionListener(e -> {
-//                    commandField.setText(comando);
-//                    suggerimentiMenu.setVisible(false);
-//                });
-//                suggerimentiMenu.add(item);
-//            }
-//        }
-//
-//        if (suggerimentiMenu.getComponentCount() > 0) {
-//            suggerimentiMenu.show(commandField, 0, commandField.getHeight());
-//        } else {
-//            suggerimentiMenu.setVisible(false);
-//        }
-//    }
+    private void setupSuggerimentiCommandField() {
+        commandField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                String testo = commandField.getText().trim();
+
+                if (testo.startsWith("/")) {
+                    mostraSuggerimenti(testo);
+                } else {
+                    suggerimentiMenu.setVisible(false);
+                }
+            }
+        });
+    }
+
+    private void mostraSuggerimenti(String testo) {
+        suggerimentiMenu.removeAll();
+
+        for (String comando : comandiDisponibili) {
+            if (comando.startsWith(testo)) {
+                JMenuItem item = new JMenuItem(comando);
+                item.addActionListener(e -> {
+                    commandField.setText(comando);
+                    suggerimentiMenu.setVisible(false);
+                });
+                suggerimentiMenu.add(item);
+            }
+        }
+
+        if (suggerimentiMenu.getComponentCount() > 0) {
+            suggerimentiMenu.show(commandField, 0, commandField.getHeight());
+        } else {
+            suggerimentiMenu.setVisible(false);
+        }
+    }
 
 
 //    public static void main(String[] args) {

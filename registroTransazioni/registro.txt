@@ -322,3 +322,18 @@ Chiusura investimento in Amazon (AMZN): 0,00$ recuperati.
 matteo12345 | 10 luglio 2026
 Chiusura investimento in Nvidia (NVDA): 45,92$ recuperati.
 
+matteo12345 | 10 giugno 2025
+Chiusura investimento in Amazon (AMZN): 49,59$ recuperati.
+
+burato | 11 maggio 2025
+Deposito effettuato: +150,00$. Saldo precedente: 0,00$, Saldo attuale: 150,00$.
+
+burato | 11 maggio 2025
+Investimento in Apple (AAPL): 49,50$.
+
+burato | 11 maggio 2025
+Investimento in Nvidia (NVDA): 49,50$.
+
+burato | 11 giugno 2025
+Prelievo effettuato: -50,00$. Saldo precedente: 50,00$, Saldo attuale: 0,00$.
+

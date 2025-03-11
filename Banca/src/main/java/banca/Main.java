@@ -1,12 +1,12 @@
-package main.banca;
+package banca;
 
-import main.economia.ContoCorrente;
-import main.economia.Portafoglio;
-import main.economia.StocksManager;
-import main.gui.LoginPanel;
-import main.gui.MainPanel;
+import economia.ContoCorrente;
+import economia.Portafoglio;
+import economia.StocksManager;
+import gui.LoginPanel;
+import gui.MainPanel;
 import javax.swing.*;
-import main.tools.DateManager;
+import tools.DateManager;
 
 public class Main {
 

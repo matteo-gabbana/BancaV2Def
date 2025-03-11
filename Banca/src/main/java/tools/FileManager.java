@@ -1,4 +1,4 @@
-package main.tools;
+package tools;
 
 import javax.swing.*;
 import java.io.*;

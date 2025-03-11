@@ -1,6 +1,6 @@
-package main.economia;
+package economia;
 
-import main.tools.FileManager;
+import tools.FileManager;
 
 import javax.swing.*;
 

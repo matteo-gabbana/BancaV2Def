@@ -1,6 +1,6 @@
-package main.gui;
+package gui;
 
-import main.economia.StocksManager;
+import economia.StocksManager;
 
 import javax.swing.*;
 import java.awt.*;

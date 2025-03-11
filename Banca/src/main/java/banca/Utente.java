@@ -1,8 +1,8 @@
-package main.banca;
+package banca;
 
-import main.economia.ContoCorrente;
-import main.economia.Portafoglio;
-import main.tools.DateManager;
+import economia.ContoCorrente;
+import economia.Portafoglio;
+import tools.DateManager;
 
 public class Utente {
 

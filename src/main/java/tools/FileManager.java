@@ -2,39 +2,52 @@ package tools;
 
 import javax.swing.*;
 import java.io.*;
+import java.util.Vector;
 
 public class FileManager {
 
   private static final String PATH_CARTELLA_UTENTI = "fileUtenti/";
-  private static final String PATH_CARTELLA_REGISTRO = "registroTransazioni/";
-  private static final String PATH_REGISTRO = PATH_CARTELLA_REGISTRO + "registro.txt";
-  private static File registroTransazioni = new File(PATH_REGISTRO);
+  private static final String PATH_CARTELLA_REGISTRI = "registroTransazioni/";
+  private static final String PATH_REGISTRO = PATH_CARTELLA_REGISTRI + "registro.txt";
   private static File cartellaUtenti = new File(PATH_CARTELLA_UTENTI);
+  private static Vector<String> elencoTransazioni = new Vector<>();
 
   public static void salvaTransazione(String username, String data, String transazione) {
 
-    File cartella = new File(PATH_CARTELLA_REGISTRO);
+    String operazione = "";
+    operazione += username + " | " + data + "\n";
+    operazione += transazione;
+    operazione += "\n\n";
+
+    elencoTransazioni.add(operazione);
+  }
+
+  public static void scriviTransazioni(String username) {
+
+    File cartella = new File(PATH_CARTELLA_REGISTRI);
     if (!cartella.exists()) {
       cartella.mkdirs();
     }
 
-    if (!registroTransazioni.exists()) {
+    File registroUtente = new File(PATH_CARTELLA_REGISTRI + "registro-" + username + ".txt");
+
+    if (!registroUtente.exists()) {
       try {
-        registroTransazioni.createNewFile();
+        registroUtente.createNewFile();
       } catch (IOException e) {
         JOptionPane.showMessageDialog(null, "Errore nella creazione del registro!", "Errore", JOptionPane.WARNING_MESSAGE);
         return;
       }
     }
 
-    try {
-      FileWriter writer = new FileWriter(registroTransazioni, true);
-      writer.write(username + " | " + data + "\n");
-      writer.write(transazione);
-      writer.write("\n\n");
-      writer.close();
-    } catch (IOException e) {
-      JOptionPane.showMessageDialog(null, "Errore nel salvataggio della transazione", "Errore", JOptionPane.WARNING_MESSAGE);
+    for (int i=0; i<elencoTransazioni.size(); i++) {
+      try {
+        FileWriter writer = new FileWriter(registroUtente, true);
+        writer.write(elencoTransazioni.get(i));
+        writer.close();
+      } catch (IOException e) {
+        JOptionPane.showMessageDialog(null, "Errore nel salvataggio della transazione", "Errore", JOptionPane.WARNING_MESSAGE);
+      }
     }
   }
 

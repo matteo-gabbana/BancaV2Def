@@ -6,6 +6,7 @@ import economia.Portafoglio;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import javax.swing.*;
 
 import economia.StocksManager;
@@ -17,8 +18,6 @@ public class MainPanel extends JFrame {
     private InvestimentiPanel investimentiPanel;
 
     private JTextField commandField;
-    private final String[] comandiDisponibili = {"/deposita", "/preleva", "/investi", "/quadro", "/chiudi", "/avanza", "/esci"};
-    private JPopupMenu suggerimentiMenu = new JPopupMenu();
 
     private JLabel dataLabel;
     private JLabel saldoLabel;
@@ -118,8 +117,6 @@ public class MainPanel extends JFrame {
             commandField.setText("");
         });
 
-        setupSuggerimentiCommandField();
-
 
 
         JPanel buttonPanel = new JPanel(new GridLayout(3, 3, 20, 20));
@@ -180,42 +177,6 @@ public class MainPanel extends JFrame {
         });
 
         setVisible(true);
-    }
-
-    private void setupSuggerimentiCommandField() {
-        commandField.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyReleased(KeyEvent e) {
-                String testo = commandField.getText().trim();
-
-                if (testo.startsWith("/")) {
-                    mostraSuggerimenti(testo);
-                } else {
-                    suggerimentiMenu.setVisible(false);
-                }
-            }
-        });
-    }
-
-    private void mostraSuggerimenti(String testo) {
-        suggerimentiMenu.removeAll();
-
-        for (String comando : comandiDisponibili) {
-            if (comando.startsWith(testo)) {
-                JMenuItem item = new JMenuItem(comando);
-                item.addActionListener(e -> {
-                    commandField.setText(comando);
-                    suggerimentiMenu.setVisible(false);
-                });
-                suggerimentiMenu.add(item);
-            }
-        }
-
-        if (suggerimentiMenu.getComponentCount() > 0) {
-            suggerimentiMenu.show(commandField, 0, commandField.getHeight());
-        } else {
-            suggerimentiMenu.setVisible(false);
-        }
     }
 
 
@@ -326,6 +287,7 @@ public class MainPanel extends JFrame {
 
     private void gestisciSalvaEdEsci() {
         FileManager.salvaUtente(username, password, conto.getSaldo(), portafoglio.getBilancio(), dateManager.getDataCorrente(), StocksManager.getSaldoTSLA(), StocksManager.getSaldoNVDA(), StocksManager.getSaldoAMZN(), StocksManager.getSaldoAAPL());
+        FileManager.scriviTransazioni(username);
         JOptionPane.showMessageDialog(null, "Dati personali salvati con successo!", "Successo", JOptionPane.INFORMATION_MESSAGE);
         chiudiInvestimentiPanel();
         dispose();

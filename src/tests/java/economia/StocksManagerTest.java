@@ -2,10 +2,7 @@ package economia;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-import main.economia.StocksManager;
-import main.economia.ContoCorrente;
-import main.economia.Portafoglio;
-import main.tools.DateManager;
+import tools.DateManager;
 
 public class StocksManagerTest {
 

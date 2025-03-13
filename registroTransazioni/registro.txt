@@ -337,3 +337,51 @@ Investimento in Nvidia (NVDA): 49,50$.
 burato | 11 giugno 2025
 Prelievo effettuato: -50,00$. Saldo precedente: 50,00$, Saldo attuale: 0,00$.
 
+sasha | 13 maggio 2025
+Deposito effettuato: +150,00$. Saldo precedente: 0,00$, Saldo attuale: 150,00$.
+
+sasha | 13 maggio 2025
+Investimento in Nvidia (NVDA): 148,50$.
+
+sasha | 13 agosto 2025
+Deposito effettuato: +300,00$. Saldo precedente: 0,00$, Saldo attuale: 300,00$.
+
+sasha | 13 agosto 2025
+Investimento in Tesla (TSLA): 74,25$.
+
+sasha | 13 agosto 2025
+Investimento in Amazon (AMZN): 99,00$.
+
+sasha | 13 agosto 2025
+Investimento in Apple (AAPL): 123,75$.
+
+sasha | 13 maggio 2026
+Chiusura investimento in Tesla (TSLA): 36,10$ recuperati.
+
+sasha | 13 maggio 2026
+Chiusura investimento in Nvidia (NVDA): 123,34$ recuperati.
+
+sasha | 13 maggio 2026
+Chiusura investimento in Amazon (AMZN): 102,08$ recuperati.
+
+sasha | 13 maggio 2026
+Chiusura investimento in Apple (AAPL): 119,89$ recuperati.
+
+sasha | 13 maggio 2026
+Prelievo effettuato: -300,00$. Saldo precedente: 381,41$, Saldo attuale: 81,41$.
+
+utente | 2025-03-08
+Deposito effettuato: +200,00$. Saldo precedente: 500,00$, Saldo attuale: 700,00$.
+
+utente | 2025-03-08
+Deposito effettuato: +200,00$. Saldo precedente: 500,00$, Saldo attuale: 700,00$.
+
+utente | 2025-03-08
+Deposito effettuato: +200,00$. Saldo precedente: 500,00$, Saldo attuale: 700,00$.
+
+utente | 2025-03-08
+Prelievo effettuato: -100,00$. Saldo precedente: 500,00$, Saldo attuale: 400,00$.
+
+utente | 2025-03-08
+Deposito effettuato: +200,00$. Saldo precedente: 500,00$, Saldo attuale: 700,00$.
+

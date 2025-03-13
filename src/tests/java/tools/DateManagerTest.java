@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import main.tools.DateManager;
 import org.junit.jupiter.api.Test;
 
 public class DateManagerTest {
@@ -34,12 +33,12 @@ public class DateManagerTest {
 
   @Test
   void testAvanzaDiUnMese() {
-    String dataIniziale = "8 marzo 2025";
+    String dataIniziale = "25 dicembre 2025";
     DateManager dateManager = new DateManager(dataIniziale);
 
     dateManager.avanzaDiUnMese();
 
-    String dataAttesa = "8 aprile 2025";
+    String dataAttesa = "25 dicembre 2025";
     assertEquals(dataAttesa, dateManager.getDataCorrente());
   }
 }

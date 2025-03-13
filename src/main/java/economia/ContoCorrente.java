@@ -7,6 +7,7 @@ import javax.swing.*;
 public class ContoCorrente {
 
   private double saldo;
+  private boolean modalitaTest = false;
 
   public ContoCorrente(double saldo) {
     this.saldo = saldo;
@@ -20,18 +21,14 @@ public class ContoCorrente {
     this.saldo = saldo;
   }
 
-  //    public double deposita(double importo) {
-  //
-  //        saldo += importo;
-  //        System.out.println("Hai depositato: " + String.format("%.2f", importo) + "$. Saldo
-  // conto: " + String.format("%.2f", saldo) + "$.");
-  //        return importo;
-  //    }
+  public void setModalitaTest(boolean modalitaTest) {
+    this.modalitaTest = modalitaTest;
+  }
 
   public double deposita(double importo, String data, String username) {
 
     double saldoPrecedente = saldo;
-    saldo += importo;
+    importo = effettuaDeposito(importo);
 
     FileManager.salvaTransazione(
         username,
@@ -44,29 +41,22 @@ public class ContoCorrente {
             + String.format("%.2f", saldo)
             + "$.");
 
-    JOptionPane.showMessageDialog(null, "Deposito eseguito con successo.", "Successo", JOptionPane.INFORMATION_MESSAGE);
+    if (!modalitaTest) {
+      JOptionPane.showMessageDialog(null, "Deposito eseguito con successo.", "Successo", JOptionPane.INFORMATION_MESSAGE);
+    }
+
     return importo;
   }
 
-  //    public double preleva(double importo) {
-  //
-  //        if (importo > 0 && importo <= saldo) {
-  //            saldo -= importo;
-  //            System.out.println("Hai prelevato: " + String.format("%.2f", importo) + "$. Saldo
-  // conto: " + String.format("%.2f", saldo) + "$.");
-  //            return importo;
-  //        } else if (importo > saldo) {
-  //            System.out.println("Saldo insufficiente per il prelievo.");
-  //        } else {
-  //            System.out.println("Importo non valido. Riprova.");
-  //        }
-  //        return 0;
-  //    }
+  public double effettuaDeposito(double importo) {
+    saldo += importo;
+    return importo;
+  }
 
   public double preleva(double importo, String data, String username) {
 
     double saldoPrecedente = saldo;
-    saldo -= importo;
+    importo = effettuaPrelievo(importo);
 
     FileManager.salvaTransazione(
         username,
@@ -79,7 +69,15 @@ public class ContoCorrente {
             + String.format("%.2f", saldo)
             + "$.");
 
-    JOptionPane.showMessageDialog(null, "Prelievo eseguito con successo.", "Successo", JOptionPane.INFORMATION_MESSAGE);
+    if (!modalitaTest) {
+      JOptionPane.showMessageDialog(null, "Prelievo eseguito con successo.", "Successo", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    return importo;
+  }
+
+  public double effettuaPrelievo(double importo) {
+    saldo -= importo;
     return importo;
   }
 

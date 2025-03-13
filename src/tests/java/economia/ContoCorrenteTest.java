@@ -6,18 +6,18 @@ import org.junit.jupiter.api.Test;
 public class ContoCorrenteTest {
 
     @org.junit.Test
-    public void testDeposita() {
+    public void testEffettuaDeposito() {
         ContoCorrente conto = new ContoCorrente(500.0);
-        double deposito = conto.deposita(200.0, "2025-03-08", "utente");
+        double deposito = conto.effettuaDeposito(200.0);
 
         assertEquals(200.0, deposito);
         assertEquals(700.0, conto.getSaldo());
     }
 
     @org.junit.Test
-    public void testPreleva() {
+    public void testEffettuaPrelievo() {
         ContoCorrente conto = new ContoCorrente(500.0);
-        double prelievo = conto.preleva(100.0, "2025-03-08", "utente");
+        double prelievo = conto.effettuaPrelievo(100.0);
 
         assertEquals(100.0, prelievo);
         assertEquals(400.0, conto.getSaldo());

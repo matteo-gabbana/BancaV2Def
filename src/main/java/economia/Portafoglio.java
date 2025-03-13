@@ -6,6 +6,7 @@ public class Portafoglio {
 
     private double bilancio;
     private ContoCorrente conto;
+    private boolean modalitaTest = false;
 
     public Portafoglio(ContoCorrente conto, double bilancio) {
         this.conto = conto;
@@ -20,55 +21,73 @@ public class Portafoglio {
         this.bilancio = bilancio;
     }
 
-//    public void depositaNelConto(double importo) {
-//
-//        if (importo > 0 && importo < bilancio) {
-//            bilancio -= conto.deposita(importo);
-//        } else if (importo < 0) {
-//            System.out.println("Importo non valido. Riprova.");
-//        } else {
-//            System.out.println("Bilancio insufficiente per il deposito.");
-//        }
-//    }
+    public void setModalitaTest(boolean modalitaTest) {
+        this.modalitaTest = modalitaTest;
+        this.conto.setModalitaTest(modalitaTest);
+    }
 
     public void depositaNelConto(double importo, String data, String username, ContoCorrente conto) {
 
+        if (depositoValido(importo)) {
+            effettuaDeposito(importo, data, username, conto);
+        }
+
+    }
+
+    private boolean depositoValido(double importo) {
+
         if (importo <= 0) {
-            JOptionPane.showMessageDialog(null, "Importo non valido. Riprova.", "Errore", JOptionPane.ERROR_MESSAGE);
-            return;
+            if (!modalitaTest) {
+                JOptionPane.showMessageDialog(null, "Importo non valido. Riprova.", "Errore", JOptionPane.ERROR_MESSAGE);
+            }
+            return false;
         }
 
         if (importo > bilancio) {
-            JOptionPane.showMessageDialog(null, "Bilancio insufficiente per il deposito.", "Bilancio Insufficiente", JOptionPane.ERROR_MESSAGE);
-            return;
+            if (!modalitaTest) {
+                JOptionPane.showMessageDialog(null, "Bilancio insufficiente per il deposito.", "Bilancio Insufficiente", JOptionPane.ERROR_MESSAGE);
+            }
+            return false;
         }
 
-        double importoDepositato = conto.deposita(importo, data, username);
-        bilancio -= importoDepositato;
-
-        //FileManager.salvaTransazione(username, data, "Trasferimento al conto: -" + String.format("%.2f", importo) + "$. Bilancio precedente: " + String.format("%.2f", bilancioPrecedente) + "$, Bilancio attuale: " + String.format("%.2f", bilancio) + "$.");
+        return true;
     }
 
-//    public void prelevaDalConto(double importo) {
-//        bilancio += conto.preleva(importo);
-//    }
+    public void effettuaDeposito(double importo, String data, String username, ContoCorrente conto) {
+        double importoDepositato = conto.deposita(importo, data, username);
+        bilancio -= importoDepositato;
+    }
 
     public void prelevaDalConto(double importo, String data, String username, ContoCorrente conto) {
 
+        if (prelievoValido(importo, conto)) {
+            effettuaPrelievo(importo, data, username, conto);
+        }
+
+    }
+
+    private boolean prelievoValido(double importo, ContoCorrente conto) {
+
         if (importo <= 0) {
-            JOptionPane.showMessageDialog(null, "Importo non valido. Riprova.", "Errore", JOptionPane.ERROR_MESSAGE);
-            return;
+            if (!modalitaTest) {
+                JOptionPane.showMessageDialog(null, "Importo non valido. Riprova.", "Errore", JOptionPane.ERROR_MESSAGE);
+            }
+            return false;
         }
 
         if (importo > conto.getSaldo()) {
-            JOptionPane.showMessageDialog(null, "Saldo insufficiente per il prelievo.", "Saldo Insufficiente", JOptionPane.ERROR_MESSAGE);
-            return;
+            if (!modalitaTest) {
+                JOptionPane.showMessageDialog(null, "Saldo insufficiente per il prelievo.", "Saldo Insufficiente", JOptionPane.ERROR_MESSAGE);
+            }
+            return false;
         }
 
+        return true;
+    }
+
+    public void effettuaPrelievo(double importo, String data, String username, ContoCorrente conto) {
         double importoPrelevato = conto.preleva(importo, data, username);
         bilancio += importoPrelevato;
-
-        //FileManager.salvaTransazione(username, data, "Prelievo dal conto: +" + String.format("%.2f", importoPrelevato) + "$. Bilancio precedente: " + String.format("%.2f", bilancioPrecedente) + "$, Bilancio attuale: " + String.format("%.2f", bilancio) + "$.");
     }
 
     public String mostraBilancioPortafoglio() {

@@ -23,6 +23,8 @@ public class StocksManagerTest {
         // non faccio il test di investiInAzioni, perchè viene richiamato da effettuaInvestimento
         ContoCorrente conto = new ContoCorrente(1000.0);
         StocksManager.setSaldoTSLA(0.0);
+        StocksManager.setModalitaTest(true);
+
         StocksManager.effettuaInvestimento(conto, "Tesla (TSLA)", 100.0, "2025-03-08", "utente");
         assertEquals(99.0, StocksManager.getSaldoTSLA()); // controlla che ho investito bene (100$ - 1 di tasse)
         assertEquals(900.0, conto.getSaldo()); // controlla che il conto sia sceso di 100, dopo l invesitmento
@@ -32,6 +34,8 @@ public class StocksManagerTest {
     public void testChiudiInvestimento_TSLA() {
         ContoCorrente conto = new ContoCorrente(500.0);
         StocksManager.setSaldoTSLA(150.0);
+        StocksManager.setModalitaTest(true);
+
         StocksManager.chiudiInvestimento("Tesla (TSLA)", conto, "2025-03-08", "utente");
         assertEquals(0.0, StocksManager.getSaldoTSLA());
         assertEquals(650.0, conto.getSaldo());
@@ -52,6 +56,7 @@ public class StocksManagerTest {
         ContoCorrente conto = new ContoCorrente(500.0);
         Portafoglio portafoglio = new Portafoglio(conto, 100.0);
         double bilancioIniziale = portafoglio.getBilancio();
+
         StocksManager.avanzaTempo(dateManager, portafoglio);
         assertEquals(bilancioIniziale + 100, portafoglio.getBilancio()); // dopo un mese dovrei avere 100 eruo in più
     }

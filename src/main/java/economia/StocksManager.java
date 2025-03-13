@@ -15,6 +15,12 @@ public class StocksManager {
   private static double saldoAMZN = 0.0;
   private static double saldoAAPL = 0.0;
 
+  private static boolean modalitaTest = false;
+
+  public static void setModalitaTest(boolean modalitaTest) {
+    StocksManager.modalitaTest = modalitaTest;
+  }
+
   public static double getSaldoTSLA() {
     return saldoTSLA;
   }
@@ -47,34 +53,26 @@ public class StocksManager {
     StocksManager.saldoNVDA = saldoNVDA;
   }
 
-  // ULTIMA COSA DA FARE RIMASTA
-  public static void mostraInvestimenti() {
-
-    System.out.println("Investimenti attuali:");
-    System.out.println(
-        "Tesla (TSLA): " + String.format("%.2f", StocksManager.getSaldoTSLA()) + "$.");
-    System.out.println(
-        "Nvidia (NVDA): " + String.format("%.2f", StocksManager.getSaldoNVDA()) + "$.");
-    System.out.println(
-        "Amazon (AMZN): " + String.format("%.2f", StocksManager.getSaldoAMZN()) + "$.");
-    System.out.println(
-        "Apple (AAPL): " + String.format("%.2f", StocksManager.getSaldoAAPL()) + "$.");
-  }
-
   private static double investiInAzioni(double importoInvestimento, double saldoConto) {
 
     if (importoInvestimento < 5) {
-      JOptionPane.showMessageDialog(null, "L'importo minimo per l'investimento e' di 5$", "Errore", JOptionPane.ERROR_MESSAGE);
+      if (!modalitaTest) {
+        JOptionPane.showMessageDialog(null, "L'importo minimo per l'investimento e' di 5$", "Errore", JOptionPane.ERROR_MESSAGE);
+      }
       return 0;
     }
 
     if (importoInvestimento > saldoConto) {
-      JOptionPane.showMessageDialog(null, "Saldo insufficiente per l'investimento.", "Errore", JOptionPane.ERROR_MESSAGE);
+      if (!modalitaTest) {
+        JOptionPane.showMessageDialog(null, "Saldo insufficiente per l'investimento.", "Errore", JOptionPane.ERROR_MESSAGE);
+      }
       return 0;
     }
 
     double tassa = importoInvestimento * 0.01;
-    JOptionPane.showMessageDialog(null, "Importo investito dopo le tasse: " + String.format("%.2f", (importoInvestimento - tassa)), "Valore Importo Investimento post-tasse", JOptionPane.INFORMATION_MESSAGE);
+    if (!modalitaTest) {
+      JOptionPane.showMessageDialog(null, "Importo investito dopo le tasse: " + String.format("%.2f", (importoInvestimento - tassa)), "Valore Importo Investimento post-tasse", JOptionPane.INFORMATION_MESSAGE);
+    }
     return importoInvestimento - tassa;
 
     //    switch (sceltaInvestimento) {
@@ -204,7 +202,9 @@ public class StocksManager {
             + String.format("%.2f", saldoRecuperato)
             + "$ recuperati.");
 
-    JOptionPane.showMessageDialog(null, "Hai chiuso l'investimento in " + scelta + " e recuperato: " + String.format("%.2f", saldoRecuperato) + "$.", "Chiusura Investimento", JOptionPane.INFORMATION_MESSAGE);
+    if (!modalitaTest) {
+      JOptionPane.showMessageDialog(null, "Hai chiuso l'investimento in " + scelta + " e recuperato: " + String.format("%.2f", saldoRecuperato) + "$.", "Chiusura Investimento", JOptionPane.INFORMATION_MESSAGE);
+    }
   }
 
   public static boolean isInvestimentoAttivo(String sceltaInvestimento) {

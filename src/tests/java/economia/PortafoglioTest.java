@@ -1,4 +1,4 @@
-package tests.main.economia;
+package economia;
 
 import main.economia.Portafoglio;
 import main.economia.ContoCorrente;

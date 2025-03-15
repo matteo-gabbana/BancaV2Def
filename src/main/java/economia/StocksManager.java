@@ -106,7 +106,8 @@ public class StocksManager {
       String sceltaInvestimento,
       double importoInvestimento,
       String data,
-      String username) {
+      String username,
+      Portafoglio portafoglio) {
 
     double investimento = StocksManager.investiInAzioni(importoInvestimento, conto.getSaldo());
 
@@ -128,10 +129,15 @@ public class StocksManager {
 
       conto.setSaldo(conto.getSaldo() - importoInvestimento);
 
-      FileManager.salvaTransazione(
-          username,
-          data,
-          "Investimento in " + sceltaInvestimento + ": " + String.format("%.2f", investimento) + "$.");
+      if (!modalitaTest) {
+
+          FileManager.salvaSituazioneBilanci(username, data, portafoglio, conto);
+
+          FileManager.salvaTransazione(
+                  username,
+                  data,
+                  "Investimento in " + sceltaInvestimento + ": " + String.format("%.2f", investimento) + "$.");
+      }
     }
   }
 
@@ -168,7 +174,7 @@ public class StocksManager {
   }
 
   public static void chiudiInvestimento(
-      String scelta, ContoCorrente conto, String data, String username) {
+          String scelta, ContoCorrente conto, String data, String username, Portafoglio portafoglio) {
 
     double saldoRecuperato = 0.0;
 
@@ -193,17 +199,19 @@ public class StocksManager {
 
     conto.setSaldo(conto.getSaldo() + saldoRecuperato);
 
-    FileManager.salvaTransazione(
-        username,
-        data,
-        "Chiusura investimento in "
-            + scelta
-            + ": "
-            + String.format("%.2f", saldoRecuperato)
-            + "$ recuperati.");
-
     if (!modalitaTest) {
       JOptionPane.showMessageDialog(null, "Hai chiuso l'investimento in " + scelta + " e recuperato: " + String.format("%.2f", saldoRecuperato) + "$.", "Chiusura Investimento", JOptionPane.INFORMATION_MESSAGE);
+
+      FileManager.salvaSituazioneBilanci(username, data, portafoglio, conto);
+
+      FileManager.salvaTransazione(
+              username,
+              data,
+              "Chiusura investimento in "
+                      + scelta
+                      + ": "
+                      + String.format("%.2f", saldoRecuperato)
+                      + "$ recuperati.");
     }
   }
 

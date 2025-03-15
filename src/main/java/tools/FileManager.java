@@ -1,5 +1,8 @@
 package tools;
 
+import economia.ContoCorrente;
+import economia.Portafoglio;
+
 import javax.swing.*;
 import java.io.*;
 import java.util.Vector;
@@ -8,9 +11,39 @@ public class FileManager {
 
   private static final String PATH_CARTELLA_UTENTI = "fileUtenti/";
   private static final String PATH_CARTELLA_REGISTRI = "registroTransazioni/";
-  private static final String PATH_REGISTRO = PATH_CARTELLA_REGISTRI + "registro.txt";
+  private static final String PATH_CARTELLA_DATI_BILANCIO = "datiBilancio/";
   private static File cartellaUtenti = new File(PATH_CARTELLA_UTENTI);
+
   private static Vector<String> elencoTransazioni = new Vector<>();
+
+  public static void salvaSituazioneBilanci(String username, String data, Portafoglio portafoglio, ContoCorrente conto) {
+
+    File cartella = new File(PATH_CARTELLA_DATI_BILANCIO);
+    if (!cartella.exists()) {
+      cartella.mkdirs();
+    }
+
+    File datiBilancioUtente = new File(PATH_CARTELLA_DATI_BILANCIO + "dati-" + username + ".csv");
+
+    if (!datiBilancioUtente.exists()) {
+      try {
+        datiBilancioUtente.createNewFile();
+      } catch (IOException e) {
+        JOptionPane.showMessageDialog(null, "Errore nella creazione del file .csv dei bilanci!", "Errore", JOptionPane.WARNING_MESSAGE);
+        return;
+      }
+    }
+
+    try {
+      FileWriter writer = new FileWriter(datiBilancioUtente, true);
+      writer.write(data + ";" + conto.getSaldo() + ";" + portafoglio.getBilancio());
+      writer.write("\n");
+      writer.close();
+    } catch (IOException e) {
+      JOptionPane.showMessageDialog(null, "Errore nel salvataggio dei bilanci", "Errore", JOptionPane.WARNING_MESSAGE);
+    }
+
+  }
 
   public static void salvaTransazione(String username, String data, String transazione) {
 

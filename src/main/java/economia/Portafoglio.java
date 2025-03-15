@@ -1,5 +1,7 @@
 package economia;
 
+import tools.FileManager;
+
 import javax.swing.*;
 
 public class Portafoglio {
@@ -30,6 +32,9 @@ public class Portafoglio {
 
         if (depositoValido(importo)) {
             effettuaDeposito(importo, data, username, conto);
+        }
+        if (!modalitaTest) {
+            FileManager.salvaSituazioneBilanci(username, data, this, conto);
         }
 
     }
@@ -62,6 +67,9 @@ public class Portafoglio {
 
         if (prelievoValido(importo, conto)) {
             effettuaPrelievo(importo, data, username, conto);
+        }
+        if (!modalitaTest) {
+            FileManager.salvaSituazioneBilanci(username, data, this, conto);
         }
 
     }

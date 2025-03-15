@@ -25,7 +25,7 @@ public class StocksManagerTest {
         StocksManager.setSaldoTSLA(0.0);
         StocksManager.setModalitaTest(true);
 
-        StocksManager.effettuaInvestimento(conto, "Tesla (TSLA)", 100.0, "2025-03-08", "utente");
+        StocksManager.effettuaInvestimento(conto, "Tesla (TSLA)", 100.0, "2025-03-08", "utente", new Portafoglio(conto, 0));
         assertEquals(99.0, StocksManager.getSaldoTSLA()); // controlla che ho investito bene (100$ - 1 di tasse)
         assertEquals(900.0, conto.getSaldo()); // controlla che il conto sia sceso di 100, dopo l invesitmento
     }
@@ -36,7 +36,7 @@ public class StocksManagerTest {
         StocksManager.setSaldoTSLA(150.0);
         StocksManager.setModalitaTest(true);
 
-        StocksManager.chiudiInvestimento("Tesla (TSLA)", conto, "2025-03-08", "utente");
+        StocksManager.chiudiInvestimento("Tesla (TSLA)", conto, "2025-03-08", "utente", new Portafoglio(conto, 0));
         assertEquals(0.0, StocksManager.getSaldoTSLA());
         assertEquals(650.0, conto.getSaldo());
     }

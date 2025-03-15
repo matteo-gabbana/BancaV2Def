@@ -225,6 +225,7 @@ public class MainPanel extends JFrame {
 
     private void gestisciAvanza() {
         StocksManager.avanzaTempo(dateManager, portafoglio);
+        FileManager.salvaSituazioneBilanci(username, dateManager.getDataCorrente(), portafoglio, conto);
         JOptionPane.showMessageDialog(null, "Tempo avanzato. Data attuale: " + dateManager.getDataCorrente(), "Transizione al mese successivo", JOptionPane.INFORMATION_MESSAGE);
         aggiornaInfoPanel();
         dataLabel.setText("Data: " + dateManager.getDataCorrente());
@@ -248,7 +249,7 @@ public class MainPanel extends JFrame {
                 if (input != null && !input.trim().isEmpty()) {
                     try {
                         double importoInvestimento = Double.parseDouble(input);
-                        StocksManager.effettuaInvestimento(conto, sceltaInvestimento, importoInvestimento, dateManager.getDataCorrente(), username);
+                        StocksManager.effettuaInvestimento(conto, sceltaInvestimento, importoInvestimento, dateManager.getDataCorrente(), username, portafoglio);
                         aggiornaInfoPanel();
                         if (investimentiPanel != null && investimentiPanel.isDisplayable()) {
                             investimentiPanel.aggiornaDisplayInvestimenti();
@@ -277,7 +278,7 @@ public class MainPanel extends JFrame {
             sceltaInvestimento = scelta;
             JOptionPane.showMessageDialog(null, "Hai scelto di chiudere l'investimento in " + scelta, "Chiusura Investimento", JOptionPane.INFORMATION_MESSAGE);
 
-            StocksManager.chiudiInvestimento(sceltaInvestimento, conto, dateManager.getDataCorrente(), username);
+            StocksManager.chiudiInvestimento(sceltaInvestimento, conto, dateManager.getDataCorrente(), username, portafoglio);
             aggiornaInfoPanel();
             if (investimentiPanel != null && investimentiPanel.isDisplayable()) {
                 investimentiPanel.aggiornaDisplayInvestimenti();

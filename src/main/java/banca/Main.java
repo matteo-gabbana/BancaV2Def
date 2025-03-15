@@ -7,6 +7,7 @@ import gui.LoginPanel;
 import gui.MainPanel;
 import javax.swing.*;
 import tools.DateManager;
+import tools.FileManager;
 
 public class Main {
 
@@ -54,6 +55,7 @@ public class Main {
 
         Utente utente = new Utente(username, password, dateManager, conto, portafoglio);
 
+        FileManager.salvaSituazioneBilanci(username, dateManager.getDataCorrente(), portafoglio, conto);
         MainPanel mainPanel = new MainPanel(utente);
 
     }

@@ -1,3 +1,4 @@
+
 package gui;
 
 import banca.Utente;
@@ -29,6 +30,7 @@ public class MainPanel extends JFrame {
     private JButton investiButton;
     private JButton situazioneInvestimentiButton;
     private JButton chiudiInvestimentoButton;
+    private JButton transazioniButton;
     private JButton salvaEdEsciButton;
 
     private final String username;
@@ -119,7 +121,7 @@ public class MainPanel extends JFrame {
 
 
 
-        JPanel buttonPanel = new JPanel(new GridLayout(3, 3, 20, 20));
+        JPanel buttonPanel = new JPanel(new GridLayout(2, 3, 20, 20));
         buttonPanel.setBackground(Color.WHITE);
 
         depositaButton = new JButton("Deposita");
@@ -128,6 +130,7 @@ public class MainPanel extends JFrame {
         situazioneInvestimentiButton = new JButton("Quadro Investimenti");
         chiudiInvestimentoButton = new JButton("Chiudi Investimento");
         avanzaButton = new JButton("Avanza Tempo");
+        transazioniButton = new JButton("Storico Transazioni");
         salvaEdEsciButton = new JButton("Salva ed Esci");
 
         JButton[] buttons = {depositaButton, prelevaButton, avanzaButton, investiButton, situazioneInvestimentiButton, chiudiInvestimentoButton};
@@ -138,15 +141,21 @@ public class MainPanel extends JFrame {
             buttonPanel.add(button);
         }
 
-        JPanel emptyPanel = new JPanel();
-        emptyPanel.setBackground(Color.WHITE);
-        buttonPanel.add(emptyPanel);
+        JPanel bottomButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 0));
+        bottomButtonPanel.setBackground(Color.WHITE);
+        bottomButtonPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
+
+        transazioniButton.setFont(new Font("Arial", Font.BOLD, 16));
+        transazioniButton.setBackground(new Color(102, 178, 255));
+        transazioniButton.setPreferredSize(new Dimension(280, 90));
+        transazioniButton.setFocusPainted(false);
+        bottomButtonPanel.add(transazioniButton);
 
         salvaEdEsciButton.setFont(new Font("Arial", Font.BOLD, 16));
         salvaEdEsciButton.setBackground(new Color(0, 102, 204)); //51, 102, 255
         salvaEdEsciButton.setPreferredSize(new Dimension(280, 90));
         salvaEdEsciButton.setFocusPainted(false);
-        buttonPanel.add(salvaEdEsciButton, BorderLayout.CENTER);
+        bottomButtonPanel.add(salvaEdEsciButton, BorderLayout.CENTER);
 
 
 
@@ -163,6 +172,7 @@ public class MainPanel extends JFrame {
         bottomPanel.add(commandField, BorderLayout.NORTH);
         bottomPanel.add(buttonPanel, BorderLayout.CENTER);
         bottomPanel.setBackground(Color.WHITE);
+        bottomPanel.add(bottomButtonPanel, BorderLayout.SOUTH);
 
         mainPanel.add(infoPanel, BorderLayout.NORTH);
         mainPanel.add(bottomPanel, BorderLayout.SOUTH);

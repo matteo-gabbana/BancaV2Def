@@ -12,9 +12,9 @@ public class FileManager {
   private static final String PATH_CARTELLA_UTENTI = "fileUtenti/";
   private static final String PATH_CARTELLA_REGISTRI = "registroTransazioni/";
   private static final String PATH_CARTELLA_DATI_BILANCIO = "datiBilancio/";
-  private static File cartellaUtenti = new File(PATH_CARTELLA_UTENTI);
+  private static final File cartellaUtenti = new File(PATH_CARTELLA_UTENTI);
 
-  private static Vector<String> elencoTransazioni = new Vector<>();
+  private static final Vector<String> elencoTransazioni = new Vector<>();
 
   public static void salvaSituazioneBilanci(String username, String data, Portafoglio portafoglio, ContoCorrente conto) {
 
@@ -154,5 +154,9 @@ public class FileManager {
       JOptionPane.showMessageDialog(null, "Errore nel caricamento dei dati dell'utente.", "Errore", JOptionPane.WARNING_MESSAGE);
       return null;
     }
+  }
+
+  public static Vector<String> getElencoTransazioni() {
+    return elencoTransazioni;
   }
 }

@@ -1,6 +1,7 @@
 package economia;
 
 import java.util.Random;
+
 import tools.DateManager;
 import tools.FileManager;
 
@@ -131,12 +132,13 @@ public class StocksManager {
 
       if (!modalitaTest) {
 
-          FileManager.salvaSituazioneBilanci(username, data, portafoglio, conto);
+        FileManager.salvaSituazioneBilanci(username, data, portafoglio, conto);
 
           FileManager.salvaTransazione(
                   username,
                   data,
                   "Investimento in " + sceltaInvestimento + ": " + String.format("%.2f", investimento) + "$.");
+
       }
     }
   }
@@ -212,6 +214,7 @@ public class StocksManager {
                       + ": "
                       + String.format("%.2f", saldoRecuperato)
                       + "$ recuperati.");
+
     }
   }
 

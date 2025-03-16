@@ -1,5 +1,6 @@
 package economia;
 
+import gui.TransazioniPanel;
 import tools.FileManager;
 
 import javax.swing.*;

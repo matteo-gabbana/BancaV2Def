@@ -1,0 +1,18 @@
+xpython | 16 aprile 2025
+Deposito effettuato: +25,00$. Saldo precedente: 0,00$, Saldo attuale: 25,00$.
+
+xpython | 16 maggio 2025
+Deposito effettuato: +100,00$. Saldo precedente: 25,00$, Saldo attuale: 125,00$.
+
+xpython | 16 maggio 2025
+Investimento in Tesla (TSLA): 49,50$.
+
+xpython | 16 maggio 2025
+Investimento in Apple (AAPL): 9,90$.
+
+xpython | 16 luglio 2025
+Deposito effettuato: +200,00$. Saldo precedente: 65,00$, Saldo attuale: 265,00$.
+
+xpython | 16 luglio 2025
+Chiusura investimento in Apple (AAPL): 9,85$ recuperati.
+

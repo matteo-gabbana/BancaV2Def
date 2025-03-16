@@ -17,6 +17,7 @@ import tools.FileManager;
 public class MainPanel extends JFrame {
 
     private InvestimentiPanel investimentiPanel;
+    private TransazioniPanel transazioniPanel;
 
     private JTextField commandField;
 
@@ -108,6 +109,9 @@ public class MainPanel extends JFrame {
                 case "/avanza":
                     gestisciAvanza();
                     break;
+                case "/storico":
+                    mostraStoricoTransazioni();
+                    break;
                 case "/esci":
                     gestisciSalvaEdEsci();
                     break;
@@ -165,6 +169,7 @@ public class MainPanel extends JFrame {
         investiButton.addActionListener(e -> gestisciInvestimento());
         situazioneInvestimentiButton.addActionListener(e -> mostraQuadroInvestimenti());
         chiudiInvestimentoButton.addActionListener(e -> gestisciChiusuraInvestimento());
+        transazioniButton.addActionListener(e -> mostraStoricoTransazioni());
         salvaEdEsciButton.addActionListener(e -> gestisciSalvaEdEsci());
 
         JPanel bottomPanel = new JPanel(new BorderLayout(10, 10));
@@ -278,6 +283,12 @@ public class MainPanel extends JFrame {
     private void mostraQuadroInvestimenti() {
         if (investimentiPanel == null || !investimentiPanel.isDisplayable()) {
             investimentiPanel = new InvestimentiPanel(this);
+        }
+    }
+
+    private void mostraStoricoTransazioni() {
+        if (transazioniPanel == null || !transazioniPanel.isDisplayable()) {
+            transazioniPanel = new TransazioniPanel(this, username);
         }
     }
 

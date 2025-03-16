@@ -73,15 +73,25 @@ public class FileManager {
       }
     }
 
-    for (int i=0; i<elencoTransazioni.size(); i++) {
+    for (String transazione : elencoTransazioni) {
       try {
         FileWriter writer = new FileWriter(registroUtente, true);
-        writer.write(elencoTransazioni.get(i));
+        writer.write(transazione);
         writer.close();
       } catch (IOException e) {
         JOptionPane.showMessageDialog(null, "Errore nel salvataggio della transazione", "Errore", JOptionPane.WARNING_MESSAGE);
       }
     }
+
+//    for (int i=0; i<elencoTransazioni.size(); i++) {
+//      try {
+//        FileWriter writer = new FileWriter(registroUtente, true);
+//        writer.write(elencoTransazioni.get(i));
+//        writer.close();
+//      } catch (IOException e) {
+//        JOptionPane.showMessageDialog(null, "Errore nel salvataggio della transazione", "Errore", JOptionPane.WARNING_MESSAGE);
+//      }
+//    }
   }
 
   public static void salvaUtente(
@@ -156,7 +166,38 @@ public class FileManager {
     }
   }
 
-  public static Vector<String> getElencoTransazioni() {
-    return elencoTransazioni;
+  public static Vector<String> getElencoTransazioni(String username) {
+
+    Vector<String> transazioni = new Vector<>();
+    File registroUtente = new File(PATH_CARTELLA_REGISTRI + "registro-" + username + ".txt");
+
+    if (!registroUtente.exists()) {
+      return transazioni;
+    }
+
+    try {
+
+      BufferedReader reader = new BufferedReader(new FileReader(registroUtente));
+      StringBuilder operazione = new StringBuilder();
+      String linea;
+
+      while ((linea = reader.readLine()) != null) {
+        if (linea.trim().isEmpty()) {
+          transazioni.add(operazione.toString().trim());
+          operazione.setLength(0);
+        } else {
+          operazione.append(linea).append("\n");
+        }
+      }
+
+      if (!operazione.isEmpty()) {
+        transazioni.add(operazione.toString().trim());
+      }
+
+    } catch (IOException e) {
+      JOptionPane.showMessageDialog(null, "Errore nel caricamento delle transazioni", "Errore", JOptionPane.WARNING_MESSAGE);
+    }
+
+    return transazioni;
   }
 }

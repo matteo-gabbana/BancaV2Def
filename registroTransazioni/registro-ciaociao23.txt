@@ -1,0 +1,12 @@
+ciaociao23 | 15 maggio 2025
+Deposito effettuato: +100,00$. Saldo precedente: 0,00$, Saldo attuale: 100,00$.
+
+ciaociao23 | 15 giugno 2025
+Prelievo effettuato: -50,00$. Saldo precedente: 100,00$, Saldo attuale: 50,00$.
+
+ciaociao23 | 15 luglio 2025
+Deposito effettuato: +200,00$. Saldo precedente: 50,00$, Saldo attuale: 250,00$.
+
+ciaociao23 | 15 agosto 2025
+Prelievo effettuato: -200,00$. Saldo precedente: 250,00$, Saldo attuale: 50,00$.
+

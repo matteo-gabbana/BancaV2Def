@@ -2,6 +2,5 @@ package gui;
 
 public interface SceltaInvestimentoListener {
 
-    void onSceltaEffettuata(String azione);
-
+  void onSceltaEffettuata(String azione);
 }

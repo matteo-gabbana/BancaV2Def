@@ -42,4 +42,3 @@ public class DateManagerTest {
     assertEquals(dataAttesa, dateManager.getDataCorrente());
   }
 }
-

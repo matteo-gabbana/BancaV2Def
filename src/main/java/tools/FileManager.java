@@ -16,7 +16,8 @@ public class FileManager {
 
   private static final Vector<String> elencoTransazioni = new Vector<>();
 
-  public static void salvaSituazioneBilanci(String username, String data, Portafoglio portafoglio, ContoCorrente conto) {
+  public static void salvaSituazioneBilanci(
+      String username, String data, Portafoglio portafoglio, ContoCorrente conto) {
 
     File cartella = new File(PATH_CARTELLA_DATI_BILANCIO);
     if (!cartella.exists()) {
@@ -29,7 +30,11 @@ public class FileManager {
       try {
         datiBilancioUtente.createNewFile();
       } catch (IOException e) {
-        JOptionPane.showMessageDialog(null, "Errore nella creazione del file .csv dei bilanci!", "Errore", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(
+            null,
+            "Errore nella creazione del file .csv dei bilanci!",
+            "Errore",
+            JOptionPane.WARNING_MESSAGE);
         return;
       }
     }
@@ -40,9 +45,9 @@ public class FileManager {
       writer.write("\n");
       writer.close();
     } catch (IOException e) {
-      JOptionPane.showMessageDialog(null, "Errore nel salvataggio dei bilanci", "Errore", JOptionPane.WARNING_MESSAGE);
+      JOptionPane.showMessageDialog(
+          null, "Errore nel salvataggio dei bilanci", "Errore", JOptionPane.WARNING_MESSAGE);
     }
-
   }
 
   public static void salvaTransazione(String username, String data, String transazione) {
@@ -68,7 +73,8 @@ public class FileManager {
       try {
         registroUtente.createNewFile();
       } catch (IOException e) {
-        JOptionPane.showMessageDialog(null, "Errore nella creazione del registro!", "Errore", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(
+            null, "Errore nella creazione del registro!", "Errore", JOptionPane.WARNING_MESSAGE);
         return;
       }
     }
@@ -79,19 +85,24 @@ public class FileManager {
         writer.write(transazione);
         writer.close();
       } catch (IOException e) {
-        JOptionPane.showMessageDialog(null, "Errore nel salvataggio della transazione", "Errore", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(
+            null,
+            "Errore nel salvataggio della transazione",
+            "Errore",
+            JOptionPane.WARNING_MESSAGE);
       }
     }
 
-//    for (int i=0; i<elencoTransazioni.size(); i++) {
-//      try {
-//        FileWriter writer = new FileWriter(registroUtente, true);
-//        writer.write(elencoTransazioni.get(i));
-//        writer.close();
-//      } catch (IOException e) {
-//        JOptionPane.showMessageDialog(null, "Errore nel salvataggio della transazione", "Errore", JOptionPane.WARNING_MESSAGE);
-//      }
-//    }
+    //    for (int i=0; i<elencoTransazioni.size(); i++) {
+    //      try {
+    //        FileWriter writer = new FileWriter(registroUtente, true);
+    //        writer.write(elencoTransazioni.get(i));
+    //        writer.close();
+    //      } catch (IOException e) {
+    //        JOptionPane.showMessageDialog(null, "Errore nel salvataggio della transazione",
+    // "Errore", JOptionPane.WARNING_MESSAGE);
+    //      }
+    //    }
   }
 
   public static void salvaUtente(
@@ -123,8 +134,12 @@ public class FileManager {
       writer.write(saldoAAPL + "\n");
       writer.close();
     } catch (IOException e) {
-//      System.out.println("Errore nel salvataggio dei dati dell'utente.");
-      JOptionPane.showMessageDialog(null, "Errore nel salvataggio dei dati dell'utente.", "Errore", JOptionPane.WARNING_MESSAGE);
+      //      System.out.println("Errore nel salvataggio dei dati dell'utente.");
+      JOptionPane.showMessageDialog(
+          null,
+          "Errore nel salvataggio dei dati dell'utente.",
+          "Errore",
+          JOptionPane.WARNING_MESSAGE);
     }
   }
 
@@ -161,7 +176,11 @@ public class FileManager {
         saldoAAPL
       };
     } catch (IOException e) {
-      JOptionPane.showMessageDialog(null, "Errore nel caricamento dei dati dell'utente.", "Errore", JOptionPane.WARNING_MESSAGE);
+      JOptionPane.showMessageDialog(
+          null,
+          "Errore nel caricamento dei dati dell'utente.",
+          "Errore",
+          JOptionPane.WARNING_MESSAGE);
       return null;
     }
   }
@@ -195,7 +214,8 @@ public class FileManager {
       }
 
     } catch (IOException e) {
-      JOptionPane.showMessageDialog(null, "Errore nel caricamento delle transazioni", "Errore", JOptionPane.WARNING_MESSAGE);
+      JOptionPane.showMessageDialog(
+          null, "Errore nel caricamento delle transazioni", "Errore", JOptionPane.WARNING_MESSAGE);
     }
 
     return transazioni;

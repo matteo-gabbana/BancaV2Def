@@ -1,6 +1,5 @@
 package economia;
 
-import gui.TransazioniPanel;
 import tools.FileManager;
 
 import javax.swing.*;
@@ -43,7 +42,8 @@ public class ContoCorrente {
             + "$.");
 
     if (!modalitaTest) {
-      JOptionPane.showMessageDialog(null, "Deposito eseguito con successo.", "Successo", JOptionPane.INFORMATION_MESSAGE);
+      JOptionPane.showMessageDialog(
+          null, "Deposito eseguito con successo.", "Successo", JOptionPane.INFORMATION_MESSAGE);
     }
 
     return importo;
@@ -71,7 +71,8 @@ public class ContoCorrente {
             + "$.");
 
     if (!modalitaTest) {
-      JOptionPane.showMessageDialog(null, "Prelievo eseguito con successo.", "Successo", JOptionPane.INFORMATION_MESSAGE);
+      JOptionPane.showMessageDialog(
+          null, "Prelievo eseguito con successo.", "Successo", JOptionPane.INFORMATION_MESSAGE);
     }
 
     return importo;

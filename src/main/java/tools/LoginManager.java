@@ -6,7 +6,6 @@ import java.util.Locale;
 
 public class LoginManager {
 
-
   public static String[] effettuaLogin(String username, String password) {
 
     String[] datiUtente = FileManager.caricaUtente(username);

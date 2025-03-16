@@ -7,10 +7,8 @@ import tools.LoginManager;
 
 public class LoginPanel extends JFrame {
 
-  private JTextField usernameField;
-  private JPasswordField passwordField;
-  private JButton loginButton;
-  private JButton registerButton;
+  private final JTextField usernameField;
+  private final JPasswordField passwordField;
 
   private String[] datiUtente = null;
 
@@ -43,8 +41,8 @@ public class LoginPanel extends JFrame {
     usernameField = new JTextField();
     JLabel passwordLabel = new JLabel("          Password: ");
     passwordField = new JPasswordField();
-    loginButton = new JButton("Accedi");
-    registerButton = new JButton("Registrati");
+    JButton loginButton = new JButton("Accedi");
+    JButton registerButton = new JButton("Registrati");
 
     usernameLabel.setFont(new Font("Arial", Font.BOLD, 16));
     passwordLabel.setFont(new Font("Arial", Font.BOLD, 16));
@@ -74,15 +72,6 @@ public class LoginPanel extends JFrame {
     setVisible(true);
   }
 
-  public static void main(String[] args) {
-    try {
-      UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    LoginPanel loginPanel = new LoginPanel();
-  }
-
   private void gestisciLogin() {
 
     String username = usernameField.getText();
@@ -101,10 +90,7 @@ public class LoginPanel extends JFrame {
 
     if (datiUtente == null) {
       JOptionPane.showMessageDialog(
-          this,
-          "Login fallito!\nUsername o Password errati!",
-          "Errore",
-          JOptionPane.ERROR_MESSAGE);
+          this, "Login fallito!\nUsername o Password errati!", "Errore", JOptionPane.ERROR_MESSAGE);
     } else {
       JOptionPane.showMessageDialog(
           this, "Login effettuato con successo!", "Successo", JOptionPane.INFORMATION_MESSAGE);

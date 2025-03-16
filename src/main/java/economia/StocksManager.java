@@ -58,43 +58,57 @@ public class StocksManager {
 
     if (importoInvestimento < 5) {
       if (!modalitaTest) {
-        JOptionPane.showMessageDialog(null, "L'importo minimo per l'investimento e' di 5$", "Errore", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(
+            null,
+            "L'importo minimo per l'investimento e' di 5$",
+            "Errore",
+            JOptionPane.ERROR_MESSAGE);
       }
       return 0;
     }
 
     if (importoInvestimento > saldoConto) {
       if (!modalitaTest) {
-        JOptionPane.showMessageDialog(null, "Saldo insufficiente per l'investimento.", "Errore", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(
+            null, "Saldo insufficiente per l'investimento.", "Errore", JOptionPane.ERROR_MESSAGE);
       }
       return 0;
     }
 
     double tassa = importoInvestimento * 0.01;
     if (!modalitaTest) {
-      JOptionPane.showMessageDialog(null, "Importo investito dopo le tasse: " + String.format("%.2f", (importoInvestimento - tassa)), "Valore Importo Investimento post-tasse", JOptionPane.INFORMATION_MESSAGE);
+      JOptionPane.showMessageDialog(
+          null,
+          "Importo investito dopo le tasse: "
+              + String.format("%.2f", (importoInvestimento - tassa)),
+          "Valore Importo Investimento post-tasse",
+          JOptionPane.INFORMATION_MESSAGE);
     }
     return importoInvestimento - tassa;
 
     //    switch (sceltaInvestimento) {
     //      case 1:
     //        System.out.println(
-    //            "Hai investito in Tesla (TSLA): " + String.format("%.2f", importoEffettivo) + "$.");
+    //            "Hai investito in Tesla (TSLA): " + String.format("%.2f", importoEffettivo) +
+    // "$.");
     //        return importoEffettivo;
     //
     //      case 2:
     //        System.out.println(
-    //            "Hai investito in Nvidia (NVDA): " + String.format("%.2f", importoEffettivo) + "$.");
+    //            "Hai investito in Nvidia (NVDA): " + String.format("%.2f", importoEffettivo) +
+    // "$.");
     //        return importoEffettivo;
     //
     //      case 3:
     //        System.out.println(
-    //            "Hai investito in Amazon (AMZN): " + String.format("%.2f", importoEffettivo) + "$.");
+    //            "Hai investito in Amazon (AMZN): " + String.format("%.2f", importoEffettivo) +
+    // "$.");
     //        return importoEffettivo;
     //
     //      case 4:
     //        System.out.println(
-    //            "Hai investito in Apple (AAPL): " + String.format("%.2f", importoEffettivo) + "$.");
+    //            "Hai investito in Apple (AAPL): " + String.format("%.2f", importoEffettivo) +
+    // "$.");
     //        return importoEffettivo;
     //
     //      default:
@@ -134,32 +148,39 @@ public class StocksManager {
 
         FileManager.salvaSituazioneBilanci(username, data, portafoglio, conto);
 
-          FileManager.salvaTransazione(
-                  username,
-                  data,
-                  "Investimento in " + sceltaInvestimento + ": " + String.format("%.2f", investimento) + "$.");
-
+        FileManager.salvaTransazione(
+            username,
+            data,
+            "Investimento in "
+                + sceltaInvestimento
+                + ": "
+                + String.format("%.2f", investimento)
+                + "$.");
       }
     }
   }
 
-
-
   private static double aggiornaValoreInvestimento(double saldo, String tipoAzione) {
 
-    double variazione = 0;
-    switch (tipoAzione) {
-      case "TSLA":
-        variazione = RAND.nextDouble() * 0.5 - 0.25; // tra -25% e +25%
-        break;
-      case "NVDA":
-        variazione = RAND.nextDouble() * 0.2 - 0.1; // tra -10% e +10%
-        break;
-      case "AMZN":
-      case "AAPL":
-        variazione = RAND.nextDouble() * 0.1 - 0.05; // tra -5% e +5%
-        break;
-    }
+    double variazione =
+        switch (tipoAzione) {
+          case "TSLA" -> RAND.nextDouble() * 0.5 - 0.25; // tra -25% e +25%
+          case "NVDA" -> RAND.nextDouble() * 0.2 - 0.1; // tra -10% e +10%
+          case "AMZN", "AAPL" -> RAND.nextDouble() * 0.1 - 0.05; // tra -5% e +5%
+          default -> 0;
+        };
+    //    switch (tipoAzione) {
+    //      case "TSLA":
+    //        variazione = RAND.nextDouble() * 0.5 - 0.25; // tra -25% e +25%
+    //        break;
+    //      case "NVDA":
+    //        variazione = RAND.nextDouble() * 0.2 - 0.1; // tra -10% e +10%
+    //        break;
+    //      case "AMZN":
+    //      case "AAPL":
+    //        variazione = RAND.nextDouble() * 0.1 - 0.05; // tra -5% e +5%
+    //        break;
+    //    }
 
     return saldo + (saldo * variazione);
   }
@@ -176,7 +197,7 @@ public class StocksManager {
   }
 
   public static void chiudiInvestimento(
-          String scelta, ContoCorrente conto, String data, String username, Portafoglio portafoglio) {
+      String scelta, ContoCorrente conto, String data, String username, Portafoglio portafoglio) {
 
     double saldoRecuperato = 0.0;
 
@@ -202,19 +223,26 @@ public class StocksManager {
     conto.setSaldo(conto.getSaldo() + saldoRecuperato);
 
     if (!modalitaTest) {
-      JOptionPane.showMessageDialog(null, "Hai chiuso l'investimento in " + scelta + " e recuperato: " + String.format("%.2f", saldoRecuperato) + "$.", "Chiusura Investimento", JOptionPane.INFORMATION_MESSAGE);
+      JOptionPane.showMessageDialog(
+          null,
+          "Hai chiuso l'investimento in "
+              + scelta
+              + " e recuperato: "
+              + String.format("%.2f", saldoRecuperato)
+              + "$.",
+          "Chiusura Investimento",
+          JOptionPane.INFORMATION_MESSAGE);
 
       FileManager.salvaSituazioneBilanci(username, data, portafoglio, conto);
 
       FileManager.salvaTransazione(
-              username,
-              data,
-              "Chiusura investimento in "
-                      + scelta
-                      + ": "
-                      + String.format("%.2f", saldoRecuperato)
-                      + "$ recuperati.");
-
+          username,
+          data,
+          "Chiusura investimento in "
+              + scelta
+              + ": "
+              + String.format("%.2f", saldoRecuperato)
+              + "$ recuperati.");
     }
   }
 

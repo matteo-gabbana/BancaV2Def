@@ -6,8 +6,7 @@ import tools.DateManager;
 
 public class Utente {
 
-    private String username;
-    private String password;
+    private String username, password;
     private DateManager dateManager;
     private ContoCorrente conto;
     private Portafoglio portafoglio;

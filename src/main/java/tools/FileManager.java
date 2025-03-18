@@ -2,10 +2,9 @@ package tools;
 
 import economia.ContoCorrente;
 import economia.Portafoglio;
-
-import javax.swing.*;
 import java.io.*;
 import java.util.Vector;
+import javax.swing.*;
 
 public class FileManager {
 

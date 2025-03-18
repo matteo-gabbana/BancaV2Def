@@ -1,11 +1,9 @@
 package economia;
 
 import java.util.Random;
-
+import javax.swing.*;
 import tools.DateManager;
 import tools.FileManager;
-
-import javax.swing.*;
 
 public class StocksManager {
 

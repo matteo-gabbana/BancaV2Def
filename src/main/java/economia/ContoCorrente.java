@@ -43,11 +43,7 @@ public class ContoCorrente {
 
     if (!modalitaTest) {
       JOptionPane.showMessageDialog(
-          null,
-              "Deposito eseguito con successo.",
-              "Successo",
-              JOptionPane.INFORMATION_MESSAGE
-      );
+          null, "Deposito eseguito con successo.", "Successo", JOptionPane.INFORMATION_MESSAGE);
     }
 
     return importo;
@@ -76,10 +72,7 @@ public class ContoCorrente {
 
     if (!modalitaTest) {
       JOptionPane.showMessageDialog(
-          null,
-              "Prelievo eseguito con successo.",
-              "Successo",
-              JOptionPane.INFORMATION_MESSAGE);
+          null, "Prelievo eseguito con successo.", "Successo", JOptionPane.INFORMATION_MESSAGE);
     }
 
     return importo;

@@ -1,8 +1,7 @@
 package economia;
 
-import tools.FileManager;
-
 import javax.swing.*;
+import tools.FileManager;
 
 public class Portafoglio {
 

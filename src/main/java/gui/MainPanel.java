@@ -3,10 +3,9 @@ package gui;
 import banca.Utente;
 import economia.ContoCorrente;
 import economia.Portafoglio;
+import economia.StocksManager;
 import java.awt.*;
 import javax.swing.*;
-
-import economia.StocksManager;
 import tools.DateManager;
 import tools.FileManager;
 

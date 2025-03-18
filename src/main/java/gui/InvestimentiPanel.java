@@ -1,9 +1,8 @@
 package gui;
 
 import economia.StocksManager;
-
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 public class InvestimentiPanel extends JFrame {
 

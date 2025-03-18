@@ -56,9 +56,8 @@ public class StocksManagerTest {
   }
 
   @Test
-  public void
-      testAvanzaTempo() { // non testo aggiorna valore investimento, tanto è richiamato da
-                          // avanzaTempo
+  public void testAvanzaTempo() { // non testo aggiorna valore investimento, tanto è richiamato da
+    // avanzaTempo
     DateManager dateManager = new DateManager("8 marzo 2025");
     ContoCorrente conto = new ContoCorrente(500.0);
     Portafoglio portafoglio = new Portafoglio(conto, 100.0);

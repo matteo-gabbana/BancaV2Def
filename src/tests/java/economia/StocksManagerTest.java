@@ -20,18 +20,15 @@ public class StocksManagerTest {
   }
 
   @Test
-  public void testEffettuaInvestimento_TSLA() { // uso tesla, ma vale per tutti alla fine
-    // non faccio il test di investiInAzioni, perché viene richiamato da effettuaInvestimento
+  public void testEffettuaInvestimento_TSLA() {
     ContoCorrente conto = new ContoCorrente(1000.0);
     StocksManager.setSaldoTSLA(0.0);
     StocksManager.setModalitaTest(true);
 
     StocksManager.effettuaInvestimento(
         conto, "Tesla (TSLA)", 100.0, "2025-03-08", "utente", new Portafoglio(conto, 0));
-    assertEquals(
-        99.0, StocksManager.getSaldoTSLA()); // controlla che ho investito bene (100$ - 1 di tasse)
-    assertEquals(
-        900.0, conto.getSaldo()); // controlla che il conto sia sceso di 100, dopo l'investimento
+    assertEquals(99.0, StocksManager.getSaldoTSLA());
+    assertEquals(900.0, conto.getSaldo());
   }
 
   @Test
@@ -56,16 +53,13 @@ public class StocksManagerTest {
   }
 
   @Test
-  public void testAvanzaTempo() { // non testo aggiorna valore investimento, tanto è richiamato da
-    // avanzaTempo
+  public void testAvanzaTempo() {
     DateManager dateManager = new DateManager("8 marzo 2025");
     ContoCorrente conto = new ContoCorrente(500.0);
     Portafoglio portafoglio = new Portafoglio(conto, 100.0);
     double bilancioIniziale = portafoglio.getBilancio();
 
     StocksManager.avanzaTempo(dateManager, portafoglio);
-    assertEquals(
-        bilancioIniziale + 100,
-        portafoglio.getBilancio()); // dopo un mese dovrei avere 100 euro in più
+    assertEquals(bilancioIniziale + 100, portafoglio.getBilancio());
   }
 }

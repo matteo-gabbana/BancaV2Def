@@ -41,19 +41,14 @@ public class Portafoglio {
 
     if (importo <= 0) {
       if (!modalitaTest) {
-        JOptionPane.showMessageDialog(
-            null, "Importo non valido. Riprova.", "Errore", JOptionPane.ERROR_MESSAGE);
+        mostraMessaggioErrore("Importo non valido. Riprova.");
       }
       return false;
     }
 
     if (importo > bilancio) {
       if (!modalitaTest) {
-        JOptionPane.showMessageDialog(
-            null,
-            "Bilancio insufficiente per il deposito.",
-            "Bilancio Insufficiente",
-            JOptionPane.ERROR_MESSAGE);
+        mostraMessaggioErrore("Bilancio insufficiente per il deposito.");
       }
       return false;
     }
@@ -80,19 +75,14 @@ public class Portafoglio {
 
     if (importo <= 0) {
       if (!modalitaTest) {
-        JOptionPane.showMessageDialog(
-            null, "Importo non valido. Riprova.", "Errore", JOptionPane.ERROR_MESSAGE);
+        mostraMessaggioErrore("Importo non valido. Riprova.");
       }
       return false;
     }
 
     if (importo > conto.getSaldo()) {
       if (!modalitaTest) {
-        JOptionPane.showMessageDialog(
-            null,
-            "Saldo insufficiente per il prelievo.",
-            "Saldo Insufficiente",
-            JOptionPane.ERROR_MESSAGE);
+        mostraMessaggioErrore("Saldo insufficiente per il prelievo.");
       }
       return false;
     }
@@ -102,7 +92,13 @@ public class Portafoglio {
 
   public void effettuaPrelievo(double importo, String data, String username, ContoCorrente conto) {
     double importoPrelevato = conto.preleva(importo, data, username);
-    bilancio += importoPrelevato;
+    bilancio /*+*/ -= importoPrelevato;
+  }
+
+  private void mostraMessaggioErrore(String messaggio) {
+    if (!modalitaTest) {
+      JOptionPane.showMessageDialog(null, messaggio, "Errore", JOptionPane.ERROR_MESSAGE);
+    }
   }
 
   public String mostraBilancioPortafoglio() {

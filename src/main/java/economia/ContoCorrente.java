@@ -25,61 +25,60 @@ public class ContoCorrente {
   }
 
   public double deposita(double importo, String data, String username) {
-
-    double saldoPrecedente = saldo;
-    importo = effettuaDeposito(importo);
-
-    FileManager.salvaTransazione(
-        username,
-        data,
-        "Deposito effettuato: +"
-            + String.format("%.2f", importo)
-            + "$. Saldo precedente: "
-            + String.format("%.2f", saldoPrecedente)
-            + "$, Saldo attuale: "
-            + String.format("%.2f", saldo)
-            + "$.");
-
-    if (!modalitaTest) {
-      JOptionPane.showMessageDialog(
-          null, "Deposito eseguito con successo.", "Successo", JOptionPane.INFORMATION_MESSAGE);
-    }
-
-    return importo;
-  }
-
-  public double effettuaDeposito(double importo) {
-    saldo += importo;
-    return importo;
+    return effettuaTransazione(importo, data, username, true);
   }
 
   public double preleva(double importo, String data, String username) {
+    return effettuaTransazione(-importo, data, username, false);
+  }
+
+  private double effettuaTransazione(
+      double importo, String data, String username, boolean isDeposito) {
 
     double saldoPrecedente = saldo;
-    importo = effettuaPrelievo(importo);
-
-    FileManager.salvaTransazione(
-        username,
-        data,
-        "Prelievo effettuato: -"
-            + String.format("%.2f", importo)
-            + "$. Saldo precedente: "
-            + String.format("%.2f", saldoPrecedente)
-            + "$, Saldo attuale: "
-            + String.format("%.2f", saldo)
-            + "$.");
+    saldo += importo;
 
     if (!modalitaTest) {
-      JOptionPane.showMessageDialog(
-          null, "Prelievo eseguito con successo.", "Successo", JOptionPane.INFORMATION_MESSAGE);
+
+      String messaggio = getMessaggio(importo, isDeposito, saldoPrecedente);
+
+      FileManager.salvaTransazione(username, data, messaggio);
+
+      String tipo;
+      if (isDeposito) {
+        tipo = "Deposito";
+      } else {
+        tipo = "Prelievo";
+      }
+      mostraMessaggio(tipo + " eseguito con successo.");
     }
 
     return importo;
   }
 
-  public double effettuaPrelievo(double importo) {
-    saldo -= importo;
-    return importo;
+  private String getMessaggio(double importo, boolean isDeposito, double saldoPrecedente) {
+    String tipoTransazione;
+    if (isDeposito) {
+      tipoTransazione = "Deposito effettuato: +";
+    } else {
+      tipoTransazione = "Prelievo effettuato: -";
+    }
+
+    String messaggio =
+        tipoTransazione
+            + String.format("%.2f", Math.abs(importo))
+            + "$. "
+            + "Saldo precedente: "
+            + String.format("%.2f", saldoPrecedente)
+            + "$, "
+            + "Saldo attuale: "
+            + String.format("%.2f", saldo)
+            + "$.";
+    return messaggio;
+  }
+
+  private void mostraMessaggio(String messaggio) {
+    JOptionPane.showMessageDialog(null, messaggio, "Successo", JOptionPane.INFORMATION_MESSAGE);
   }
 
   public String mostraSaldo() {

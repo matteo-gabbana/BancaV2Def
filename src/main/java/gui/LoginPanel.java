@@ -12,6 +12,8 @@ public class LoginPanel extends JFrame {
 
   private String[] datiUtente = null;
 
+  private LoginListener loginListener;
+
   public LoginPanel() {
 
     setTitle("Login e Registrazione");
@@ -94,6 +96,9 @@ public class LoginPanel extends JFrame {
     } else {
       JOptionPane.showMessageDialog(
           this, "Login effettuato con successo!", "Successo", JOptionPane.INFORMATION_MESSAGE);
+      if (loginListener != null) {
+        loginListener.onLoginCompleted(datiUtente);
+      }
       dispose();
     }
   }
@@ -126,6 +131,9 @@ public class LoginPanel extends JFrame {
           "Registrazione completata con successo!",
           "Successo",
           JOptionPane.INFORMATION_MESSAGE);
+      if (loginListener != null) {
+        loginListener.onLoginCompleted(datiUtente);
+      }
       dispose();
     }
   }
@@ -133,4 +141,9 @@ public class LoginPanel extends JFrame {
   public String[] getDatiUtente() {
     return datiUtente;
   }
+
+  public void addLoginListener(LoginListener listener) {
+    this.loginListener = listener;
+  }
+
 }

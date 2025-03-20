@@ -145,5 +145,4 @@ public class LoginPanel extends JFrame {
   public void addLoginListener(LoginListener listener) {
     this.loginListener = listener;
   }
-
 }

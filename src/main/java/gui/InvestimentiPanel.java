@@ -16,6 +16,7 @@ public class InvestimentiPanel extends JFrame {
     setTitle("Quadro Investimenti");
     setSize(380, 550);
     setLocationRelativeTo(null);
+    setResizable(false);
     setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
     JPanel mainPanel = new JPanel();

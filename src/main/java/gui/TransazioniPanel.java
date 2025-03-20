@@ -19,6 +19,7 @@ public class TransazioniPanel extends JFrame {
     setTitle("Storico Transazioni - " + username);
     setSize(720, 550);
     setLocationRelativeTo(null);
+    setResizable(false);
     setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
     JPanel mainPanel = new JPanel();

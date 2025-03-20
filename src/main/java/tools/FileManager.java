@@ -91,17 +91,6 @@ public class FileManager {
             JOptionPane.WARNING_MESSAGE);
       }
     }
-
-    //    for (int i=0; i<elencoTransazioni.size(); i++) {
-    //      try {
-    //        FileWriter writer = new FileWriter(registroUtente, true);
-    //        writer.write(elencoTransazioni.get(i));
-    //        writer.close();
-    //      } catch (IOException e) {
-    //        JOptionPane.showMessageDialog(null, "Errore nel salvataggio della transazione",
-    // "Errore", JOptionPane.WARNING_MESSAGE);
-    //      }
-    //    }
   }
 
   public static void salvaUtente(
@@ -133,7 +122,6 @@ public class FileManager {
       writer.write(saldoAAPL + "\n");
       writer.close();
     } catch (IOException e) {
-      //      System.out.println("Errore nel salvataggio dei dati dell'utente.");
       JOptionPane.showMessageDialog(
           null,
           "Errore nel salvataggio dei dati dell'utente.",

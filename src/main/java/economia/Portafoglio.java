@@ -92,7 +92,7 @@ public class Portafoglio {
 
   public void effettuaPrelievo(double importo, String data, String username, ContoCorrente conto) {
     double importoPrelevato = conto.preleva(importo, data, username);
-    bilancio /*+*/ -= importoPrelevato;
+    bilancio -= importoPrelevato;
   }
 
   private void mostraMessaggioErrore(String messaggio) {

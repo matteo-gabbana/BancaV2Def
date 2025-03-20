@@ -83,35 +83,6 @@ public class StocksManager {
           JOptionPane.INFORMATION_MESSAGE);
     }
     return importoInvestimento - tassa;
-
-    //    switch (sceltaInvestimento) {
-    //      case 1:
-    //        System.out.println(
-    //            "Hai investito in Tesla (TSLA): " + String.format("%.2f", importoEffettivo) +
-    // "$.");
-    //        return importoEffettivo;
-    //
-    //      case 2:
-    //        System.out.println(
-    //            "Hai investito in Nvidia (NVDA): " + String.format("%.2f", importoEffettivo) +
-    // "$.");
-    //        return importoEffettivo;
-    //
-    //      case 3:
-    //        System.out.println(
-    //            "Hai investito in Amazon (AMZN): " + String.format("%.2f", importoEffettivo) +
-    // "$.");
-    //        return importoEffettivo;
-    //
-    //      case 4:
-    //        System.out.println(
-    //            "Hai investito in Apple (AAPL): " + String.format("%.2f", importoEffettivo) +
-    // "$.");
-    //        return importoEffettivo;
-    //
-    //      default:
-    //        System.out.println("Opzione non valida.");
-    //        return 0;
   }
 
   public static void effettuaInvestimento(
@@ -167,18 +138,6 @@ public class StocksManager {
           case "AMZN", "AAPL" -> RAND.nextDouble() * 0.1 - 0.05; // tra -5% e +5%
           default -> 0;
         };
-    //    switch (tipoAzione) {
-    //      case "TSLA":
-    //        variazione = RAND.nextDouble() * 0.5 - 0.25; // tra -25% e +25%
-    //        break;
-    //      case "NVDA":
-    //        variazione = RAND.nextDouble() * 0.2 - 0.1; // tra -10% e +10%
-    //        break;
-    //      case "AMZN":
-    //      case "AAPL":
-    //        variazione = RAND.nextDouble() * 0.1 - 0.05; // tra -5% e +5%
-    //        break;
-    //    }
 
     return saldo + (saldo * variazione);
   }

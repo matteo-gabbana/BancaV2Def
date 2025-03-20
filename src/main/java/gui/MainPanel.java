@@ -362,7 +362,6 @@ public class MainPanel extends JFrame {
   private void chiudiInvestimentiPanel() {
     if (investimentiPanel != null && investimentiPanel.isDisplayable()) {
       investimentiPanel.dispose();
-      // investimentiPanel = null;
     }
   }
 }

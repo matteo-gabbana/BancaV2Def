@@ -5,6 +5,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import tools.LoginManager;
 import tools.PasswordManager;
+import tools.UsernameManager;
 
 public class LoginPanel extends JFrame {
 
@@ -200,9 +201,27 @@ public class LoginPanel extends JFrame {
       return false;
     }
 
+    if (!UsernameManager.validitaCaratteriUsername(username)) {
+      mostraMessaggio(
+              "Registrazione fallita!\nL'username contiene caratteri non validi.\nCaratteri consentiti: a-z, A-Z, 0-9",
+              "Errore",
+              JOptionPane.ERROR_MESSAGE);
+      return false;
+    }
+
+    if (!UsernameManager.validitaLunghezzaUsername(username)) {
+      mostraMessaggio(
+              "Registrazione fallita!\nL'username non rispetta la lunghezza minima.\nLunghezza minima: "
+                      + UsernameManager.MIN_USERNAME_LENGHT
+                      + " caratteri.",
+              "Errore",
+              JOptionPane.ERROR_MESSAGE);
+      return false;
+    }
+
     if (!PasswordManager.validitaCaratteriPassword(password)) {
       mostraMessaggio(
-          "Registrazione fallita!\nLa password contiene caratteri non validi.\nCaratteri consentiti: a-z, A-Z, !, ?",
+          "Registrazione fallita!\nLa password contiene caratteri non validi.\nCaratteri consentiti: a-z, A-Z, 0-9, !, ?",
           "Errore",
           JOptionPane.ERROR_MESSAGE);
       //      JOptionPane.showMessageDialog(

@@ -56,8 +56,8 @@ public class LoginPanel extends JFrame {
     loginButton.setFont(new Font("Arial", Font.ITALIC, 16));
     registerButton.setFont(new Font("Arial", Font.ITALIC, 16));
 
-    loginButton.addActionListener(e -> gestisciLogin());
-    registerButton.addActionListener(e -> gestisciRegistrazione());
+    loginButton.addActionListener(e -> gestisciAccesso(true));
+    registerButton.addActionListener(e -> gestisciAccesso(false));
 
     centerPanel.add(usernameLabel);
     centerPanel.add(usernameField);
@@ -75,69 +75,115 @@ public class LoginPanel extends JFrame {
     setVisible(true);
   }
 
-  private void gestisciLogin() {
+  private void gestisciAccesso(boolean isLogin) {
 
     String username = usernameField.getText();
     String password = new String(passwordField.getPassword());
 
-    // if (!checkValidityUsernameAndPasswordFields(username, password)) {return;}
+    if (!isLogin) {
 
-    datiUtente = LoginManager.effettuaLogin(username, password);
-
-    if (datiUtente == null) {
-      mostraMessaggio(
-          "Login fallito!\nUsername o Password errati!", "Errore", JOptionPane.ERROR_MESSAGE);
-      //      JOptionPane.showMessageDialog(
-      //          this, "Login fallito!\nUsername o Password errati!", "Errore",
-      // JOptionPane.ERROR_MESSAGE);
-    } else {
-      mostraMessaggio(
-          "Login effettuato con successo!", "Successo", JOptionPane.INFORMATION_MESSAGE);
-      //      JOptionPane.showMessageDialog(
-      //          this, "Login effettuato con successo!", "Successo",
-      // JOptionPane.INFORMATION_MESSAGE);
-      if (loginListener != null) {
-        loginListener.onLoginCompleted(datiUtente);
+      if (!checkValidityUsernameAndPasswordFields(username, password)) {
+        return;
       }
-      dispose();
+
+      datiUtente = LoginManager.registraUtente(username, password);
+
+      if (datiUtente == null) {
+        mostraMessaggio(
+            "Registrazione fallita!\nQuesto username è già in uso.",
+            "Errore",
+            JOptionPane.ERROR_MESSAGE);
+      } else {
+        mostraMessaggio(
+            "Registrazione completata con successo!", "Successo", JOptionPane.INFORMATION_MESSAGE);
+        if (loginListener != null) {
+          loginListener.onLoginCompleted(datiUtente);
+        }
+        dispose();
+      }
+
+    } else {
+
+      datiUtente = LoginManager.effettuaLogin(username, password);
+
+      if (datiUtente == null) {
+        mostraMessaggio(
+            "Login fallito!\nUsername o Password errati!", "Errore", JOptionPane.ERROR_MESSAGE);
+      } else {
+        mostraMessaggio(
+            "Login effettuato con successo!", "Successo", JOptionPane.INFORMATION_MESSAGE);
+        if (loginListener != null) {
+          loginListener.onLoginCompleted(datiUtente);
+        }
+        dispose();
+      }
     }
   }
 
-  private void gestisciRegistrazione() {
-
-    String username = usernameField.getText();
-    String password = new String(passwordField.getPassword());
-
-    if (!checkValidityUsernameAndPasswordFields(username, password)) {
-      return;
-    }
-
-    datiUtente = LoginManager.registraUtente(username, password);
-
-    if (datiUtente == null) {
-      mostraMessaggio(
-          "Registrazione fallita!\nQuesto username è già in uso.",
-          "Errore",
-          JOptionPane.ERROR_MESSAGE);
-      //      JOptionPane.showMessageDialog(
-      //          this,
-      //          "Registrazione fallita!\nQuesto username è già in uso.",
-      //          "Errore",
-      //          JOptionPane.ERROR_MESSAGE);
-    } else {
-      mostraMessaggio(
-          "Registrazione completata con successo!", "Successo", JOptionPane.INFORMATION_MESSAGE);
-      //      JOptionPane.showMessageDialog(
-      //          this,
-      //          "Registrazione completata con successo!",
-      //          "Successo",
-      //          JOptionPane.INFORMATION_MESSAGE);
-      if (loginListener != null) {
-        loginListener.onLoginCompleted(datiUtente);
-      }
-      dispose();
-    }
-  }
+  //  private void gestisciLogin() {
+  //
+  //    String username = usernameField.getText();
+  //    String password = new String(passwordField.getPassword());
+  //
+  //    // if (!checkValidityUsernameAndPasswordFields(username, password)) {return;}
+  //
+  //    datiUtente = LoginManager.effettuaLogin(username, password);
+  //
+  //    if (datiUtente == null) {
+  //      mostraMessaggio(
+  //          "Login fallito!\nUsername o Password errati!", "Errore", JOptionPane.ERROR_MESSAGE);
+  //      //      JOptionPane.showMessageDialog(
+  //      //          this, "Login fallito!\nUsername o Password errati!", "Errore",
+  //      // JOptionPane.ERROR_MESSAGE);
+  //    } else {
+  //      mostraMessaggio(
+  //          "Login effettuato con successo!", "Successo", JOptionPane.INFORMATION_MESSAGE);
+  //      //      JOptionPane.showMessageDialog(
+  //      //          this, "Login effettuato con successo!", "Successo",
+  //      // JOptionPane.INFORMATION_MESSAGE);
+  //      if (loginListener != null) {
+  //        loginListener.onLoginCompleted(datiUtente);
+  //      }
+  //      dispose();
+  //    }
+  //  }
+  //
+  //  private void gestisciRegistrazione() {
+  //
+  //    String username = usernameField.getText();
+  //    String password = new String(passwordField.getPassword());
+  //
+  //    if (!checkValidityUsernameAndPasswordFields(username, password)) {
+  //      return;
+  //    }
+  //
+  //    datiUtente = LoginManager.registraUtente(username, password);
+  //
+  //    if (datiUtente == null) {
+  //      mostraMessaggio(
+  //          "Registrazione fallita!\nQuesto username è già in uso.",
+  //          "Errore",
+  //          JOptionPane.ERROR_MESSAGE);
+  //      //      JOptionPane.showMessageDialog(
+  //      //          this,
+  //      //          "Registrazione fallita!\nQuesto username è già in uso.",
+  //      //          "Errore",
+  //      //          JOptionPane.ERROR_MESSAGE);
+  //    } else {
+  //      mostraMessaggio(
+  //          "Registrazione completata con successo!", "Successo",
+  // JOptionPane.INFORMATION_MESSAGE);
+  //      //      JOptionPane.showMessageDialog(
+  //      //          this,
+  //      //          "Registrazione completata con successo!",
+  //      //          "Successo",
+  //      //          JOptionPane.INFORMATION_MESSAGE);
+  //      if (loginListener != null) {
+  //        loginListener.onLoginCompleted(datiUtente);
+  //      }
+  //      dispose();
+  //    }
+  //  }
 
   private boolean checkValidityUsernameAndPasswordFields(String username, String password) {
 

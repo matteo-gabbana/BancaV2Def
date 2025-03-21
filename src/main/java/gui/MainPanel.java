@@ -326,11 +326,19 @@ public class MainPanel extends JFrame {
               "Chiusura Investimento",
               JOptionPane.INFORMATION_MESSAGE);
 
-          StocksManager.chiudiInvestimento(
-              sceltaInvestimento, conto, dateManager.getDataCorrente(), username, portafoglio);
-          aggiornaInfoPanel();
-          if (investimentiPanel != null && investimentiPanel.isDisplayable()) {
-            investimentiPanel.aggiornaDisplayInvestimenti();
+          if (!StocksManager.isInvestimentoAttivo(sceltaInvestimento)) {
+            JOptionPane.showMessageDialog(
+                null,
+                "L'investimento in " + sceltaInvestimento + " non e' attivo!",
+                "Errore",
+                JOptionPane.ERROR_MESSAGE);
+          } else {
+            StocksManager.chiudiInvestimento(
+                sceltaInvestimento, conto, dateManager.getDataCorrente(), username, portafoglio);
+            aggiornaInfoPanel();
+            if (investimentiPanel != null && investimentiPanel.isDisplayable()) {
+              investimentiPanel.aggiornaDisplayInvestimenti();
+            }
           }
         },
         "Che investimento vuoi chiudere?");

@@ -19,13 +19,13 @@ public class LoginPanel extends JFrame {
   public LoginPanel() {
 
     setTitle("Login e Registrazione");
-    setSize(500, 400);
+    setSize(500, 530);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLocationRelativeTo(null);
     setResizable(false);
 
     JPanel mainPanel = new JPanel(new BorderLayout(10, 10));
-    mainPanel.setBackground(new Color(102, 204, 255)); // Azzurro come il MainPanel
+    mainPanel.setBackground(new Color(102, 204, 255));
     mainPanel.setOpaque(true);
     JPanel titlePanel = new JPanel();
     titlePanel.setBackground(new Color(102, 204, 255)); // Sfondo azzurro per il titolo
@@ -35,11 +35,19 @@ public class LoginPanel extends JFrame {
     JPanel centerPanel = new JPanel(new GridLayout(5, 2, 10, 10));
     centerPanel.setBorder(new EmptyBorder(0, 0, -50, 0));
 
-    JLabel messageLabel =
-        new JLabel("Benvenuto alla banca \"Morsli & Gabbana\"", SwingConstants.CENTER);
-    messageLabel.setFont(new Font("Arial", Font.BOLD, 22));
-    messageLabel.setBorder(new EmptyBorder(50, 0, 30, 0));
-    messageLabel.setForeground(new Color(59, 59, 59));
+//    JLabel messageLabel =
+//        new JLabel("Benvenuto alla banca \"Morsli & Gabbana\"", SwingConstants.CENTER);
+//    messageLabel.setFont(new Font("Arial", Font.BOLD, 22));
+//    messageLabel.setBorder(new EmptyBorder(50, 0, 30, 0));
+//    messageLabel.setForeground(new Color(59, 59, 59));
+
+    ImageIcon imageIcon = new ImageIcon(getClass().getResource("/logobanca1.png"));
+    JLabel imageLabel = new JLabel(imageIcon);
+    imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
+//    imageLabel.setBorder(new EmptyBorder(0, 0, 30, 0));
+//    imageLabel.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 255), 5));
+    imageLabel.setBorder(BorderFactory.createMatteBorder(0, 0, 5, 0, new Color(22,76,119,255)));
+    //imageLabel.setBorder(new EmptyBorder(0, 0, 30, 0));
 
     JLabel usernameLabel = new JLabel("          Username: ");
     usernameField = new JTextField();
@@ -68,9 +76,10 @@ public class LoginPanel extends JFrame {
     centerPanel.add(new JLabel(" "));
     centerPanel.add(loginButton);
     centerPanel.add(registerButton);
-    centerPanel.setBorder(new EmptyBorder(0, 25, 0, 25));
+    centerPanel.setBorder(new EmptyBorder(30, 25, -30, 25));
 
-    add(messageLabel, BorderLayout.NORTH);
+    //add(messageLabel, BorderLayout.NORTH);
+    add(imageLabel, BorderLayout.NORTH);
     add(centerPanel, BorderLayout.CENTER);
 
     setVisible(true);

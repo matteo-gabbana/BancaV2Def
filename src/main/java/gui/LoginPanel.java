@@ -12,8 +12,6 @@ public class LoginPanel extends JFrame {
   private final JTextField usernameField;
   private final JPasswordField passwordField;
 
-  private String[] datiUtente = null;
-
   private LoginListener loginListener;
 
   public LoginPanel() {
@@ -28,26 +26,17 @@ public class LoginPanel extends JFrame {
     mainPanel.setBackground(new Color(102, 204, 255));
     mainPanel.setOpaque(true);
     JPanel titlePanel = new JPanel();
-    titlePanel.setBackground(new Color(102, 204, 255)); // Sfondo azzurro per il titolo
+    titlePanel.setBackground(new Color(102, 204, 255));
     titlePanel.setBorder(BorderFactory.createLineBorder(new Color(0, 102, 204), 4));
 
     setLayout(new BorderLayout(10, 10));
     JPanel centerPanel = new JPanel(new GridLayout(5, 2, 10, 10));
     centerPanel.setBorder(new EmptyBorder(0, 0, -50, 0));
 
-//    JLabel messageLabel =
-//        new JLabel("Benvenuto alla banca \"Morsli & Gabbana\"", SwingConstants.CENTER);
-//    messageLabel.setFont(new Font("Arial", Font.BOLD, 22));
-//    messageLabel.setBorder(new EmptyBorder(50, 0, 30, 0));
-//    messageLabel.setForeground(new Color(59, 59, 59));
-
     ImageIcon imageIcon = new ImageIcon(getClass().getResource("/logobanca1.png"));
     JLabel imageLabel = new JLabel(imageIcon);
     imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
-//    imageLabel.setBorder(new EmptyBorder(0, 0, 30, 0));
-//    imageLabel.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 255), 5));
-    imageLabel.setBorder(BorderFactory.createMatteBorder(0, 0, 5, 0, new Color(22,76,119,255)));
-    //imageLabel.setBorder(new EmptyBorder(0, 0, 30, 0));
+    imageLabel.setBorder(BorderFactory.createMatteBorder(0, 0, 5, 0, new Color(22, 76, 119, 255)));
 
     JLabel usernameLabel = new JLabel("          Username: ");
     usernameField = new JTextField();
@@ -78,7 +67,6 @@ public class LoginPanel extends JFrame {
     centerPanel.add(registerButton);
     centerPanel.setBorder(new EmptyBorder(30, 25, -30, 25));
 
-    //add(messageLabel, BorderLayout.NORTH);
     add(imageLabel, BorderLayout.NORTH);
     add(centerPanel, BorderLayout.CENTER);
 
@@ -90,6 +78,7 @@ public class LoginPanel extends JFrame {
     String username = usernameField.getText();
     String password = new String(passwordField.getPassword());
 
+    String[] datiUtente = null;
     if (!isLogin) {
 
       if (!checkValidityUsernameAndPasswordFields(username, password)) {
@@ -130,71 +119,6 @@ public class LoginPanel extends JFrame {
     }
   }
 
-  //  private void gestisciLogin() {
-  //
-  //    String username = usernameField.getText();
-  //    String password = new String(passwordField.getPassword());
-  //
-  //    // if (!checkValidityUsernameAndPasswordFields(username, password)) {return;}
-  //
-  //    datiUtente = LoginManager.effettuaLogin(username, password);
-  //
-  //    if (datiUtente == null) {
-  //      mostraMessaggio(
-  //          "Login fallito!\nUsername o Password errati!", "Errore", JOptionPane.ERROR_MESSAGE);
-  //      //      JOptionPane.showMessageDialog(
-  //      //          this, "Login fallito!\nUsername o Password errati!", "Errore",
-  //      // JOptionPane.ERROR_MESSAGE);
-  //    } else {
-  //      mostraMessaggio(
-  //          "Login effettuato con successo!", "Successo", JOptionPane.INFORMATION_MESSAGE);
-  //      //      JOptionPane.showMessageDialog(
-  //      //          this, "Login effettuato con successo!", "Successo",
-  //      // JOptionPane.INFORMATION_MESSAGE);
-  //      if (loginListener != null) {
-  //        loginListener.onLoginCompleted(datiUtente);
-  //      }
-  //      dispose();
-  //    }
-  //  }
-  //
-  //  private void gestisciRegistrazione() {
-  //
-  //    String username = usernameField.getText();
-  //    String password = new String(passwordField.getPassword());
-  //
-  //    if (!checkValidityUsernameAndPasswordFields(username, password)) {
-  //      return;
-  //    }
-  //
-  //    datiUtente = LoginManager.registraUtente(username, password);
-  //
-  //    if (datiUtente == null) {
-  //      mostraMessaggio(
-  //          "Registrazione fallita!\nQuesto username è già in uso.",
-  //          "Errore",
-  //          JOptionPane.ERROR_MESSAGE);
-  //      //      JOptionPane.showMessageDialog(
-  //      //          this,
-  //      //          "Registrazione fallita!\nQuesto username è già in uso.",
-  //      //          "Errore",
-  //      //          JOptionPane.ERROR_MESSAGE);
-  //    } else {
-  //      mostraMessaggio(
-  //          "Registrazione completata con successo!", "Successo",
-  // JOptionPane.INFORMATION_MESSAGE);
-  //      //      JOptionPane.showMessageDialog(
-  //      //          this,
-  //      //          "Registrazione completata con successo!",
-  //      //          "Successo",
-  //      //          JOptionPane.INFORMATION_MESSAGE);
-  //      if (loginListener != null) {
-  //        loginListener.onLoginCompleted(datiUtente);
-  //      }
-  //      dispose();
-  //    }
-  //  }
-
   private boolean checkValidityUsernameAndPasswordFields(String username, String password) {
 
     if (username.isEmpty() || password.isEmpty()) {
@@ -202,19 +126,14 @@ public class LoginPanel extends JFrame {
           "Registrazione fallita!\nUsername e Password non possono essere vuoti.",
           "Errore",
           JOptionPane.ERROR_MESSAGE);
-      //      JOptionPane.showMessageDialog(
-      //              this,
-      //              "Registrazione fallita!\nUsername e Password non possono essere vuoti.",
-      //              "Errore",
-      //              JOptionPane.ERROR_MESSAGE);
       return false;
     }
 
     if (!UsernameManager.validitaCaratteriUsername(username)) {
       mostraMessaggio(
-              "Registrazione fallita!\nL'username contiene caratteri non validi.\nCaratteri consentiti: a-z, A-Z, 0-9",
-              "Errore",
-              JOptionPane.ERROR_MESSAGE);
+          "Registrazione fallita!\nL'username contiene caratteri non validi.\nCaratteri consentiti: a-z, A-Z, 0-9",
+          "Errore",
+          JOptionPane.ERROR_MESSAGE);
       return false;
     }
 
@@ -222,7 +141,9 @@ public class LoginPanel extends JFrame {
       mostraMessaggio(
           "Registrazione fallita!\nL'username non rispetta una dimensione valida.\nLunghezza minima: "
               + UsernameManager.MIN_USERNAME_LENGHT
-              + " caratteri.\nLunghezza massima: " + UsernameManager.MAX_USERNAME_LENGHT + " caratteri.",
+              + " caratteri.\nLunghezza massima: "
+              + UsernameManager.MAX_USERNAME_LENGHT
+              + " caratteri.",
           "Errore",
           JOptionPane.ERROR_MESSAGE);
       return false;
@@ -233,12 +154,6 @@ public class LoginPanel extends JFrame {
           "Registrazione fallita!\nLa password contiene caratteri non validi.\nCaratteri consentiti: a-z, A-Z, 0-9, !, ?",
           "Errore",
           JOptionPane.ERROR_MESSAGE);
-      //      JOptionPane.showMessageDialog(
-      //              this,
-      //              "Login fallito!\nLa password contiene caratteri non validi.\nCaratteri
-      // consentiti: a-z, A-Z, !, ?",
-      //              "Errore",
-      //              JOptionPane.ERROR_MESSAGE);
       return false;
     }
 
@@ -246,15 +161,11 @@ public class LoginPanel extends JFrame {
       mostraMessaggio(
           "Registrazione fallita!\nLa password non rispetta una dimensione valida.\nLunghezza minima: "
               + PasswordManager.MIN_PASSWORD_LENGHT
-              + " caratteri.\nLunghezza massima: " + PasswordManager.MAX_PASSWORD_LENGHT + " caratteri.",
+              + " caratteri.\nLunghezza massima: "
+              + PasswordManager.MAX_PASSWORD_LENGHT
+              + " caratteri.",
           "Errore",
           JOptionPane.ERROR_MESSAGE);
-      //      JOptionPane.showMessageDialog(
-      //              this,
-      //              "Login fallito!\nLa password non rispetta la lunghezza minima.\nLunghezza
-      // minima: " + PasswordManager.MIN_PASSWORD_LENGHT + " caratteri.",
-      //              "Errore",
-      //              JOptionPane.ERROR_MESSAGE);
       return false;
     }
 
@@ -264,10 +175,6 @@ public class LoginPanel extends JFrame {
   private void mostraMessaggio(String messaggio, String titolo, int tipoMessaggio) {
     JOptionPane.showMessageDialog(this, messaggio, titolo, tipoMessaggio);
   }
-
-  //  public String[] getDatiUtente() {
-  //    return datiUtente;
-  //  }
 
   public void addLoginListener(LoginListener listener) {
     this.loginListener = listener;

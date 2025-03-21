@@ -220,11 +220,11 @@ public class LoginPanel extends JFrame {
 
     if (!UsernameManager.validitaLunghezzaUsername(username)) {
       mostraMessaggio(
-              "Registrazione fallita!\nL'username non rispetta la lunghezza minima.\nLunghezza minima: "
-                      + UsernameManager.MIN_USERNAME_LENGHT
-                      + " caratteri.",
-              "Errore",
-              JOptionPane.ERROR_MESSAGE);
+          "Registrazione fallita!\nL'username non rispetta una dimensione valida.\nLunghezza minima: "
+              + UsernameManager.MIN_USERNAME_LENGHT
+              + " caratteri.\nLunghezza massima: " + UsernameManager.MAX_USERNAME_LENGHT + " caratteri.",
+          "Errore",
+          JOptionPane.ERROR_MESSAGE);
       return false;
     }
 
@@ -244,9 +244,9 @@ public class LoginPanel extends JFrame {
 
     if (!PasswordManager.validitaLunghezzaPassword(password)) {
       mostraMessaggio(
-          "Registrazione fallita!\nLa password non rispetta la lunghezza minima.\nLunghezza minima: "
+          "Registrazione fallita!\nLa password non rispetta una dimensione valida.\nLunghezza minima: "
               + PasswordManager.MIN_PASSWORD_LENGHT
-              + " caratteri.",
+              + " caratteri.\nLunghezza massima: " + PasswordManager.MAX_PASSWORD_LENGHT + " caratteri.",
           "Errore",
           JOptionPane.ERROR_MESSAGE);
       //      JOptionPane.showMessageDialog(
